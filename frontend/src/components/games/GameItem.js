@@ -9,7 +9,7 @@ export default function GameItem(props) {
   return (
     <Card
       sx={{
-        maxWidth: 345,
+        maxWidth: 350,
         margin: 1,
         position: "relative",
       }}
@@ -19,13 +19,13 @@ export default function GameItem(props) {
         <Typography gutterBottom variant="h5" component="div">
           {props.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.description}
-        </Typography>
         <Typography>Age limit: {props.minAgeLimit}+ </Typography>
-        <Typography>
+        <Typography gutterBottom>
           Participants: {props.minParticipantsLimit}-
           {props.maxParticipantsLimit}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.description}
         </Typography>
       </CardContent>
     </Card>
