@@ -14,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
-const pages = ["My Events", "Create Event"];
+const pages = ["Explore Games", "My Events", "Create Event"];
 const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar() {
