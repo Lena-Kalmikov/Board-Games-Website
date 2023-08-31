@@ -1,17 +1,19 @@
 import * as React from "react";
-import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Navigate,
   Routes,
 } from "react-router-dom";
+import "./App.css";
 
 import MainNavigation from "./components/shared/Navigation/MainNavigation";
 import GameList from "./components/games/GameList";
 import Home from "./pages/Home";
 import MyEvents from "./pages/MyEvents";
 import CreateEvent from "./pages/CreateEvent";
+
+import { ThemeProvider } from "@mui/material/styles";
 
 const GAMES = [
   {
@@ -62,15 +64,17 @@ const GAMES = [
 
 export default function App() {
   return (
-    <Router>
-      <MainNavigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ExploreGames" element={<GameList games={GAMES} />} />
-        <Route path="/MyEvents" element={<MyEvents />} />
-        <Route path="/CreateEvent" element={<CreateEvent />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <MainNavigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/ExploreGames" element={<GameList games={GAMES} />} />
+          <Route path="/MyEvents" element={<MyEvents />} />
+          <Route path="/CreateEvent" element={<CreateEvent />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
