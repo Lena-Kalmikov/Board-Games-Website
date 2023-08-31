@@ -14,6 +14,8 @@ import MyEvents from "./pages/MyEvents";
 import CreateEvent from "./pages/CreateEvent";
 
 import { ThemeProvider } from "@mui/material/styles";
+import SignIn from "./components/authentication/SignIn";
+import SignUp from "./components/authentication/SignUp";
 
 const GAMES = [
   {
@@ -64,17 +66,16 @@ const GAMES = [
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <Router>
-        <MainNavigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ExploreGames" element={<GameList games={GAMES} />} />
-          <Route path="/MyEvents" element={<MyEvents />} />
-          <Route path="/CreateEvent" element={<CreateEvent />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <MainNavigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/ExploreGames" element={<GameList games={GAMES} />} />
+        <Route path="/MyEvents" element={<MyEvents />} />
+        <Route path="/CreateEvent" element={<CreateEvent />} />
+        <Route path="/SignIn" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
+      </Routes>
+    </Router>
   );
 }
