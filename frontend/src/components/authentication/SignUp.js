@@ -1,13 +1,11 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SignUp.css";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -59,6 +57,31 @@ export default function SignUp() {
       email: data.get("email"),
       password: data.get("password"),
     });
+  };
+
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
+
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    setSelectedFile(e.target.files[0]);
   };
 
   return (
@@ -151,9 +174,22 @@ export default function SignUp() {
                 }}
               >
                 Choose Profile Picture
-                <input type="file" hidden />
+                <input
+                  type="file"
+                  id="image"
+                  hidden
+                  accept=".png, .jpg, .jpeg"
+                  onChange={onSelectFile}
+                />
               </Button>
-              <Avatar sx={{ width: 125, height: 125 }}></Avatar>
+              <Avatar
+                sx={{
+                  width: 125,
+                  height: 125,
+                  bgcolor: "rgba(25,118,210,0.57)",
+                }}
+                src={preview}
+              ></Avatar>
             </Grid>
           </Grid>
           <Button
