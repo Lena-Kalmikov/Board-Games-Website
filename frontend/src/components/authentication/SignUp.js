@@ -20,11 +20,23 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function SignUp() {
   const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [emailHelperText, setEmailHelperText] = useState("");
+
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [passwordHelperText, setPasswordHelperText] = useState("");
 
+  const [isFirstNameValid, setFirstNameValid] = useState(true);
+  const [firstNameHelperText, setFirstNameHelperText] = useState("");
+
+  const [isLastNameValid, setIsLastNameValid] = useState(true);
+  const [lastNameHelperText, setLastNameHelperText] = useState("");
+
+  const [isBirthdayValid, setIsBirthdayValid] = useState(true);
+  const [birthdayHelperText, setBirthdayHelperText] = useState("");
+
   const checkEmailInput = (event) => {
+    setIsEmailValid(true);
+    setEmailHelperText("");
     let validRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -41,12 +53,45 @@ export default function SignUp() {
   };
 
   const checkPasswordInput = (event) => {
-    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+    if (
+      event.currentTarget.value.length === 0 ||
+      event.currentTarget.value.length < 6
+    ) {
       setIsPasswordValid(false);
       setPasswordHelperText("Password should be at least 6 characters");
     } else {
       setIsPasswordValid(true);
       setPasswordHelperText("");
+    }
+  };
+
+  const checkFirstNameInput = (event) => {
+    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+      setFirstNameValid(false);
+      setFirstNameHelperText("Please enter your first name");
+    } else {
+      setFirstNameValid(true);
+      setFirstNameHelperText("");
+    }
+  };
+
+  const checkLastNameInput = (event) => {
+    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+      setIsLastNameValid(false);
+      setLastNameHelperText("Please enter your last name");
+    } else {
+      setIsLastNameValid(true);
+      setLastNameHelperText("");
+    }
+  };
+
+  const checkBirthdayInput = (event) => {
+    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+      setIsBirthdayValid(false);
+      setBirthdayHelperText("Please enter your birthday");
+    } else {
+      setIsBirthdayValid(true);
+      setBirthdayHelperText("");
     }
   };
 
@@ -90,7 +135,6 @@ export default function SignUp() {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 5,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -113,6 +157,9 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                error={!isFirstNameValid}
+                helperText={firstNameHelperText}
+                onBlur={checkFirstNameInput}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -123,6 +170,9 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                error={!isLastNameValid}
+                helperText={lastNameHelperText}
+                onBlur={checkLastNameInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -133,6 +183,9 @@ export default function SignUp() {
                 label="Birthday"
                 type="date"
                 id="date"
+                error={!isBirthdayValid}
+                helperText={birthdayHelperText}
+                onBlur={checkBirthdayInput}
                 // InputLabelProps={{ shrink: true }}
               />
             </Grid>
