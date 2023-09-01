@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useState } from "react";
+import "./SignUp.css";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,12 +16,42 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
 // TODO remove, this demo shouldn't need to reset the theme.
 
 // const defaultTheme = createTheme();
 
 export default function SignUp() {
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+  const [emailHelperText, setEmailHelperText] = useState("");
+  const [passwordHelperText, setPasswordHelperText] = useState("");
+
+  const checkEmailInput = (event) => {
+    let validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (
+      event.currentTarget.value === "" ||
+      !event.currentTarget.value.match(validRegex)
+    ) {
+      setIsEmailValid(false);
+      setEmailHelperText("Please enter a valid email address");
+    } else {
+      setIsEmailValid(true);
+      setEmailHelperText("");
+    }
+  };
+
+  const checkPasswordInput = (event) => {
+    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+      setIsPasswordValid(false);
+      setPasswordHelperText("Password should be at least 6 characters");
+    } else {
+      setIsPasswordValid(true);
+      setPasswordHelperText("");
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -34,7 +67,7 @@ export default function SignUp() {
       <CssBaseline />
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 5,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -73,10 +106,24 @@ export default function SignUp() {
               <TextField
                 required
                 fullWidth
+                name="date"
+                label="Birthday"
+                type="date"
+                id="date"
+                // InputLabelProps={{ shrink: true }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                error={!isEmailValid}
+                helperText={emailHelperText}
+                onBlur={checkEmailInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -88,13 +135,25 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                error={!isPasswordValid}
+                helperText={passwordHelperText}
+                onBlur={checkPasswordInput}
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
+            <Grid container item justifyContent="space-between">
+              <Button
+                variant="outlined"
+                component="label"
+                sx={{
+                  textTransform: "none",
+                  marginTop: 6,
+                  marginBottom: 6,
+                }}
+              >
+                Choose Profile Picture
+                <input type="file" hidden />
+              </Button>
+              <Avatar sx={{ width: 125, height: 125 }}></Avatar>
             </Grid>
           </Grid>
           <Button
