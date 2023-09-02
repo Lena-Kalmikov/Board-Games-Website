@@ -138,6 +138,7 @@ export default function SignUp() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          marginTop: 8,
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -160,6 +161,7 @@ export default function SignUp() {
                 error={!isFirstNameValid}
                 helperText={firstNameHelperText}
                 onBlur={checkFirstNameInput}
+                size="small"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -173,6 +175,7 @@ export default function SignUp() {
                 error={!isLastNameValid}
                 helperText={lastNameHelperText}
                 onBlur={checkLastNameInput}
+                size="small"
               />
             </Grid>
             <Grid item xs={12}>
@@ -186,6 +189,8 @@ export default function SignUp() {
                 error={!isBirthdayValid}
                 helperText={birthdayHelperText}
                 onBlur={checkBirthdayInput}
+                size="small"
+
                 // InputLabelProps={{ shrink: true }}
               />
             </Grid>
@@ -200,6 +205,7 @@ export default function SignUp() {
                 error={!isEmailValid}
                 helperText={emailHelperText}
                 onBlur={checkEmailInput}
+                size="small"
               />
             </Grid>
             <Grid item xs={12}>
@@ -214,6 +220,7 @@ export default function SignUp() {
                 error={!isPasswordValid}
                 helperText={passwordHelperText}
                 onBlur={checkPasswordInput}
+                size="small"
               />
             </Grid>
             <Grid container item justifyContent="space-between">

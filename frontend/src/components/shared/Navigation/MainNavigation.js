@@ -38,7 +38,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <ExtensionIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
