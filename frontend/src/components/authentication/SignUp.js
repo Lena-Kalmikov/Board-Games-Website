@@ -21,81 +21,81 @@ import { useForm, SubmitHandler } from "react-hook-form";
 // const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [emailHelperText, setEmailHelperText] = useState("");
+  // const [isEmailValid, setIsEmailValid] = useState(true);
+  // const [emailHelperText, setEmailHelperText] = useState("");
 
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [passwordHelperText, setPasswordHelperText] = useState("");
+  // const [isPasswordValid, setIsPasswordValid] = useState(true);
+  // const [passwordHelperText, setPasswordHelperText] = useState("");
 
-  const [isFirstNameValid, setFirstNameValid] = useState(true);
-  const [firstNameHelperText, setFirstNameHelperText] = useState("");
+  // const [isFirstNameValid, setFirstNameValid] = useState(true);
+  // const [firstNameHelperText, setFirstNameHelperText] = useState("");
 
-  const [isLastNameValid, setIsLastNameValid] = useState(true);
-  const [lastNameHelperText, setLastNameHelperText] = useState("");
+  // const [isLastNameValid, setIsLastNameValid] = useState(true);
+  // const [lastNameHelperText, setLastNameHelperText] = useState("");
 
-  const [isBirthdayValid, setIsBirthdayValid] = useState(true);
-  const [birthdayHelperText, setBirthdayHelperText] = useState("");
+  // const [isBirthdayValid, setIsBirthdayValid] = useState(true);
+  // const [birthdayHelperText, setBirthdayHelperText] = useState("");
 
-  const checkEmailInput = (event) => {
-    setIsEmailValid(true);
-    setEmailHelperText("");
-    let validRegex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  // const checkEmailInput = (event) => {
+  //   setIsEmailValid(true);
+  //   setEmailHelperText("");
+  //   let validRegex =
+  //     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if (
-      event.currentTarget.value === "" ||
-      !event.currentTarget.value.match(validRegex)
-    ) {
-      setIsEmailValid(false);
-      setEmailHelperText("Please enter a valid email address");
-    } else {
-      setIsEmailValid(true);
-      setEmailHelperText("");
-    }
-  };
+  //   if (
+  //     event.currentTarget.value === "" ||
+  //     !event.currentTarget.value.match(validRegex)
+  //   ) {
+  //     setIsEmailValid(false);
+  //     setEmailHelperText("Please enter a valid email address");
+  //   } else {
+  //     setIsEmailValid(true);
+  //     setEmailHelperText("");
+  //   }
+  // };
 
-  const checkPasswordInput = (event) => {
-    if (
-      event.currentTarget.value.length === 0 ||
-      event.currentTarget.value.length < 6
-    ) {
-      setIsPasswordValid(false);
-      setPasswordHelperText("Password should be at least 6 characters");
-    } else {
-      setIsPasswordValid(true);
-      setPasswordHelperText("");
-    }
-  };
+  // const checkPasswordInput = (event) => {
+  //   if (
+  //     event.currentTarget.value.length === 0 ||
+  //     event.currentTarget.value.length < 6
+  //   ) {
+  //     setIsPasswordValid(false);
+  //     setPasswordHelperText("Password should be at least 6 characters");
+  //   } else {
+  //     setIsPasswordValid(true);
+  //     setPasswordHelperText("");
+  //   }
+  // };
 
-  const checkFirstNameInput = (event) => {
-    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
-      setFirstNameValid(false);
-      setFirstNameHelperText("Please enter your first name");
-    } else {
-      setFirstNameValid(true);
-      setFirstNameHelperText("");
-    }
-  };
+  // const checkFirstNameInput = (event) => {
+  //   if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+  //     setFirstNameValid(false);
+  //     setFirstNameHelperText("Please enter your first name");
+  //   } else {
+  //     setFirstNameValid(true);
+  //     setFirstNameHelperText("");
+  //   }
+  // };
 
-  const checkLastNameInput = (event) => {
-    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
-      setIsLastNameValid(false);
-      setLastNameHelperText("Please enter your last name");
-    } else {
-      setIsLastNameValid(true);
-      setLastNameHelperText("");
-    }
-  };
+  // const checkLastNameInput = (event) => {
+  //   if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+  //     setIsLastNameValid(false);
+  //     setLastNameHelperText("Please enter your last name");
+  //   } else {
+  //     setIsLastNameValid(true);
+  //     setLastNameHelperText("");
+  //   }
+  // };
 
-  const checkBirthdayInput = (event) => {
-    if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
-      setIsBirthdayValid(false);
-      setBirthdayHelperText("Please enter your birthday");
-    } else {
-      setIsBirthdayValid(true);
-      setBirthdayHelperText("");
-    }
-  };
+  // const checkBirthdayInput = (event) => {
+  //   if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
+  //     setIsBirthdayValid(false);
+  //     setBirthdayHelperText("Please enter your birthday");
+  //   } else {
+  //     setIsBirthdayValid(true);
+  //     setBirthdayHelperText("");
+  //   }
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
