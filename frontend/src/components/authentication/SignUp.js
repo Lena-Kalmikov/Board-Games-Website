@@ -2,6 +2,8 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import "./SignUp.css";
 
+import { useForm, SubmitHandler } from "react-hook-form";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,7 +16,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { useForm, SubmitHandler } from "react-hook-form";
 
 export default function SignUp() {
   const { register, handleSubmit, formState } = useForm({
@@ -22,14 +23,6 @@ export default function SignUp() {
   });
 
   const { errors } = formState;
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
 
   const onSubmit = (data) => {
     console.log(data);
