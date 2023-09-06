@@ -187,8 +187,8 @@ export default function SignUp() {
                   name="image"
                   type="file"
                   accept=".png, .jpg, .jpeg"
+                  {...register("image")}
                   onChange={onSelectFile}
-                  // {...register("image")}
                   hidden
                 />
               </Button>
