@@ -16,94 +16,23 @@ import Container from "@mui/material/Container";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
-// const defaultTheme = createTheme();
-
 export default function SignUp() {
-  // const [isEmailValid, setIsEmailValid] = useState(true);
-  // const [emailHelperText, setEmailHelperText] = useState("");
+  const { register, handleSubmit, formState } = useForm({
+    mode: "all",
+  });
 
-  // const [isPasswordValid, setIsPasswordValid] = useState(true);
-  // const [passwordHelperText, setPasswordHelperText] = useState("");
-
-  // const [isFirstNameValid, setFirstNameValid] = useState(true);
-  // const [firstNameHelperText, setFirstNameHelperText] = useState("");
-
-  // const [isLastNameValid, setIsLastNameValid] = useState(true);
-  // const [lastNameHelperText, setLastNameHelperText] = useState("");
-
-  // const [isBirthdayValid, setIsBirthdayValid] = useState(true);
-  // const [birthdayHelperText, setBirthdayHelperText] = useState("");
-
-  // const checkEmailInput = (event) => {
-  //   setIsEmailValid(true);
-  //   setEmailHelperText("");
-  //   let validRegex =
-  //     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  //   if (
-  //     event.currentTarget.value === "" ||
-  //     !event.currentTarget.value.match(validRegex)
-  //   ) {
-  //     setIsEmailValid(false);
-  //     setEmailHelperText("Please enter a valid email address");
-  //   } else {
-  //     setIsEmailValid(true);
-  //     setEmailHelperText("");
-  //   }
+  const { errors } = formState;
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
   // };
 
-  // const checkPasswordInput = (event) => {
-  //   if (
-  //     event.currentTarget.value.length === 0 ||
-  //     event.currentTarget.value.length < 6
-  //   ) {
-  //     setIsPasswordValid(false);
-  //     setPasswordHelperText("Password should be at least 6 characters");
-  //   } else {
-  //     setIsPasswordValid(true);
-  //     setPasswordHelperText("");
-  //   }
-  // };
-
-  // const checkFirstNameInput = (event) => {
-  //   if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
-  //     setFirstNameValid(false);
-  //     setFirstNameHelperText("Please enter your first name");
-  //   } else {
-  //     setFirstNameValid(true);
-  //     setFirstNameHelperText("");
-  //   }
-  // };
-
-  // const checkLastNameInput = (event) => {
-  //   if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
-  //     setIsLastNameValid(false);
-  //     setLastNameHelperText("Please enter your last name");
-  //   } else {
-  //     setIsLastNameValid(true);
-  //     setLastNameHelperText("");
-  //   }
-  // };
-
-  // const checkBirthdayInput = (event) => {
-  //   if (event.currentTarget.value === "" || event.currentTarget.value < 6) {
-  //     setIsBirthdayValid(false);
-  //     setBirthdayHelperText("Please enter your birthday");
-  //   } else {
-  //     setIsBirthdayValid(true);
-  //     setBirthdayHelperText("");
-  //   }
-  // };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   const [selectedFile, setSelectedFile] = useState();
@@ -149,80 +78,97 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+          sx={{ mt: 3 }}
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="given-name"
-                name="firstName"
-                required
-                fullWidth
                 id="firstName"
+                name="firstName"
                 label="First Name"
-                autoFocus
-                error={!isFirstNameValid}
-                helperText={firstNameHelperText}
-                onBlur={checkFirstNameInput}
                 size="small"
+                autoComplete="given-name"
+                {...register("firstName", {
+                  required: "First Name is required",
+                })}
+                error={!!errors.firstName}
+                helperText={errors.firstName?.message}
+                fullWidth
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
-                fullWidth
                 id="lastName"
-                label="Last Name"
                 name="lastName"
-                autoComplete="family-name"
-                error={!isLastNameValid}
-                helperText={lastNameHelperText}
-                onBlur={checkLastNameInput}
+                label="Last Name"
                 size="small"
+                autoComplete="family-name"
+                {...register("lastName", { required: "Last Name is required" })}
+                error={!!errors.lastName}
+                helperText={errors.lastName?.message}
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                required
-                fullWidth
-                name="date"
+                id="birthday"
+                name="birthday"
                 label="Birthday"
                 type="date"
-                id="date"
-                error={!isBirthdayValid}
-                helperText={birthdayHelperText}
-                onBlur={checkBirthdayInput}
                 size="small"
-
-                // InputLabelProps={{ shrink: true }}
+                {...register("birthday", {
+                  required: "Date of Birth is required",
+                })}
+                error={!!errors.birthday}
+                helperText={errors.birthday?.message}
+                required
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                required
-                fullWidth
                 id="email"
-                label="Email Address"
                 name="email"
-                autoComplete="email"
-                error={!isEmailValid}
-                helperText={emailHelperText}
-                onBlur={checkEmailInput}
+                label="Email Address"
+                type="email"
                 size="small"
+                autoComplete="email"
+                {...register("email", {
+                  required: "Email is required",
+                  validate: {
+                    matchPattern: (v) =>
+                      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+                      "Please enter a valid email address",
+                  },
+                })}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                required
-                fullWidth
+                id="password"
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
                 autoComplete="new-password"
-                error={!isPasswordValid}
-                helperText={passwordHelperText}
-                onBlur={checkPasswordInput}
                 size="small"
+                {...register("password", {
+                  required: "Password is required",
+                  validate: {
+                    minLength: (v) =>
+                      v.length >= 6 ||
+                      "Password should have at least 6 characters",
+                  },
+                })}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+                fullWidth
               />
             </Grid>
             <Grid container item justifyContent="space-between">
@@ -237,11 +183,13 @@ export default function SignUp() {
               >
                 Choose Profile Picture
                 <input
-                  type="file"
                   id="image"
-                  hidden
+                  name="image"
+                  type="file"
                   accept=".png, .jpg, .jpeg"
                   onChange={onSelectFile}
+                  // {...register("image")}
+                  hidden
                 />
               </Button>
               <Avatar
@@ -255,8 +203,8 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
             fullWidth
+            type="submit"
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
