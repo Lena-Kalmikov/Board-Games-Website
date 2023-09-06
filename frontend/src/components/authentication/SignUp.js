@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import "./SignUp.css";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -15,7 +15,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 
 export default function SignUp() {
   const { register, handleSubmit, formState } = useForm({
@@ -62,7 +61,7 @@ export default function SignUp() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: 6,
+          marginTop: 4,
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
