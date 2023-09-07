@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -14,7 +13,7 @@ export default function GameItem(props) {
         position: "relative",
       }}
     >
-      <CardMedia sx={{ height: 140 }} image={props.image} />
+      <CardMedia sx={{ height: 145 }} image={props.image} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {props.title}
