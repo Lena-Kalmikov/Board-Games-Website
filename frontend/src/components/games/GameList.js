@@ -8,6 +8,8 @@ export default function GameList(props) {
       direction={{ xs: "column", sm: "row" }}
       sx={{
         flexWrap: "wrap",
+        marginTop: 2,
+        justifyContent: "center",
       }}
     >
       {props.games.map((game) => (
