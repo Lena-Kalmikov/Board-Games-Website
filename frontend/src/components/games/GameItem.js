@@ -51,7 +51,7 @@ export default function GameItem(props) {
           color="rgba(17, 82, 147, 0.57)"
           onClick={toggleReadMore}
         >
-          {isShowMore ? " show more..." : " show less"}
+          {isShowMore ? " show more" : " show less"}
         </Typography>
       </CardContent>
     </Card>

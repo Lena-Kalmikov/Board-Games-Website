@@ -14,8 +14,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
-const pages = ["Explore Games", "My Events", "Create Event"];
-const settings = ["Profile", "Logout"];
+const pages = ["Explore Games", "Explore Events"];
+// const settings = ["Profile", "My Events", "Create Event", "Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -116,29 +116,62 @@ function ResponsiveAppBar() {
             BOARDLAND
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                href={`/${page.replaceAll(" ", "")}`}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  textTransform: "none",
-                }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={handleCloseNavMenu}
+              href="/games"
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                textTransform: "none",
+              }}
+            >
+              Explore Games
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              href="/events"
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                textTransform: "none",
+              }}
+            >
+              Explore Events
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Lena K" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
+            {/* <Button
+              onClick={handleCloseNavMenu}
+              href="/"
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                textTransform: "none",
+              }}
+            >
+              Sign In
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              href="/"
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                textTransform: "none",
+              }}
+            >
+              Sign Up
+            </Button> */}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -155,11 +188,34 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem
+                href="/userId/profile"
+                component="a"
+                onClick={handleCloseUserMenu}
+              >
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem
+                href="/userId/events"
+                component="a"
+                onClick={handleCloseUserMenu}
+              >
+                <Typography textAlign="center">My Events</Typography>
+              </MenuItem>
+              <MenuItem
+                href="/userId/createEvent"
+                component="a"
+                onClick={handleCloseUserMenu}
+              >
+                <Typography textAlign="center">Create New Event</Typography>
+              </MenuItem>
+              <MenuItem
+                href="/logout"
+                component="a"
+                onClick={handleCloseUserMenu}
+              >
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

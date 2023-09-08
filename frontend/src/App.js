@@ -47,7 +47,7 @@ const GAMES = [
     minParticipantsLimit: 2,
     maxParticipantsLimit: 5,
     description:
-      "Carcassonne is a tile-placement game in which the players draw and place a tile with a piece of southern French landscape on it. The tile might feature a city, a road, a cloister, grassland or some combination thereof, and it must be placed adjacent to tiles that have already been played, in such a way that cities are connected to cities, roads to roads, etcetera. Having placed a tile, the player can then decide to place one of their meeples on one of the areas on it: on the city as a knight, on the road as a robber, on a cloister as a monk, or on the grass as a farmer. When that area is complete, that meeple scores points for its owner.",
+      "Carcassonne is a tile-placement game in which the players draw and place a tile with a piece of southern French landscape on it. The tile might feature a city, a road, a cloister, grassland or some combination thereof, and it must be placed adjacent to tiles that have already been played, in such a way that cities are connected to cities, roads to roads, etcetera.",
     image:
       "https://cdn.akamai.steamstatic.com/steam/apps/598810/header.jpg?t=1694001498",
   },
@@ -58,9 +58,53 @@ const GAMES = [
     minParticipantsLimit: 2,
     maxParticipantsLimit: 6,
     description:
-      "Here to Slay is a competitive role-playing fantasy strategy card game that's all about assembling a party of Heroes and slaying monsters (and sometimes sabotaging your friends too) from the creators of Unstable Unicorns. In this game, you will assemble a full party of heroes to slay dangerous monsters while working to avoid the sabotage of your foes. The game also includes items you can equip to your heroes, 1V1 challenge cards, and roll modifiers to tip the odds in your favor. The first person to successfully slay three monsters, or build a full party with six classes, wins the game!",
+      "Here to Slay is a competitive role-playing fantasy strategy card game that's all about assembling a party of Heroes and slaying monsters (and sometimes sabotaging your friends too) from the creators of Unstable Unicorns. In this game, you will assemble a full party of heroes to slay dangerous monsters while working to avoid the sabotage of your foes.",
     image:
       "https://teeturtle-s3-web.s3.amazonaws.com/uu_images/animation/hts-main-banner.jpg",
+  },
+  {
+    id: "g5",
+    title: "Unstable Unicorns",
+    minAgeLimit: 7,
+    minParticipantsLimit: 2,
+    maxParticipantsLimit: 5,
+    description:
+      "Build a Unicorn Army. Betray your friends. Unicorns are your friends now. Learn how unstable your friendships really are. You start with a Baby Unicorn in your Stable. SO CUTE! But don't get too attached, because even Baby Unicorns aren't safe in this game! Build your Unicorn Army as fast as you can, or be destroyed by one of your so-called friends! The first person to complete their Unicorn Army shall hereafter be known as The Righteous Ruler of All Things Magical... at least until the next game. Good luck.",
+    image:
+      "https://ksr-ugc.imgix.net/assets/017/949/271/9f6596eea72170e88a47712fe58b72f1_original.jpg?ixlib=rb-4.1.0&crop=faces&w=1552&h=873&fit=crop&v=1502921865&auto=format&frame=1&q=92&s=224988046fba685c16c8f536e2c0b74c",
+  },
+  {
+    id: "g6",
+    title: "Catan",
+    minAgeLimit: 10,
+    minParticipantsLimit: 3,
+    maxParticipantsLimit: 4,
+    description:
+      "In CATAN, players try to be the dominant force on the island of Catan by building settlements, cities, and roads. On each turn dice are rolled to determine what resources the island produces. Players build by spending resources (sheep, wheat, wood, brick and ore) that are depicted by these resource cards; each land type, with the exception of the unproductive desert, produces a specific resource: hills produce brick, forests produce wood, mountains produce ore, fields produce wheat, and pastures produce sheep.",
+    image:
+      "https://gamecows.com/wp-content/uploads/2020/04/Catan-Board-Game-Review-Featured.jpg",
+  },
+  {
+    id: "g7",
+    title: "Pandemic",
+    minAgeLimit: 8,
+    minParticipantsLimit: 2,
+    maxParticipantsLimit: 4,
+    description:
+      "In Pandemic, several virulent diseases have broken out simultaneously all over the world! The players are disease-fighting specialists whose mission is to treat disease hotspots while researching cures for each of four plagues before they get out of hand. The game board depicts several major population centers on Earth. On each turn, a player can use up to four actions to travel between cities, treat infected populaces, discover a cure, or build a research station.",
+    image:
+      "https://arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/PNCQBF77LFFP5HRIARSCZGTUOY.jpg",
+  },
+  {
+    id: "g8",
+    title: "Splendor",
+    minAgeLimit: 10,
+    minParticipantsLimit: 2,
+    maxParticipantsLimit: 4,
+    description:
+      "Splendor is a game of chip-collecting and card development. Players are merchants of the Renaissance trying to buy gem mines, means of transportation, shops—all in order to acquire the most prestige points. If you're wealthy enough, you might even receive a visit from a noble at some point, which of course will further increase your prestige.",
+    image:
+      "https://static.wixstatic.com/media/59baa2_4adecb66668841b1a56179af03f6e074~mv2_d_3425_1535_s_2.jpg/v1/fill/w_2500,h_1120,al_c/59baa2_4adecb66668841b1a56179af03f6e074~mv2_d_3425_1535_s_2.jpg",
   },
 ];
 
@@ -70,11 +114,12 @@ export default function App() {
       <MainNavigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/ExploreGames" element={<GameList games={GAMES} />} />
-        <Route path="/MyEvents" element={<MyEvents />} />
-        <Route path="/CreateEvent" element={<CreateEvent />} />
-        <Route path="/SignIn" element={<SignIn />} />
-        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/games" element={<GameList games={GAMES} />} />
+        {/* <Route path="/events" element={<EventList events={EVENTS} />} /> */}
+        <Route path="/myEvents" element={<MyEvents />} />
+        <Route path="/createEvent" element={<CreateEvent />} />
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signUp" element={<SignUp />} />
       </Routes>
     </Router>
   );
