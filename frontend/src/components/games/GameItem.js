@@ -1,10 +1,26 @@
 import * as React from "react";
+import { useState } from "react";
+import "./GameItem.css";
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
 export default function GameItem(props) {
+  const [isShowMore, setIsShowMore] = useState(true);
+  let descriptionCSSClass = "";
+
+  const toggleReadMore = () => {
+    setIsShowMore((show) => !show);
+  };
+
+  if (isShowMore) {
+    descriptionCSSClass = "description";
+  } else {
+    descriptionCSSClass = "";
+  }
+
   return (
     <Card
       sx={{
@@ -23,8 +39,21 @@ export default function GameItem(props) {
           Participants: {props.minParticipantsLimit}-
           {props.maxParticipantsLimit}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body3"
+          color="text.secondary"
+          className={descriptionCSSClass}
+        >
           {props.description}
+        </Typography>
+        <Typography
+          marginTop={0.3}
+          variant="body2"
+          color="rgba(17, 82, 147, 0.57)"
+          showMore={isShowMore}
+          onClick={toggleReadMore}
+        >
+          {isShowMore ? " show more..." : " show less"}
         </Typography>
       </CardContent>
     </Card>
