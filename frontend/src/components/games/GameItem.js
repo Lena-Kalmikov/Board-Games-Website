@@ -9,15 +9,14 @@ import Typography from "@mui/material/Typography";
 
 export default function GameItem(props) {
   const [isShowMore, setIsShowMore] = useState(true);
-  let descriptionCSSClass = "";
+  let descriptionCSSClass = "clamp-line-height";
 
   const toggleReadMore = () => {
     setIsShowMore((show) => !show);
   };
 
-  if (isShowMore) {
-    descriptionCSSClass = "description";
-  } else {
+
+  if (!isShowMore) {
     descriptionCSSClass = "";
   }
 
@@ -50,7 +49,6 @@ export default function GameItem(props) {
           marginTop={0.3}
           variant="body2"
           color="rgba(17, 82, 147, 0.57)"
-          showMore={isShowMore}
           onClick={toggleReadMore}
         >
           {isShowMore ? " show more..." : " show less"}

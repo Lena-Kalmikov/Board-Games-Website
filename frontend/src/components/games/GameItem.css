@@ -1,10 +1,6 @@
-.description {
+.clamp-line-height {
   display: -webkit-box;
-  max-width: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  word-wrap: normal;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
 }
