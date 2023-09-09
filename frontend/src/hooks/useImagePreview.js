@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function useImagePreview() {
+export default function useImagePreview() {
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
 
@@ -28,5 +28,3 @@ function useImagePreview() {
 
   return { preview, onSelectFile };
 }
-
-export default useImagePreview;
