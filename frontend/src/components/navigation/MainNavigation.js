@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/auth-context";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,7 +17,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
 export default function MainNavigation() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const auth = useContext(AuthContext);
 
   const [anchorElementNav, setAnchorElementNav] = useState(null);
   const [anchorElementUser, setAnchorElementUser] = useState(null);
@@ -104,17 +105,17 @@ export default function MainNavigation() {
               >
                 <Typography textAlign="center">Explore Events</Typography>
               </MenuItem>
-              {!isLoggedIn && (
+              {!auth.isLoggedIn && (
                 <>
                   <MenuItem
-                    href="/signIn"
+                    href="/login"
                     component="a"
                     onClick={handleCloseUserMenu}
                   >
-                    <Typography textAlign="center">Sign in</Typography>
+                    <Typography textAlign="center">Login</Typography>
                   </MenuItem>{" "}
                   <MenuItem
-                    href="/signUp"
+                    href="/signup"
                     component="a"
                     onClick={handleCloseUserMenu}
                   >
@@ -169,11 +170,11 @@ export default function MainNavigation() {
               Explore Events
             </Button>
           </Box>
-          {!isLoggedIn && (
+          {!auth.isLoggedIn && (
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Button
                 onClick={handleCloseNavMenu}
-                href="/SignIn"
+                href="/login"
                 sx={{
                   my: 2,
                   color: "white",
@@ -181,11 +182,11 @@ export default function MainNavigation() {
                   textTransform: "none",
                 }}
               >
-                Sign in
+                Login
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
-                href="/signUp"
+                href="/signup"
                 sx={{
                   my: 2,
                   color: "white",
@@ -198,7 +199,7 @@ export default function MainNavigation() {
             </Box>
           )}
 
-          {isLoggedIn && (
+          {auth.isLoggedIn && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

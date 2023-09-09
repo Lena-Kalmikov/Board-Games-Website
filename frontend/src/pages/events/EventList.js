@@ -1,42 +1,35 @@
-// import React from "react";
-// import GameItem from "./GameItem";
-// import { Stack } from "@mui/material";
+import React from "react";
+import EventItem from "./EventItem";
 
-// const EVENTS = [
-//   {
-//     id: "e1",
-//     date: "2023-8-31",
-//     time: "19:00",
-//     title: "Let's play 'Exploding Kittens'",
-//     city: "Jerusalem",
-//     address: "Moshe Dayan st 21, apt 3",
-//     description: "An evening dedicated to the best game in the world",
-//     participants: 3,
-//     gameId: "g1"
-//   },
-// ];
+import { Stack } from "@mui/material";
 
-// export default function EventList(props) {
-//   return (
-//     <Stack
-//       direction={{ xs: "column", sm: "row" }}
-//       sx={{
-//         flexWrap: "wrap",
-//       }}
-//     >
-//       {props.games.map((game) => (
-//         <GameItem
-//           key={game.id}
-//           id={game.id}
-//           title={game.title}
-//           minAgeLimit={game.minAgeLimit}
-//           minParticipantsLimit={game.minParticipantsLimit}
-//           maxParticipantsLimit={game.maxParticipantsLimit}
-//           description={game.description}
-//           image={game.image}
-//         />
-//       ))}
-//     </Stack>
-//   );
-// }
-
+export default function EventList(props) {
+  return (
+    <Stack
+      direction={{ xs: "column", sm: "row" }}
+      sx={{
+        flexWrap: "wrap",
+        margin: 3,
+        justifyContent: "center",
+      }}
+    >
+      {props.events.map((event) => (
+        <EventItem
+          key={event.id}
+          id={event.id}
+          title={event.title}
+          minAgeLimit={event.minAgeLimit}
+          minParticipantsLimit={event.minParticipantsLimit}
+          maxParticipantsLimit={event.maxParticipantsLimit}
+          description={event.description}
+          image={event.image}
+          date={event.date}
+          time={event.time}
+          city={event.city}
+          address={event.address}
+          game={event.gameId}
+        />
+      ))}
+    </Stack>
+  );
+}

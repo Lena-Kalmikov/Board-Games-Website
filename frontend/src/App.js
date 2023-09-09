@@ -13,10 +13,11 @@ import MainNavigation from "./components/navigation/MainNavigation";
 import Home from "./pages/home/Home";
 import GameList from "./pages/games/GameList";
 import CreateEvent from "./pages/events/CreateEvent";
-import SignIn from "./pages/auth/SignIn";
+import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
 import UserProfile from "./pages/user/UserProfile";
 import UserEvents from "./pages/events/UserEvents";
+import EventList from "./pages/events/EventList";
 
 const GAMES = [
   {
@@ -109,6 +110,41 @@ const GAMES = [
   },
 ];
 
+const EVENTS = [
+  {
+    id: "e1",
+    title: "Play night at Lena's",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://images.pexels.com/photos/8111324/pexels-photo-8111324.jpeg?auto=compress&cs=tinysrgb&w=600",
+    gameId: "g1",
+    minParticipantsLimit: "g1.minParticipantsLimit",
+    maxParticipantsLimit: "g1.maxParticipantsLimit",
+    participants: [],
+  },
+  {
+    id: "e2",
+    title: "Play night at Lena's",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://images.pexels.com/photos/8111307/pexels-photo-8111307.jpeg?auto=compress&cs=tinysrgb&w=600",
+    gameId: "g1",
+    minParticipantsLimit: "g1.minParticipantsLimit",
+    maxParticipantsLimit: "g1.maxParticipantsLimit",
+    participants: [],
+  },
+];
+
 export default function App() {
   return (
     <Router>
@@ -116,11 +152,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<GameList games={GAMES} />} />
-        {/* <Route path="/events" element={<EventList events={EVENTS} />} /> */}
+        <Route path="/events" element={<EventList events={EVENTS} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/userId/events" element={<UserEvents />} />
         <Route path="/userId/createEvent" element={<CreateEvent />} />
-        <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<SignUp />} />
         <Route path="/userId/profile" element={<UserProfile />} />
       </Routes>
     </Router>
