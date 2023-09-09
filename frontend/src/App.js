@@ -2,20 +2,21 @@ import * as React from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Navigate,
+  // Navigate,
   Routes,
 } from "react-router-dom";
 import "./App.css";
 
-import MainNavigation from "./components/navigation/MainNavigation";
-import GameList from "./pages/exploreGames/GameList"
-import Home from "./pages/home/Home"
-import MyEvents from "./pages/myEvents/MyEvents"
-import CreateEvent from "./pages/createEvent/CreateEvent"
+// import { ThemeProvider } from "@mui/material/styles";
 
-import { ThemeProvider } from "@mui/material/styles";
-import SignIn from "./pages/signIn/SignIn"
-import SignUp from "./pages/signUp/SignUp"
+import MainNavigation from "./components/navigation/MainNavigation";
+import Home from "./pages/home/Home";
+import GameList from "./pages/games/GameList";
+import CreateEvent from "./pages/events/CreateEvent";
+import SignIn from "./pages/auth/SignIn";
+import SignUp from "./pages/auth/SignUp";
+import UserProfile from "./pages/user/UserProfile";
+import UserEvents from "./pages/events/UserEvents";
 
 const GAMES = [
   {
@@ -116,10 +117,11 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<GameList games={GAMES} />} />
         {/* <Route path="/events" element={<EventList events={EVENTS} />} /> */}
-        <Route path="/myEvents" element={<MyEvents />} />
-        <Route path="/createEvent" element={<CreateEvent />} />
+        <Route path="/userId/events" element={<UserEvents />} />
+        <Route path="/userId/createEvent" element={<CreateEvent />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/userId/profile" element={<UserProfile />} />
       </Routes>
     </Router>
   );

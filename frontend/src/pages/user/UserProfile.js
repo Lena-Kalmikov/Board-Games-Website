@@ -1,5 +1,5 @@
-export default function UserInfo() {
-  return <h1>UserInfo</h1>;
+export default function UserProfile() {
+  return <h1>User Profile</h1>;
 }
 
 // functionality: // 

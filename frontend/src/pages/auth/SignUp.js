@@ -19,7 +19,7 @@ import Container from "@mui/material/Container";
 
 export default function SignUp() {
   const { preview, onSelectFile } = useImagePreview();
-  
+
   const { register, handleSubmit, formState } = useForm({
     mode: "all",
   });

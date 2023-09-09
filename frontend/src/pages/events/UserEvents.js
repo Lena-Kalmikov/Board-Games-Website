@@ -6,3 +6,5 @@ export default function MyEvents() {
 // if user logged in - show user events, past and future
 // if user is not logged in - show the Authentication page
 // path - /userId/events
+
+//eventList component with user events passed to it as props
