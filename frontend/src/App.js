@@ -10,7 +10,7 @@ import "./App.css";
 import MainNavigation from "./components/navigation/MainNavigation";
 import GameList from "./pages/exploreGames/GameList"
 import Home from "./pages/home/Home"
-import MyEvents from "./pages/exploreEvents/EventList"
+import MyEvents from "./pages/myEvents/MyEvents"
 import CreateEvent from "./pages/createEvent/CreateEvent"
 
 import { ThemeProvider } from "@mui/material/styles";
