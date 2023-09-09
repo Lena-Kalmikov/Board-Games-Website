@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
+
 import useImagePreview from "../../hooks/useImagePreview";
 
 import "./SignUp.css";
@@ -16,9 +16,9 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function SignUp() {
+  const { preview, onSelectFile } = useImagePreview();
   const { register, handleSubmit, formState } = useForm({
     mode: "all",
   });
@@ -29,35 +29,7 @@ export default function SignUp() {
     console.log(data);
   };
 
-  const { preview, onSelectFile } = useImagePreview();
-
-  // const [selectedFile, setSelectedFile] = useState();
-  // const [preview, setPreview] = useState();
-
-  // // create a preview as a side effect, whenever selected file is changed
-  // useEffect(() => {
-  //   if (!selectedFile) {
-  //     setPreview(undefined);
-  //     return;
-  //   }
-
-  //   const objectUrl = URL.createObjectURL(selectedFile);
-  //   setPreview(objectUrl);
-
-  //   // free memory when ever this component is unmounted
-  //   return () => URL.revokeObjectURL(objectUrl);
-  // }, [selectedFile]);
-
-  // const onSelectFile = (e) => {
-  //   if (!e.target.files || e.target.files.length === 0) {
-  //     setSelectedFile(undefined);
-  //     return;
-  //   }
-  //   setSelectedFile(e.target.files[0]);
-  // };
-
   return (
-    // <ThemeProvider theme={defaultTheme}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -89,7 +61,7 @@ export default function SignUp() {
                 size="small"
                 autoComplete="given-name"
                 {...register("firstName", {
-                  required: "First Name is required",
+                  required: "first name is required",
                 })}
                 error={!!errors.firstName}
                 helperText={errors.firstName?.message}
@@ -103,7 +75,7 @@ export default function SignUp() {
                 label="Last Name"
                 size="small"
                 autoComplete="family-name"
-                {...register("lastName", { required: "Last Name is required" })}
+                {...register("lastName", { required: "last name is required" })}
                 error={!!errors.lastName}
                 helperText={errors.lastName?.message}
                 fullWidth
@@ -113,11 +85,11 @@ export default function SignUp() {
               <TextField
                 id="birthday"
                 name="birthday"
-                label="Birthday"
+                label="Date of Birth"
                 type="date"
                 size="small"
                 {...register("birthday", {
-                  required: "Date of Birth is required",
+                  required: "date of birth is required",
                 })}
                 error={!!errors.birthday}
                 helperText={errors.birthday?.message}
@@ -134,11 +106,11 @@ export default function SignUp() {
                 size="small"
                 autoComplete="email"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "email is required",
                   validate: {
                     matchPattern: (v) =>
                       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-                      "Please enter a valid email address",
+                      "please enter a valid email address",
                   },
                 })}
                 error={!!errors.email}
@@ -155,11 +127,11 @@ export default function SignUp() {
                 autoComplete="new-password"
                 size="small"
                 {...register("password", {
-                  required: "Password is required",
+                  required: "password is required",
                   validate: {
                     minLength: (v) =>
                       v.length >= 6 ||
-                      "Password should have at least 6 characters",
+                      "password should be at least 6 characters long",
                   },
                 })}
                 error={!!errors.password}
@@ -216,6 +188,5 @@ export default function SignUp() {
         </Box>
       </Box>
     </Container>
-    // </ThemeProvider>
   );
 }
