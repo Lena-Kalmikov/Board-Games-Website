@@ -2,9 +2,9 @@ import * as React from "react";
 
 import useImagePreview from "../../hooks/useImagePreview";
 
-import "./SignUp.css";
-
 import { useForm } from "react-hook-form";
+
+import "./SignUp.css";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -19,6 +19,7 @@ import Container from "@mui/material/Container";
 
 export default function SignUp() {
   const { preview, onSelectFile } = useImagePreview();
+  
   const { register, handleSubmit, formState } = useForm({
     mode: "all",
   });
