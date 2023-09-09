@@ -1,27 +1,16 @@
 import React from "react";
 import GameItem from "./GameItem";
+
 import { Stack } from "@mui/material";
 
-const EVENTS = [
-  {
-    id: "e1",
-    date: "2023-8-31",
-    time: "19:00",
-    title: "Let's play 'Exploding Kittens'",
-    city: "Jerusalem",
-    address: "Moshe Dayan st 21, apt 3",
-    description: "An evening dedicated to the best game in the world",
-    participants: 3,
-    gameId: "g1"
-  },
-];
-
-export default function EventList(props) {
+export default function GameList(props) {
   return (
     <Stack
       direction={{ xs: "column", sm: "row" }}
       sx={{
         flexWrap: "wrap",
+        margin: 3,
+        justifyContent: "center",
       }}
     >
       {props.games.map((game) => (
@@ -39,4 +28,3 @@ export default function EventList(props) {
     </Stack>
   );
 }
-

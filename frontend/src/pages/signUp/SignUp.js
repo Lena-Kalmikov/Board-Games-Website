@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+import useImagePreview from "../../hooks/useImagePreview";
+
 import "./SignUp.css";
 
 import { useForm } from "react-hook-form";
@@ -27,30 +29,32 @@ export default function SignUp() {
     console.log(data);
   };
 
-  const [selectedFile, setSelectedFile] = useState();
-  const [preview, setPreview] = useState();
+  const { preview, onSelectFile } = useImagePreview();
 
-  // create a preview as a side effect, whenever selected file is changed
-  useEffect(() => {
-    if (!selectedFile) {
-      setPreview(undefined);
-      return;
-    }
+  // const [selectedFile, setSelectedFile] = useState();
+  // const [preview, setPreview] = useState();
 
-    const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
+  // // create a preview as a side effect, whenever selected file is changed
+  // useEffect(() => {
+  //   if (!selectedFile) {
+  //     setPreview(undefined);
+  //     return;
+  //   }
 
-    // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
+  //   const objectUrl = URL.createObjectURL(selectedFile);
+  //   setPreview(objectUrl);
 
-  const onSelectFile = (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
-      return;
-    }
-    setSelectedFile(e.target.files[0]);
-  };
+  //   // free memory when ever this component is unmounted
+  //   return () => URL.revokeObjectURL(objectUrl);
+  // }, [selectedFile]);
+
+  // const onSelectFile = (e) => {
+  //   if (!e.target.files || e.target.files.length === 0) {
+  //     setSelectedFile(undefined);
+  //     return;
+  //   }
+  //   setSelectedFile(e.target.files[0]);
+  // };
 
   return (
     // <ThemeProvider theme={defaultTheme}>

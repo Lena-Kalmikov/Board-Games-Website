@@ -7,15 +7,15 @@ import {
 } from "react-router-dom";
 import "./App.css";
 
-import MainNavigation from "./components/shared/Navigation/MainNavigation";
-import GameList from "./components/games/GameList";
-import Home from "./pages/Home";
-import MyEvents from "./pages/MyEvents";
-import CreateEvent from "./pages/CreateEvent";
+import MainNavigation from "./components/navigation/MainNavigation";
+import GameList from "./pages/exploreGames/GameList"
+import Home from "./pages/home/Home"
+import MyEvents from "./pages/exploreEvents/EventList"
+import CreateEvent from "./pages/createEvent/CreateEvent"
 
 import { ThemeProvider } from "@mui/material/styles";
-import SignIn from "./components/authentication/SignIn";
-import SignUp from "./components/authentication/SignUp";
+import SignIn from "./pages/signIn/SignIn"
+import SignUp from "./pages/signUp/SignUp"
 
 const GAMES = [
   {

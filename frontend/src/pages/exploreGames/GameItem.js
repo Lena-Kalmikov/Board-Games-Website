@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+
 import "./GameItem.css";
 
 import Card from "@mui/material/Card";
@@ -14,7 +15,6 @@ export default function GameItem(props) {
   const toggleReadMore = () => {
     setIsShowMore((show) => !show);
   };
-
 
   if (!isShowMore) {
     descriptionCSSClass = "";
