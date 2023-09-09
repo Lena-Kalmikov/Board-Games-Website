@@ -25,6 +25,7 @@ export default function EventItem(props) {
           sx={{
             borderBottom: "2px solid rgba(82,30,164,0.08)",
             marginTop: -1,
+            paddingBottom: 1
           }}
         >
           <Box
@@ -63,7 +64,7 @@ export default function EventItem(props) {
           variant="h5"
           component="div"
           marginTop={2}
-          marginBottom={2}
+          marginBottom={1}
         >
           {props.title}
         </Typography>
