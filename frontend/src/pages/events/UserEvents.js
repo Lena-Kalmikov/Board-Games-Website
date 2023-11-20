@@ -1,5 +1,5 @@
 export default function MyEvents() {
-  return <h1>My Events</h1>;
+  return <h1>My Events 11</h1>;
 }
 
 // Functionality: //

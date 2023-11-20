@@ -17,6 +17,7 @@ export default function EventItem(props) {
         maxWidth: 350,
         margin: 1,
         position: "relative",
+        backgroundColor: "#FCFDFF",
       }}
     >
       <CardMedia sx={{ height: 220 }} image={props.image} />
@@ -25,7 +26,7 @@ export default function EventItem(props) {
           sx={{
             borderBottom: "2px solid rgba(82,30,164,0.08)",
             marginTop: -1,
-            paddingBottom: 1
+            paddingBottom: 1,
           }}
         >
           <Box
@@ -33,7 +34,7 @@ export default function EventItem(props) {
           >
             <Avatar
               sx={{
-                bgcolor: "secondary.main",
+                bgcolor: "primary.main",
                 margin: 1,
               }}
             >
@@ -48,7 +49,7 @@ export default function EventItem(props) {
           >
             <Avatar
               sx={{
-                bgcolor: "secondary.main",
+                bgcolor: "primary.main",
                 margin: 1,
               }}
             >

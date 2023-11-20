@@ -35,11 +35,11 @@ export default function Login() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+      Log in
         </Typography>
         <Box
           component="form"
@@ -93,12 +93,12 @@ export default function Login() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            log In
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/SignUp" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"Don't have an account? Sign up"}
               </Link>
             </Grid>
           </Grid>

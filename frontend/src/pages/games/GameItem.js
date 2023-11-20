@@ -26,6 +26,7 @@ export default function GameItem(props) {
         maxWidth: 350,
         margin: 1,
         position: "relative",
+        backgroundColor: "#FCFDFF",
       }}
     >
       <CardMedia sx={{ height: 145 }} image={props.image} />
@@ -41,18 +42,18 @@ export default function GameItem(props) {
         <Typography
           variant="body3"
           color="text.secondary"
-          className={descriptionCSSClass}
+          // className={descriptionCSSClass}
         >
           {props.description}
         </Typography>
-        <Typography
+        {/* <Typography
           marginTop={0.3}
           variant="body2"
           color="rgba(17, 82, 147, 0.57)"
           onClick={toggleReadMore}
         >
           {isShowMore ? " show more" : " show less"}
-        </Typography>
+        </Typography> */}
       </CardContent>
     </Card>
   );
