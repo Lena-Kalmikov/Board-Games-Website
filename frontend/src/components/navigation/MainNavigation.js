@@ -59,7 +59,7 @@ export default function MainNavigation() {
               textDecoration: "none",
             }}
           >
-            BOARDLAND
+            PlayDate
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -112,7 +112,7 @@ export default function MainNavigation() {
                     component="a"
                     onClick={handleCloseUserMenu}
                   >
-                    <Typography textAlign="center">Login</Typography>
+                    <Typography textAlign="center">Log in</Typography>
                   </MenuItem>{" "}
                   <MenuItem
                     href="/signup"
@@ -142,7 +142,7 @@ export default function MainNavigation() {
               textDecoration: "none",
             }}
           >
-            BOARDLAND
+            PlayDate
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
@@ -182,7 +182,7 @@ export default function MainNavigation() {
                   textTransform: "none",
                 }}
               >
-                Login
+                Log in
               </Button>
               <Button
                 onClick={handleCloseNavMenu}

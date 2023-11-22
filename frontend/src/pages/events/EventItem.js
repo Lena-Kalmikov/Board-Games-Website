@@ -72,8 +72,9 @@ export default function EventItem(props) {
         <Typography gutterBottom marginTop={1}>
           Game: {props.game}
         </Typography>
-        <Typography gutterBottom>Age limit: {props.minAgeLimit}10+ </Typography>
+        <Typography gutterBottom>Age limit: 10+ </Typography>
         <Typography gutterBottom>Participants: 3-5</Typography>
+        <Typography gutterBottom>Event by: {props.creator}</Typography>
         <Typography variant="body3" color="text.primary">
           {props.description}
         </Typography>

@@ -128,11 +128,12 @@ const EVENTS = [
     gameId: "g1",
     minParticipantsLimit: "g1.minParticipantsLimit",
     maxParticipantsLimit: "g1.maxParticipantsLimit",
+    creator: "Lenaa Kalmikovc",
     participants: [],
   },
   {
     id: "e2",
-    title: "Play night at Lena's",
+    title: "Play night at Lena's 2",
     date: "25/09/2023",
     time: "18:00",
     city: "Ramat-Gan",
@@ -141,9 +142,10 @@ const EVENTS = [
       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
     image:
       "https://images.pexels.com/photos/8111307/pexels-photo-8111307.jpeg?auto=compress&cs=tinysrgb&w=600",
-    gameId: "g1",
+    gameId: "g2",
     minParticipantsLimit: "g1.minParticipantsLimit",
     maxParticipantsLimit: "g1.maxParticipantsLimit",
+    creator: "Lena Kalmikov",
     participants: [],
   },
 ];

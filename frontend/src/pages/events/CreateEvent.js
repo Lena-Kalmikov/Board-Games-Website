@@ -181,8 +181,8 @@ export default function CreateEvent() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/SignIn" variant="body2">
-                Already have an account? Sign In
+              <Link href="/login" variant="body2">
+                Already have an account? Log In
               </Link>
             </Grid>
           </Grid>

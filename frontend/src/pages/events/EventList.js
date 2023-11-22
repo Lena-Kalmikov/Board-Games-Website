@@ -28,6 +28,7 @@ export default function EventList(props) {
           city={event.city}
           address={event.address}
           game={event.gameId}
+          creator={event.creator}
         />
       ))}
     </Stack>
