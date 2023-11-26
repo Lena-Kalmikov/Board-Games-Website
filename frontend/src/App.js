@@ -18,7 +18,6 @@ import GameList from "./pages/games/GameList";
 import CreateEvent from "./pages/events/CreateEvent";
 import Login from "./pages/auth/Login";
 import SignUp from "./pages/auth/SignUp";
-import UserProfile from "./pages/user/UserProfile";
 import UserEvents from "./pages/events/UserEvents";
 import EventList from "./pages/events/EventList";
 
@@ -168,7 +167,6 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/userId/events" element={<UserEvents />} />
         <Route path="/userId/createEvent" element={<CreateEvent />} />
-        <Route path="/userId/profile" element={<UserProfile />} />
       </Routes>
     </Router>
   );

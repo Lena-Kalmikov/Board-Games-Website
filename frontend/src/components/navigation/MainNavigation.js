@@ -225,13 +225,6 @@ export default function MainNavigation() {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem
-                  href="/userId/profile"
-                  component="a"
-                  onClick={handleCloseUserMenu}
-                >
-                  <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-                <MenuItem
                   href="/userId/events"
                   component="a"
                   onClick={handleCloseUserMenu}
