@@ -21,6 +21,8 @@ export default function Login() {
   const { errors } = formState;
 
   const onSubmit = (data) => {
+    // send form data to the server using fetchRequest
+    // server should return if the user exists on not.
     console.log(data);
   };
 

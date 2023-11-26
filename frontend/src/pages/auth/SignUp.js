@@ -27,6 +27,8 @@ export default function SignUp() {
   const { errors } = formState;
 
   const onSubmit = (data) => {
+    // send form data to the server using fetchRequest
+    // save image data to the server//
     console.log(data);
   };
 

@@ -20,7 +20,6 @@ export default function useImagePreview() {
 
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
       return;
     }
     setSelectedFile(e.target.files[0]);

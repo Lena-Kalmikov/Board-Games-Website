@@ -18,6 +18,7 @@ export default function GameList(props) {
           key={game.id}
           id={game.id}
           title={game.title}
+          genre={game.genre}
           minAgeLimit={game.minAgeLimit}
           minParticipantsLimit={game.minParticipantsLimit}
           maxParticipantsLimit={game.maxParticipantsLimit}

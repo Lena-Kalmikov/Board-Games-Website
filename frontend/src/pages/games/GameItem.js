@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 
 import "./GameItem.css";
 
@@ -9,16 +9,16 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
 export default function GameItem(props) {
-  const [isShowMore, setIsShowMore] = useState(true);
-  let descriptionCSSClass = "clamp-line-height";
+  // const [isShowMore, setIsShowMore] = useState(true);
+  // let descriptionCSSClass = "clamp-line-height";
 
-  const toggleReadMore = () => {
-    setIsShowMore((show) => !show);
-  };
+  // const toggleReadMore = () => {
+  //   setIsShowMore((show) => !show);
+  // };
 
-  if (!isShowMore) {
-    descriptionCSSClass = "";
-  }
+  // if (!isShowMore) {
+  //   descriptionCSSClass = "";
+  // }
 
   return (
     <Card
@@ -35,10 +35,11 @@ export default function GameItem(props) {
           {props.title}
         </Typography>
         <Typography>Age limit: {props.minAgeLimit}+ </Typography>
-        <Typography gutterBottom>
+        <Typography>
           Participants: {props.minParticipantsLimit}-
           {props.maxParticipantsLimit}
         </Typography>
+        <Typography gutterBottom>Genre: {props.genre} </Typography>
         <Typography
           variant="body3"
           color="text.secondary"

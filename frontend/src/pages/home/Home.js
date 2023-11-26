@@ -1,11 +1,11 @@
 export default function Home() {
   return (
-    <>
+    <div>
       <h1>Home</h1>
       <h2>Hero section with pictures</h2>
       <h2>List of upcoming events</h2>
       <h2>Create your own event!</h2>
-    </>
+    </div>
   );
 }
 

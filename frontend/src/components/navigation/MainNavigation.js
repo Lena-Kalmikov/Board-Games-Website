@@ -16,6 +16,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
+//avatar src + avatar alt text should be changed to each logged in user's data
+
 export default function MainNavigation() {
   const auth = useContext(AuthContext);
 
@@ -106,14 +108,14 @@ export default function MainNavigation() {
                 <Typography textAlign="center">Explore Events</Typography>
               </MenuItem>
               {!auth.isLoggedIn && (
-                <>
+                <div>
                   <MenuItem
                     href="/login"
                     component="a"
                     onClick={handleCloseUserMenu}
                   >
                     <Typography textAlign="center">Log in</Typography>
-                  </MenuItem>{" "}
+                  </MenuItem>
                   <MenuItem
                     href="/signup"
                     component="a"
@@ -121,7 +123,7 @@ export default function MainNavigation() {
                   >
                     <Typography textAlign="center">Join us</Typography>
                   </MenuItem>
-                </>
+                </div>
               )}
             </Menu>
           </Box>
