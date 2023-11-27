@@ -4,16 +4,15 @@ import useImagePreview from "../../hooks/useImagePreview";
 
 import { useForm } from "react-hook-form";
 
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
+import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import CssBaseline from "@mui/material/CssBaseline";
+import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
 export default function CreateEvent() {
   const { preview, onSelectFile } = useImagePreview();
@@ -36,23 +35,23 @@ export default function CreateEvent() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: 4,
+          marginTop: 2,
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
+          <EditCalendarOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Create Event
         </Typography>
         <Box
           component="form"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
-          sx={{ mt: 3 }}
+          sx={{ mt: 2 }}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 id="title"
                 name="title"
@@ -62,95 +61,102 @@ export default function CreateEvent() {
                 {...register("title", {
                   required: "title is required",
                 })}
-                error={!!errors.firstName}
-                helperText={errors.firstName?.message}
+                error={!!errors.title}
+                helperText={errors.title?.message}
+                required
                 fullWidth
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6}>
               <TextField
-                id="lastName"
-                name="lastName"
-                label="Last Name"
-                size="small"
-                autoComplete="family-name"
-                {...register("lastName", {
-                  required: "last name is required",
-                })}
-                error={!!errors.lastName}
-                helperText={errors.lastName?.message}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="birthday"
-                name="birthday"
-                label="Date of Birth"
+                id="date"
+                name="date"
+                label="Date"
                 type="date"
                 size="small"
-                {...register("birthday", {
-                  required: "date of birth is required",
+                {...register("date", {
+                  required: "date is required",
                 })}
-                error={!!errors.birthday}
-                helperText={errors.birthday?.message}
+                error={!!errors.date}
+                helperText={errors.date?.message}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                id="time"
+                name="time"
+                label="Time"
+                type="time"
+                size="small"
+                {...register("time", {
+                  required: "time is required",
+                })}
+                error={!!errors.time}
+                helperText={errors.time?.message}
                 required
                 fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="email"
-                name="email"
-                label="Email Address"
-                type="email"
+                id="address"
+                name="address"
+                label="Address"
                 size="small"
-                autoComplete="email"
-                {...register("email", {
-                  required: "email is required",
-                  validate: {
-                    matchPattern: (v) =>
-                      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-                      "please enter a valid email address",
-                  },
+                {...register("address", {
+                  required: "address is required",
                 })}
-                error={!!errors.email}
-                helperText={errors.email?.message}
+                error={!!errors.address}
+                helperText={errors.address?.message}
+                required
                 fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="password"
-                name="password"
-                label="Password"
-                type="password"
-                autoComplete="new-password"
+                id="description"
+                name="description"
+                label="Description"
+                rows="3"
+                multiline
+                minLength="1"
                 size="small"
-                {...register("password", {
-                  required: "password is required",
-                  validate: {
-                    minLength: (v) =>
-                      v.length >= 6 ||
-                      "password should be at least 6 characters long",
-                  },
+                inputProps={{ maxLength: 500 }}
+                {...register("description", {
+                  required: "please enter a description about this event",
                 })}
-                error={!!errors.password}
-                helperText={errors.password?.message}
+                error={!!errors.description}
+                helperText={errors.description?.message}
+                required
                 fullWidth
               />
             </Grid>
-            <Grid container item justifyContent="space-between">
+            {preview && (
+              <Grid item xs={12}>
+                <Avatar
+                  variant="square"
+                  sx={{
+                    width: "100%",
+                    height: "8rem",
+                    bgcolor: "rgba(25,118,210,0.57)",
+                    borderRadius: 2,
+                  }}
+                  src={preview}
+                ></Avatar>
+              </Grid>
+            )}
+            <Grid item xs={12}>
               <Button
                 variant="outlined"
                 component="label"
+                size="large"
                 sx={{
                   textTransform: "none",
-                  marginTop: 6,
-                  marginBottom: 6,
                 }}
               >
-                Choose Profile Picture
+                Choose Event Image
                 <input
                   id="image"
                   name="image"
@@ -161,31 +167,16 @@ export default function CreateEvent() {
                   hidden
                 />
               </Button>
-              <Avatar
-                sx={{
-                  width: 125,
-                  height: 125,
-                  bgcolor: "rgba(25,118,210,0.57)",
-                }}
-                src={preview}
-              ></Avatar>
             </Grid>
           </Grid>
           <Button
             fullWidth
             type="submit"
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 2, mb: 2 }}
           >
-            Sign Up
+            Create Event
           </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Log In
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     </Container>

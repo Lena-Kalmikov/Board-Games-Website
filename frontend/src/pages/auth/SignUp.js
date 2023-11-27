@@ -86,22 +86,6 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="birthday"
-                name="birthday"
-                label="Date of Birth"
-                type="date"
-                size="small"
-                {...register("birthday", {
-                  required: "date of birth is required",
-                })}
-                error={!!errors.birthday}
-                helperText={errors.birthday?.message}
-                required
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
                 id="email"
                 name="email"
                 label="Email Address"
@@ -148,8 +132,8 @@ export default function SignUp() {
                 component="label"
                 sx={{
                   textTransform: "none",
-                  marginTop: 6,
-                  marginBottom: 6,
+                  marginTop: 6.6,
+                  marginBottom: 6.6,
                 }}
               >
                 Choose Profile Picture
@@ -165,8 +149,8 @@ export default function SignUp() {
               </Button>
               <Avatar
                 sx={{
-                  width: 125,
-                  height: 125,
+                  width: 140,
+                  height: 140,
                   bgcolor: "rgba(25,118,210,0.57)",
                 }}
                 src={preview}
@@ -177,7 +161,7 @@ export default function SignUp() {
             fullWidth
             type="submit"
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 2, mb: 2 }}
           >
             Sign Up
           </Button>

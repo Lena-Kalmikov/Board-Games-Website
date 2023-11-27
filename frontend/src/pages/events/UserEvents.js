@@ -1,10 +1,11 @@
 export default function MyEvents() {
-  return <h1>My Events 11</h1>;
+  return <h1>My Events</h1>;
 }
 
 // Functionality: //
-// if user logged in - show user events, past and future
-// if user is not logged in - show the Authentication page
+// component that shows all event created by the user
+// also show the events the user marked as "going"
+
 // path - /userId/events
 
 //eventList component with user events passed to it as props

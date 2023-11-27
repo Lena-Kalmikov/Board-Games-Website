@@ -64,7 +64,7 @@ const GAMES = [
     minAgeLimit: 10,
     minParticipantsLimit: 2,
     maxParticipantsLimit: 6,
-    genre: "Action",
+    genre: "Arcade",
     description:
       "Here to Slay is a competitive role-playing fantasy strategy card game that's all about assembling a party of Heroes and slaying monsters (and sometimes sabotaging your friends too) from the creators of Unstable Unicorns. In this game, you will assemble a full party of heroes to slay dangerous monsters while working to avoid the sabotage of your foes.",
     image:
@@ -100,7 +100,7 @@ const GAMES = [
     minAgeLimit: 8,
     minParticipantsLimit: 2,
     maxParticipantsLimit: 4,
-    genre: "Action",
+    genre: "Arcade",
     description:
       "In Pandemic, several virulent diseases have broken out simultaneously all over the world! The players are disease-fighting specialists whose mission is to treat disease hotspots while researching cures for each of four plagues before they get out of hand. The game board depicts several major population centers on Earth. On each turn, a player can use up to four actions to travel between cities, treat infected populaces, discover a cure, or build a research station.",
     image:
