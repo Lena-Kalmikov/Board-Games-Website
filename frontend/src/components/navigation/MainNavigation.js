@@ -204,8 +204,15 @@ export default function MainNavigation() {
           {auth.isLoggedIn && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Lena K" src="/static/images/avatar/2.jpg" />
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0, color: "primary.dark" }}
+                >
+                  <Avatar
+                    alt="Lena K"
+                    src="/static/images/avatar/2.jpg"
+                    sx={{ backgroundColor: "rgba(247, 154, 70, 0.8)" }}
+                  />
                 </IconButton>
               </Tooltip>
               <Menu

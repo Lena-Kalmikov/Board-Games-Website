@@ -25,7 +25,7 @@ export default function GameItem(props) {
       sx={{
         maxWidth: 350,
         margin: 1,
-        position: "relative",
+        // position: "relative",
         backgroundColor: "#FCFDFF",
       }}
     >

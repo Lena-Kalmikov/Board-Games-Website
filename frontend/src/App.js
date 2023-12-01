@@ -14,12 +14,12 @@ import "./App.css";
 // import { ThemeProvider } from "@mui/material/styles";
 import MainNavigation from "./components/navigation/MainNavigation";
 import Home from "./pages/home/Home";
-import GameList from "./pages/games/GameList";
-import CreateEvent from "./pages/events/CreateEvent";
-import Login from "./pages/auth/Login";
-import SignUp from "./pages/auth/SignUp";
+import CreateEvent from "./components/events/CreateEvent";
+import Login from "./components/auth/Login";
+import SignUp from "./components/auth/SignUp";
 import UserEvents from "./pages/events/UserEvents";
-import EventList from "./pages/events/EventList";
+import EventList from "./components/events/EventList";
+import ExploreGames from "./pages/games/ExploreGames";
 
 const GAMES = [
   {
@@ -161,7 +161,7 @@ export default function App() {
       <MainNavigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/games" element={<GameList games={GAMES} />} />
+        <Route path="/games" element={<ExploreGames games={GAMES} />} />
         <Route path="/events" element={<EventList events={EVENTS} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

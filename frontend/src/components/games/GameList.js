@@ -1,18 +1,9 @@
 import React from "react";
 import GameItem from "./GameItem";
 
-import { Stack } from "@mui/material";
-
 export default function GameList(props) {
   return (
-    <Stack
-      direction={{ xs: "column", sm: "row" }}
-      sx={{
-        flexWrap: "wrap",
-        margin: 3,
-        justifyContent: "center",
-      }}
-    >
+    <>
       {props.games.map((game) => (
         <GameItem
           key={game.id}
@@ -26,6 +17,6 @@ export default function GameList(props) {
           image={game.image}
         />
       ))}
-    </Stack>
+    </>
   );
 }
