@@ -1,9 +1,23 @@
 // import { useState } from "react";
+import { useState } from "react";
+
 import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
 import Input from "@mui/material/Input";
 
-export default function SearchBar(props) {
+export default function SearchBar({ onSearch }) {
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+
+    // Call the onSearch function (which is in the explore games component)
+    // with the current query (even.target.value)
+    onSearch(query);
+  };
+
   return (
     <Box
       sx={{
@@ -22,7 +36,8 @@ export default function SearchBar(props) {
       />
       <Input
         placeholder="search..."
-        onChange={props.onChange}
+        value={searchQuery}
+        onChange={handleChange}
         sx={{
           width: 200,
           color: "rgba(34, 37, 41, 0.8)",
