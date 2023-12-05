@@ -25,8 +25,6 @@ export default function SearchBar({ onSearch }) {
         alignItems: "center",
         width: 400,
         borderRadius: 4,
-        marginTop: 1,
-        marginRight: 1,
         backgroundColor: "rgba(247, 247, 247, 0.8)",
         boxShadow: 1,
       }}

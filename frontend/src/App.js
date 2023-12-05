@@ -12,7 +12,7 @@ import {
 import "./App.css";
 
 // import { ThemeProvider } from "@mui/material/styles";
-import MainNavigation from "./components/navigation/MainNavigation";
+import MainNavigation from "./components/UI/MainNavigationBar";
 import Home from "./pages/home/Home";
 import CreateEvent from "./components/events/CreateEvent";
 import Login from "./components/auth/Login";
