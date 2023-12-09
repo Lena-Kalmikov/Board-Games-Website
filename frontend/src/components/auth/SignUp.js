@@ -3,7 +3,6 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import useImagePreview from "../../hooks/useImagePreview";
 
-
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -14,6 +13,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function SignUp() {
   const { preview, onSelectFile } = useImagePreview();
@@ -128,13 +128,14 @@ export default function SignUp() {
               <Button
                 variant="outlined"
                 component="label"
+                startIcon={<CloudUploadIcon />}
                 sx={{
                   textTransform: "none",
                   marginTop: 6.6,
                   marginBottom: 6.6,
                 }}
               >
-                Choose Profile Picture
+                Upload Profile Picture
                 <input
                   id="image"
                   name="image"
