@@ -1,17 +1,29 @@
 import * as React from "react";
 
+import { useParams } from "react-router-dom";
+
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-
 import EventIcon from "@mui/icons-material/Event";
 import PlaceIcon from "@mui/icons-material/Place";
+import CardContent from "@mui/material/CardContent";
 
 export default function EventItem(props) {
+  const { id } = useParams();
+
+  // Find the event with the matching ID
+  const event = props.events.find((event) => event.id === id);
+
+  // Return a loading message or handle the case where the event is not found
+  if (!event) {
+    return <div>Event was not found</div>;
+  }
+
+  // Render the event details
   return (
     <Card
       sx={{
@@ -21,7 +33,7 @@ export default function EventItem(props) {
         backgroundColor: "#FCFDFF",
       }}
     >
-      <CardMedia sx={{ height: 220 }} image={props.image} />
+      <CardMedia sx={{ height: 220 }} image={event.image} />
       <CardContent>
         <Box sx={{ display: "flex", alignItems: "center", justify: "center" }}>
           <Avatar
@@ -33,7 +45,7 @@ export default function EventItem(props) {
             <EventIcon />
           </Avatar>
           <Typography gutterBottom margin={1}>
-            {props.date} at {props.time}
+            {event.date} at {event.time}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", justify: "center" }}>
@@ -46,7 +58,7 @@ export default function EventItem(props) {
             <PlaceIcon />
           </Avatar>
           <Typography gutterBottom margin={1}>
-            {props.city}, {props.address}
+            {event.city}, {event.address}
           </Typography>
         </Box>
         <Divider sx={{ marginTop: 1.5 }} />
@@ -57,14 +69,17 @@ export default function EventItem(props) {
           marginTop={2}
           marginBottom={1}
         >
-          {props.title}
+          {event.title}
         </Typography>
-        <Typography>Game: {props.game}</Typography>
-        <Typography>Age limit: 10+ </Typography>
-        <Typography>Participants: 3-5</Typography>
-        <Typography gutterBottom>Event by: {props.creator}</Typography>
+        <Typography>Game: {event.game}</Typography>
+        <Typography>Age limit: {event.minAgeLimit}+</Typography>
+        <Typography>
+          Participants: {event.minParticipantsLimit}-
+          {event.maxParticipantsLimit}
+        </Typography>
+        <Typography gutterBottom>Event by: {event.creator}</Typography>
         <Typography variant="body3" color="text.primary">
-          {props.description}
+          {event.description}
         </Typography>
       </CardContent>
     </Card>

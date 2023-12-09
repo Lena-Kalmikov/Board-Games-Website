@@ -1,19 +1,20 @@
 import * as React from "react";
+
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth-context";
 
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
 //avatar src + avatar alt text should be changed to each logged in user's data
@@ -55,8 +56,9 @@ export default function MainNavigation() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
+              fontSize: 25,
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: "0.3rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -98,14 +100,14 @@ export default function MainNavigation() {
                 component="a"
                 onClick={handleCloseUserMenu}
               >
-                <Typography textAlign="center">Explore Games</Typography>
+                <Typography textAlign="center">Games</Typography>
               </MenuItem>
               <MenuItem
                 href="/events"
                 component="a"
                 onClick={handleCloseUserMenu}
               >
-                <Typography textAlign="center">Explore Events</Typography>
+                <Typography textAlign="center">Events</Typography>
               </MenuItem>
               {!auth.isLoggedIn && (
                 <div>
@@ -146,30 +148,30 @@ export default function MainNavigation() {
           >
             PlayDate
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ ml:2, flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               onClick={handleCloseNavMenu}
               href="/games"
               sx={{
-                my: 2,
                 color: "white",
                 display: "block",
                 textTransform: "none",
+                fontSize: 16,
               }}
             >
-              Explore Games
+              Games
             </Button>
             <Button
               onClick={handleCloseNavMenu}
               href="/events"
               sx={{
-                my: 2,
                 color: "white",
                 display: "block",
                 textTransform: "none",
+                fontSize: 16,
               }}
             >
-              Explore Events
+              Events
             </Button>
           </Box>
           {!auth.isLoggedIn && (

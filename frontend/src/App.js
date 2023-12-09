@@ -12,14 +12,15 @@ import {
 import "./App.css";
 
 // import { ThemeProvider } from "@mui/material/styles";
-import MainNavigation from "./components/UI/MainNavigationBar";
-import Home from "./pages/home/Home";
-import CreateEvent from "./components/events/CreateEvent";
+import Home from "./pages/Home";
+import Event from "./pages/Event";
 import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
-import UserEvents from "./pages/events/UserEvents";
-import EventList from "./components/events/EventList";
-import ExploreGames from "./pages/games/ExploreGames";
+import ExploreGames from "./pages/Games";
+import UserEvents from "./pages/UserEvents";
+import CreateEvent from "./components/events/CreateEvent";
+import MainNavigation from "./components/UI/MainNavigationBar";
+import EventPreviewList from "./components/events/EventPreviewList";
 
 const GAMES = [
   {
@@ -151,18 +152,108 @@ const EVENTS = [
     creator: "Lena Kalmikov",
     participants: [],
   },
+  {
+    id: "e3",
+    title: "Play night at Lena's 2",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233.jpg",
+    gameId: "g2",
+    creator: "Lena Kalmikov",
+    participants: [],
+  },
+  {
+    id: "e4",
+    title: "Play night at Lena's 2",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMGz4AgGx_Ww3pb-T7eACWSvlGknIFNPgag&usqp=CAU",
+    gameId: "g2",
+    creator: "Lena Kalmikov",
+    participants: [],
+  },
+  {
+    id: "e5",
+    title: "Play night at Lena's 2",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHGbRnCgCl08DBl2WUSTNkLtvGaUKCW3t04Q&usqp=CAU",
+    gameId: "g2",
+    creator: "Lena Kalmikov",
+    participants: [],
+  },
+  {
+    id: "e6",
+    title: "Play night at Lena's 2",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPk_Tu0XG6H-JAYrsWL_FyYuECwJQG3uiJiQ&usqp=CAU",
+    gameId: "g2",
+    creator: "Lena Kalmikov",
+    participants: [],
+  },
+  {
+    id: "e7",
+    title: "Play night at Lena's 2",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjvJnrMkflbZ60pIDHkI5WNuqZf9SWJpWbA&usqp=CAU",
+    gameId: "g2",
+    creator: "Lena Kalmikov",
+    participants: [],
+  },
+  {
+    id: "e8",
+    title: "Play night at Lena's 2",
+    date: "25/09/2023",
+    time: "18:00",
+    city: "Ramat-Gan",
+    address: "Alenby 20, apartment 2",
+    description:
+      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScwM7Iuqe2q2aciN5m1qniQ8EeLC0JXOqbSw&usqp=CAU",
+    gameId: "g2",
+    creator: "Lena Kalmikov",
+    participants: [],
+  },
 ];
 
 export default function App() {
   // const auth = useContext(AuthContext);
-
   return (
     <Router>
       <MainNavigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<ExploreGames games={GAMES} />} />
-        <Route path="/events" element={<EventList events={EVENTS} />} />
+        <Route path="/events" element={<EventPreviewList events={EVENTS} />} />
+        <Route path="/events/:id" element={<Event events={EVENTS} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/userId/events" element={<UserEvents />} />

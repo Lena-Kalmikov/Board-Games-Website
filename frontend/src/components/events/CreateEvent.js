@@ -1,17 +1,18 @@
 import * as React from "react";
 
+import { useForm } from "react-hook-form";
 import useImagePreview from "../../hooks/useImagePreview";
 
-import { useForm } from "react-hook-form";
 
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
 export default function CreateEvent() {
@@ -151,12 +152,13 @@ export default function CreateEvent() {
               <Button
                 variant="outlined"
                 component="label"
+                startIcon={<CloudUploadIcon />}
                 size="large"
                 sx={{
                   textTransform: "none",
                 }}
               >
-                Choose Event Image
+                Upload image
                 <input
                   id="image"
                   name="image"

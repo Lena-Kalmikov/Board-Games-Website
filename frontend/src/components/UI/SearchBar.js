@@ -1,12 +1,12 @@
 // import { useState } from "react";
 import { useState } from "react";
 
-import SearchIcon from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
-import Input from "@mui/material/Input";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from "@mui/material/InputAdornment";
 
 export default function SearchBar({ onSearch }) {
-
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleChange = (event) => {
@@ -19,29 +19,29 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        width: 400,
-        borderRadius: 4,
-        backgroundColor: "rgba(247, 247, 247, 0.8)",
-        boxShadow: 1,
-      }}
-    >
-      <SearchIcon
-        sx={{ color: "primary.dark", marginRight: 1, marginLeft: 0.5 }}
-      />
-      <Input
-        placeholder="search..."
+    <Box>
+      <TextField
+        placeholder="Search games"
+        variant="outlined"
+        size="small"
         value={searchQuery}
         onChange={handleChange}
-        sx={{
-          width: 200,
-          color: "rgba(34, 37, 41, 0.8)",
-          fontSize: "1.1rem",
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon
+                sx={{ color: "primary.dark", marginRight: 1, marginLeft: 0.5 }}
+              />
+            </InputAdornment>
+          ),
+          sx: {
+            fontSize: "1.1rem",
+            borderRadius: 5,
+            backgroundColor: "rgba(247, 247, 247, 0.8)",
+            boxShadow: 1,
+            width: 350,
+          },
         }}
-        disableUnderline
       />
     </Box>
   );

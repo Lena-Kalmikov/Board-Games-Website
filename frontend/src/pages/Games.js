@@ -1,27 +1,27 @@
 import React from "react";
-import useInputSearch from "../../hooks/useInputSearch";
 
-import GameList from "../../components/games/GameList";
-import SearchBar from "../../components/UI/SearchBar";
-import SelectLabels from "../../components/UI/SelectLabels";
+import useInputSearch from "../hooks/useInputSearch";
+
+import SearchBar from "../components/UI/SearchBar";
+import GameList from "../components/games/GameList";
+// import SelectLabels from "../../components/UI/SelectLabels";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-export default function ExploreGames(props) {
+export default function Games(props) {
   const { filteredData, filterData } = useInputSearch(props.games, "title");
 
   return (
-    <Box>
+    <Box mb={4}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          margin: 3,
+          margin: 5,
         }}
       >
         {/* Pass the filterData function to the SearchBar component */}
-
         <SearchBar onSearch={filterData} />
       </Box>
       <Stack

@@ -1,1 +1,1 @@
-//new event form populated with event data from props
+//CreateEvent form populated with event data from props

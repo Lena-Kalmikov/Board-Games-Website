@@ -1,4 +1,5 @@
 import React from "react";
+
 import GameItem from "./GameItem";
 
 export default function GameList(props) {
