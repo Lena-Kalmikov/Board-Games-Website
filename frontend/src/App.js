@@ -13,11 +13,11 @@ import "./App.css";
 
 // import { ThemeProvider } from "@mui/material/styles";
 import Home from "./pages/Home";
+import Games from "./pages/Games";
 import Event from "./pages/Event";
 import Login from "./components/auth/Login";
-import SignUp from "./components/auth/SignUp";
-import ExploreGames from "./pages/Games";
 import UserEvents from "./pages/UserEvents";
+import SignUp from "./components/auth/SignUp";
 import CreateEvent from "./components/events/CreateEvent";
 import MainNavigation from "./components/UI/MainNavigationBar";
 import EventPreviewList from "./components/events/EventPreviewList";
@@ -251,7 +251,7 @@ export default function App() {
       <MainNavigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/games" element={<ExploreGames games={GAMES} />} />
+        <Route path="/games" element={<Games games={GAMES} />} />
         <Route path="/events" element={<EventPreviewList events={EVENTS} />} />
         <Route path="/events/:id" element={<Event events={EVENTS} />} />
         <Route path="/login" element={<Login />} />
