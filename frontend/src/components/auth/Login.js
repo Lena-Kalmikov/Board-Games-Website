@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 // import Link from "@mui/material/Link";
+import { useNavigate } from "react-router-dom";
+
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
@@ -16,6 +18,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState } = useForm({
     mode: "all",
   });
@@ -28,6 +32,7 @@ export default function Login() {
     // server should return if the user exists on not.
     console.log(data);
     login();
+    navigate("/");
   };
 
   return (
