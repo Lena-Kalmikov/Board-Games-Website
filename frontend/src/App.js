@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import { AuthProvider } from "./context/auth-context";
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import { AuthProvider } from "./context/auth-context";
 
 import "./App.css";
 
@@ -10,8 +10,9 @@ import "./App.css";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Event from "./pages/Event";
-import Login from "./components/auth/Login";
 import UserEvents from "./pages/UserEvents";
+
+import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
 import CreateEvent from "./components/events/CreateEvent";
 import MainNavigation from "./components/UI/MainNavigationBar";

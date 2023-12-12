@@ -1,9 +1,9 @@
-import * as React from "react";
 import { useState } from "react";
 
-import { useAuth } from "../../context/auth-context";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../context/auth-context";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -13,10 +13,11 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+
+import MenuIcon from "@mui/icons-material/Menu";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
 //avatar src + avatar alt text should be changed to each logged in user's data
