@@ -1,4 +1,4 @@
-export default function MyEvents() {
+export default function UserEvents() {
   return <h1>My Events</h1>;
 }
 

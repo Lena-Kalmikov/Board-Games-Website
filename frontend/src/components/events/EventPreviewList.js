@@ -11,8 +11,8 @@ export default function EventPreviewList(props) {
       <Stack
         sx={{
           display: "flex",
-          flexDirection: "row",
           flexWrap: "wrap",
+          flexDirection: "row",
           justifyContent: "center",
         }}
       >
@@ -27,7 +27,7 @@ export default function EventPreviewList(props) {
             city={event.city}
             address={event.address}
           />
-        ))}{" "}
+        ))}
       </Stack>
     </Box>
   );

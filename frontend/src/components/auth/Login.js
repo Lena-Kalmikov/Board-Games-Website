@@ -1,10 +1,12 @@
 import * as React from "react";
 
 import { useForm } from "react-hook-form";
+import { useAuth } from "../../context/auth-context";
+import { Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
+// import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
@@ -19,11 +21,13 @@ export default function Login() {
   });
 
   const { errors } = formState;
+  const { login } = useAuth();
 
   const onSubmit = (data) => {
     // send form data to the server using fetchRequest
     // server should return if the user exists on not.
     console.log(data);
+    login();
   };
 
   return (
@@ -41,7 +45,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-      Log in
+          Log in
         </Typography>
         <Box
           component="form"
@@ -50,7 +54,6 @@ export default function Login() {
           sx={{ mt: 1 }}
         >
           <TextField
-            margin="normal"
             id="email"
             name="email"
             label="Email Address"
@@ -75,7 +78,7 @@ export default function Login() {
             name="password"
             label="Password"
             type="password"
-            autoComplete="new-password"
+            autoComplete="password"
             size="small"
             {...register("password", {
               required: "password is required",
@@ -99,7 +102,7 @@ export default function Login() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link to="/signup" variant="body2">
                 {"Don't have an account? Sign up"}
               </Link>
             </Grid>

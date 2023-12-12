@@ -1,7 +1,9 @@
 import * as React from "react";
+import { useState } from "react";
 
-import { useState, useContext } from "react";
-import { AuthContext } from "../../context/auth-context";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -20,10 +22,10 @@ import ExtensionIcon from "@mui/icons-material/Extension";
 //avatar src + avatar alt text should be changed to each logged in user's data
 
 export default function MainNavigation() {
-  const auth = useContext(AuthContext);
-
   const [anchorElementNav, setAnchorElementNav] = useState(null);
   const [anchorElementUser, setAnchorElementUser] = useState(null);
+  const { logout, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElementNav(event.currentTarget);
@@ -41,6 +43,12 @@ export default function MainNavigation() {
     setAnchorElementUser(null);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+    setAnchorElementUser(null);
+  };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xxl">
@@ -50,8 +58,8 @@ export default function MainNavigation() {
             variant="h6"
             textTransform="none"
             noWrap
-            component="a"
-            href="/"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -96,31 +104,31 @@ export default function MainNavigation() {
               }}
             >
               <MenuItem
-                href="/games"
-                component="a"
+                component={Link}
+                to="/games"
                 onClick={handleCloseUserMenu}
               >
                 <Typography textAlign="center">Games</Typography>
               </MenuItem>
               <MenuItem
-                href="/events"
-                component="a"
+                component={Link}
+                to="/events"
                 onClick={handleCloseUserMenu}
               >
                 <Typography textAlign="center">Events</Typography>
               </MenuItem>
-              {!auth.isLoggedIn && (
+              {!isLoggedIn && (
                 <div>
                   <MenuItem
-                    href="/login"
-                    component="a"
+                    component={Link}
+                    to="/login"
                     onClick={handleCloseUserMenu}
                   >
                     <Typography textAlign="center">Log in</Typography>
                   </MenuItem>
                   <MenuItem
-                    href="/signup"
-                    component="a"
+                    component={Link}
+                    to="/signup"
                     onClick={handleCloseUserMenu}
                   >
                     <Typography textAlign="center">Join us</Typography>
@@ -133,8 +141,8 @@ export default function MainNavigation() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="/"
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -148,10 +156,11 @@ export default function MainNavigation() {
           >
             PlayDate
           </Typography>
-          <Box sx={{ ml:2, flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ ml: 2, flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               onClick={handleCloseNavMenu}
-              href="/games"
+              component={Link}
+              to="/games"
               sx={{
                 color: "white",
                 display: "block",
@@ -163,7 +172,8 @@ export default function MainNavigation() {
             </Button>
             <Button
               onClick={handleCloseNavMenu}
-              href="/events"
+              component={Link}
+              to="/events"
               sx={{
                 color: "white",
                 display: "block",
@@ -174,11 +184,12 @@ export default function MainNavigation() {
               Events
             </Button>
           </Box>
-          {!auth.isLoggedIn && (
+          {!isLoggedIn && (
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <Button
                 onClick={handleCloseNavMenu}
-                href="/login"
+                component={Link}
+                to="/login"
                 sx={{
                   my: 2,
                   color: "white",
@@ -190,7 +201,8 @@ export default function MainNavigation() {
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
-                href="/signup"
+                component={Link}
+                to="/signup"
                 sx={{
                   my: 2,
                   color: "white",
@@ -203,7 +215,7 @@ export default function MainNavigation() {
             </Box>
           )}
 
-          {auth.isLoggedIn && (
+          {isLoggedIn && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton
@@ -234,24 +246,20 @@ export default function MainNavigation() {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem
-                  href="/userId/events"
-                  component="a"
+                  component={Link}
+                  to="/userId/events"
                   onClick={handleCloseUserMenu}
                 >
                   <Typography textAlign="center">My Events</Typography>
                 </MenuItem>
                 <MenuItem
-                  href="/userId/createEvent"
-                  component="a"
+                  component={Link}
+                  to="/userId/createEvent"
                   onClick={handleCloseUserMenu}
                 >
                   <Typography textAlign="center">Create New Event</Typography>
                 </MenuItem>
-                <MenuItem
-                  href="/logout"
-                  component="a"
-                  onClick={handleCloseUserMenu}
-                >
+                <MenuItem component="a" onClick={handleLogout}>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
               </Menu>

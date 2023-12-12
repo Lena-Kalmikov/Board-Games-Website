@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
 import useImagePreview from "../../hooks/useImagePreview";
 
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
@@ -166,7 +167,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link to="/login" variant="body2">
                 Already have an account? Log in
               </Link>
             </Grid>
