@@ -1,13 +1,13 @@
 import React from "react";
 
-import EventItem from "./EventItemPreview";
+import EventItem from "./EventPreviewItem";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-export default function EventPreviewList(props) {
+export default function EventPreviewList({events}) {
   return (
-    <Box sx={{ margin: { xs: 0, md: 7 } }}>
+    <Box sx={{ margin: { xs: 0, sm: 7 } }}>
       <Stack
         sx={{
           display: "flex",
@@ -16,7 +16,7 @@ export default function EventPreviewList(props) {
           justifyContent: "center",
         }}
       >
-        {props.events.map((event) => (
+        {events.map((event) => (
           <EventItem
             key={event.id}
             id={event.id}

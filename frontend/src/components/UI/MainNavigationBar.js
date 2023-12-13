@@ -54,7 +54,7 @@ export default function MainNavigation() {
     <AppBar position="static">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
-          <ExtensionIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <ExtensionIcon sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             textTransform="none"
@@ -63,7 +63,7 @@ export default function MainNavigation() {
             to="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", sm: "flex" },
               fontFamily: "monospace",
               fontSize: 25,
               fontWeight: 700,
@@ -75,7 +75,7 @@ export default function MainNavigation() {
             PlayDate
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", sm: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -101,7 +101,7 @@ export default function MainNavigation() {
               open={Boolean(anchorElementNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: "block", sm: "none" },
               }}
             >
               <MenuItem
@@ -138,7 +138,7 @@ export default function MainNavigation() {
               )}
             </Menu>
           </Box>
-          <ExtensionIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <ExtensionIcon sx={{ display: { xs: "flex", sm: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -146,7 +146,7 @@ export default function MainNavigation() {
             to="/"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", sm: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
@@ -157,7 +157,7 @@ export default function MainNavigation() {
           >
             PlayDate
           </Typography>
-          <Box sx={{ ml: 2, flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ ml: 2, flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
             <Button
               onClick={handleCloseNavMenu}
               component={Link}
@@ -186,7 +186,7 @@ export default function MainNavigation() {
             </Button>
           </Box>
           {!isLoggedIn && (
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ display: { xs: "none", sm: "flex" } }}>
               <Button
                 onClick={handleCloseNavMenu}
                 component={Link}
@@ -196,6 +196,7 @@ export default function MainNavigation() {
                   color: "white",
                   display: "block",
                   textTransform: "none",
+                  fontSize: 16,
                 }}
               >
                 Log in
@@ -209,6 +210,7 @@ export default function MainNavigation() {
                   color: "white",
                   display: "block",
                   textTransform: "none",
+                  fontSize: 16,
                 }}
               >
                 Join us
