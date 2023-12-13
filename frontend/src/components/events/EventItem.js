@@ -29,8 +29,8 @@ import PlaceIcon from "@mui/icons-material/Place";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
-export default function EventItem(props) {
-  const { id } = useParams();
+export default function EventItem({ events, users }) {
+  const { eventId } = useParams();
 
   const [tabValue, setTabValue] = useState("1");
   const [isModalOpen, setModalOpen] = useState(false);
@@ -47,8 +47,7 @@ export default function EventItem(props) {
     setTabValue(newValue);
   };
 
-  // Find the event with the matching ID
-  const event = props.events.find((event) => event.id === id);
+  const event = events.find((event) => event.id === eventId);
 
   // Return a loading message or handle the case where the event is not found
   if (!event) {
@@ -58,8 +57,7 @@ export default function EventItem(props) {
   // Map participants to user names
   const participants = event.participants.map((participantId) => {
     // Find the corresponding user for the current participant ID
-    const user = props.users.find((user) => user.id === participantId);
-
+    const user = users.find((user) => user.id === participantId);
     // Return the user's name if found, or a placeholder if not
     return {
       firstName: user ? user.firstName : `Unknown User (${participantId})`,
@@ -72,7 +70,7 @@ export default function EventItem(props) {
   const eventCreator = event.creator;
 
   // Find the corresponding user for the event creator ID
-  const creatorUser = props.users.find((user) => user.id === eventCreator);
+  const creatorUser = users.find((user) => user.id === eventCreator);
 
   // Get the creator's first name if found, or use a placeholder if not
   const creator = creatorUser
@@ -98,7 +96,7 @@ export default function EventItem(props) {
         backgroundColor: "#FCFDFF",
       }}
     >
-      <CardMedia sx={{ height: 210 }} image={event.image} />
+      <CardMedia sx={{ height: { xs: 150, sm: 210 } }} image={event.image} />
       <CardContent>
         <Box
           sx={{
@@ -131,9 +129,21 @@ export default function EventItem(props) {
           </Typography>
         </Box>
         <Divider sx={{ marginTop: 1.5 }} />
-        <Box sx={{ width: {xs:300, sm:550}, typography: "body1" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: 550,
+            typography: "body1",
+          }}
+        >
           <TabContext value={tabValue}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+              }}
+            >
               <TabList onChange={handleTabChange}>
                 <Tab label="About" value="1" sx={{ textTransform: "none" }} />
                 <Tab
@@ -144,8 +154,14 @@ export default function EventItem(props) {
                 <Button
                   variant="outlined"
                   color="secondary"
+                  sx={{
+                    textTransform: "none",
+                    margin: 1,
+                    borderRadius: 5,
+                    marginLeft: "auto",
+                    // fontSize: { xs: "0.8rem", sm: "1rem" },
+                  }}
                   startIcon={<CheckCircleOutlineOutlinedIcon />}
-                  sx={{ textTransform: "none", margin: 1, borderRadius:5, marginLeft: {xs:2, sm:6} }}
                 >
                   Going
                 </Button>

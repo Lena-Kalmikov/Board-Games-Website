@@ -289,7 +289,6 @@ const USERS = [
 ];
 
 export default function App() {
-  // const auth = useContext(AuthContext);
   return (
     <AuthProvider>
       <Router>
@@ -302,7 +301,7 @@ export default function App() {
             element={<EventPreviewList events={EVENTS} />}
           />
           <Route
-            path="/events/:id"
+            path="/events/:eventId"
             element={<Event events={EVENTS} users={USERS} games={GAMES} />}
           />
           <Route path="/login" element={<Login />} />
@@ -314,15 +313,3 @@ export default function App() {
     </AuthProvider>
   );
 }
-
-/* <Route
-path="/userId/createEvent"
-element={
-  userLoggedIn ? (
-    <CreateEvent />
-  ) : (
-    // If the user is not logged in, redirect to the sign-up page.
-    <Navigate to="/signup" replace={true} />
-  )
-}
-/>; */

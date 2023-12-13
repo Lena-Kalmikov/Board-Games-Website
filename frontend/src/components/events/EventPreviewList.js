@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 
 export default function EventPreviewList(props) {
   return (
-    <Box sx={{ m: 8 }}>
+    <Box sx={{ margin: { xs: 0, md: 7 } }}>
       <Stack
         sx={{
           display: "flex",
