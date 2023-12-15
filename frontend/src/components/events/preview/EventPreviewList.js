@@ -5,7 +5,7 @@ import EventItem from "./EventPreviewItem";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-export default function EventPreviewList({events}) {
+export default function EventPreviewList({ events }) {
   return (
     <Box sx={{ margin: { xs: 0, sm: 7 } }}>
       <Stack

@@ -7,6 +7,10 @@ export default function EventDiscussionTab({ users }) {
   // show user avatar + user name + message.
   // push new message to array using user id from auth context, it will save user id, message and timestamp to DISCUSSIONBOARD array.
 
+//   const DISCUSSIONBOARD = [
+// {userId: "u1", message: ""}
+//   ];
+  
   return (
     <Box>
       <TextField placeholder="Write a comment..."></TextField>

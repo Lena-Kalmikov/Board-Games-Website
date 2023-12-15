@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-import EventAboutTab from "../components/events/EventAboutTab";
-import EventDiscussionTab from "../components/events/EventDiscussionTab";
+import EventAboutTab from "../components/events/tabs/EventAboutTab";
+import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
 
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
@@ -24,7 +24,7 @@ import EventIcon from "@mui/icons-material/Event";
 import PlaceIcon from "@mui/icons-material/Place";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
-export default function Event({ events, users }) {
+export default function Event({ events, users, games }) {
   const { eventId } = useParams();
   const [tabValue, setTabValue] = useState("1");
 
@@ -119,7 +119,7 @@ export default function Event({ events, users }) {
               </TabList>
             </Box>
             <TabPanel value="1">
-              <EventAboutTab event={event} users={users} />
+              <EventAboutTab event={event} users={users} games={games} />
             </TabPanel>
             <TabPanel value="2">
               <EventDiscussionTab users={users} />

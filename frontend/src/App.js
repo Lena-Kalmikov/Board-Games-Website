@@ -16,7 +16,7 @@ import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
 import CreateEvent from "./components/events/CreateEvent";
 import MainNavigation from "./components/UI/MainNavigationBar";
-import EventPreviewList from "./components/events/EventPreviewList";
+import EventPreviewList from "./components/events/preview/EventPreviewList";
 
 const GAMES = [
   {
