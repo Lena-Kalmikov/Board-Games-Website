@@ -13,11 +13,25 @@ import GameItem from "../../games/GameItem";
 export default function EventGameDialog({ isOpen, onClose, game }) {
   return (
     <Dialog open={isOpen} onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>
-        {game.title}
-      </DialogTitle>
-      <DialogContent>
-        <GameItem {...game} />
+      <DialogContent
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 2,
+          marginBottom:2
+        }}
+      >
+        <GameItem
+          key={game.id}
+          id={game.id}
+          title={game.title}
+          genre={game.genre}
+          minAgeLimit={game.minAgeLimit}
+          minParticipantsLimit={game.minParticipantsLimit}
+          maxParticipantsLimit={game.maxParticipantsLimit}
+          description={game.description}
+          image={game.image}
+        />
       </DialogContent>
       <DialogActions sx={{ position: "absolute", top: 0, right: 0 }}>
         <IconButton onClick={onClose}>

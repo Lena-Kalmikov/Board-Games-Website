@@ -14,6 +14,16 @@ import { Link } from "@mui/material";
 export default function EventAboutTab({ event, users, games }) {
   const [isParticipantDialogOpen, setParticipantDialogOpen] = useState(false);
   const [isGameDialogOpen, setIsGameDialogOpen] = useState(false);
+  const [gameInDialog, setGameInDialog] = useState(null);
+
+  const handleGameLinkClick = (game) => {
+    setGameInDialog(game);
+    setIsGameDialogOpen(true);
+  };
+
+  const handleGameDialogClose = () => {
+    setIsGameDialogOpen(false);
+  };
 
   const handleParticipantDialogOpen = () => {
     setParticipantDialogOpen(true);
@@ -23,41 +33,35 @@ export default function EventAboutTab({ event, users, games }) {
     setParticipantDialogOpen(false);
   };
 
-  const handleGameDialogOpen = () => {
-    setIsGameDialogOpen(true);
-  };
-
-  const handleGameDialogClose = () => {
-    setIsGameDialogOpen(false);
-  };
-
   const eventParticipants = event.participants.map((participantId) => {
     const participant = users.find((user) => user.id === participantId);
     return {
-      firstName: participant
-        ? participant.firstName
-        : `Unknown User (${participantId})`,
-      lastName: participant
-        ? participant.lastName
-        : `Unknown User (${participantId})`,
-      profilePicture: participant ? participant.profilePicture : null,
+      id: participant.id,
+      firstName: participant.firstName,
+      lastName: participant.lastName,
+      profilePicture: participant.profilePicture,
     };
   });
 
   const eventGames = event.games.map((gameId) => {
     const eventGame = games.find((game) => game.id === gameId);
-    return { title: eventGame ? eventGame.title : `Unknown Game (${gameId})` };
+    return {
+      id: eventGame.id,
+      title: eventGame.title,
+      description: eventGame.description,
+      genre: eventGame.genre,
+      image: eventGame.image,
+      minAgeLimit: eventGame.minAgeLimit,
+      minParticipantsLimit: eventGame.minParticipantsLimit,
+      maxParticipantsLimit: eventGame.maxParticipantsLimit,
+    };
   });
 
   const eventCreator = users.find((user) => user.id === event.creator);
 
   const creatorName = {
-    firstName: eventCreator
-      ? eventCreator.firstName
-      : `Unknown User (${eventCreator.firstName})`,
-    lastName: eventCreator
-      ? eventCreator.lastName
-      : `Unknown User (${eventCreator.firstName})`,
+    firstName: eventCreator.firstName,
+    lastName: eventCreator.lastName,
   };
 
   const avatarWidth = 45;
@@ -76,8 +80,13 @@ export default function EventAboutTab({ event, users, games }) {
       </Typography>
       <Typography sx={{ display: "flex" }}>
         Games:&nbsp;
-        {eventGames.map((game, index) => (
-          <Link marginRight={1} key={index} onClick={handleGameDialogOpen}>
+        {eventGames.map((game) => (
+          <Link
+            style={{ cursor: "pointer" }}
+            key={game.id}
+            onClick={() => handleGameLinkClick(game)}
+            marginRight={1}
+          >
             {game.title}
           </Link>
         ))}
@@ -93,32 +102,31 @@ export default function EventAboutTab({ event, users, games }) {
         <Typography marginRight={1}>Participants:</Typography>
         <Tooltip title="See participants">
           <AvatarGroup max={5} onClick={handleParticipantDialogOpen}>
-            {eventParticipants.map(
-              (participant, index) =>
-                participant.profilePicture && (
-                  <Avatar
-                    key={index}
-                    src={participant.profilePicture}
-                    alt={participant.firstName}
-                    sx={{ width: avatarWidth, height: avatarHeight }}
-                  />
-                )
-            )}
+            {eventParticipants.map((participant) => (
+              <Avatar
+                key={participant.id}
+                src={participant.profilePicture}
+                alt={participant.firstName}
+                sx={{ width: avatarWidth, height: avatarHeight }}
+              />
+            ))}
           </AvatarGroup>
         </Tooltip>
       </Box>
-      <EventParticipantsDialog
+      {eventParticipants && <EventParticipantsDialog
         isOpen={isParticipantDialogOpen}
         onClose={handleParticipantDialogClose}
         participants={eventParticipants}
         avatarHeight={avatarHeight}
         avatarWidth={avatarWidth}
-      />
-      <EventGameDialog
-        isOpen={isGameDialogOpen}
-        onClose={handleGameDialogClose}
-        
-      />
+      />}
+      {gameInDialog && (
+        <EventGameDialog
+          isOpen={isGameDialogOpen}
+          onClose={handleGameDialogClose}
+          game={gameInDialog}
+        />
+      )}
     </Box>
   );
 }

@@ -35,8 +35,8 @@ export default function EventParticipantsDialog({
         Participants
       </DialogTitle>
       <DialogContent>
-        {participants.map((participant, index) => (
-          <DialogDiv key={index}>
+        {participants.map((participant) => (
+          <DialogDiv key={participant.id}>
             <Avatar
               alt={participant.firstName}
               src={participant.profilePicture}
@@ -46,7 +46,9 @@ export default function EventParticipantsDialog({
                 marginRight: 2,
               }}
             />
-            <Typography>{`${participant.firstName} ${participant.lastName}`}</Typography>
+            <Typography>
+              {participant.firstName} {participant.lastName}
+            </Typography>
           </DialogDiv>
         ))}
       </DialogContent>
