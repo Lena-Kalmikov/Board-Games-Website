@@ -16,7 +16,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-export default function SignUp() {
+export default function SignUp({users}) {
   const { preview, onSelectFile } = useImagePreview();
 
   const { register, handleSubmit, formState } = useForm({
@@ -28,6 +28,7 @@ export default function SignUp() {
   const onSubmit = (data) => {
     // send form data to the server using fetchRequest
     // save image data to the server//
+    // check if email already exists in the array, and if it does - show error message
     console.log(data);
   };
 

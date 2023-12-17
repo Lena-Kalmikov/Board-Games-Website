@@ -2,15 +2,14 @@ import React from "react";
 
 import GameItem from "./GameItem";
 
-export default function GameList(props) {
+export default function GameList({ games }) {
   return (
     <>
-      {props.games.map((game) => (
+      {games.map((game) => (
         <GameItem
           key={game.id}
           id={game.id}
           title={game.title}
-          genre={game.genre}
           minAgeLimit={game.minAgeLimit}
           minParticipantsLimit={game.minParticipantsLimit}
           maxParticipantsLimit={game.maxParticipantsLimit}

@@ -270,8 +270,8 @@ const USERS = [
   },
   {
     id: "u4",
-    email: "red@gmail.com",
-    password: "123456",
+    email: "kkk@gmail.com",
+    password: "4MeBNHP$tp2VYfQ",
     firstName: "Red",
     lastName: "Panda",
     profilePicture:
@@ -304,8 +304,8 @@ export default function App() {
             path="/events/:eventId"
             element={<Event events={EVENTS} users={USERS} games={GAMES} />}
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login users={USERS} />} />
+          <Route path="/signup" element={<SignUp users={USERS} />} />
           <Route path="/userId/events" element={<UserEvents />} />
           <Route path="/userId/createEvent" element={<CreateEvent />} />
         </Routes>

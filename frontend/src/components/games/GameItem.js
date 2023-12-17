@@ -24,7 +24,6 @@ export default function GameItem(props) {
           Participants: {props.minParticipantsLimit}-
           {props.maxParticipantsLimit}
         </Typography>
-        <Typography gutterBottom>Genre: {props.genre} </Typography>
         <Typography variant="body3" color="text.secondary">
           {props.description}
         </Typography>

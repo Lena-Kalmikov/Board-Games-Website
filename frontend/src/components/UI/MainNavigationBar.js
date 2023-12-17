@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 import { useAuth } from "../../context/auth-context";
+
+import { Link } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -20,13 +20,15 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
-//avatar src + avatar alt text should be changed to each logged in user's data
-
 export default function MainNavigation() {
   const [anchorElementNav, setAnchorElementNav] = useState(null);
   const [anchorElementUser, setAnchorElementUser] = useState(null);
-  const { logout, isLoggedIn } = useAuth();
+
   const navigate = useNavigate();
+  const { logout, isLoggedIn, user } = useAuth();
+
+  const userProfilePicture = user?.profilePicture;
+  const userName = `${user?.firstName} ${user?.lastName}`;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElementNav(event.currentTarget);
@@ -226,8 +228,8 @@ export default function MainNavigation() {
                   sx={{ p: 0, color: "primary.dark" }}
                 >
                   <Avatar
-                    alt="Lena K"
-                    src="/static/images/avatar/2.jpg"
+                    alt={userName}
+                    src={userProfilePicture}
                     sx={{ backgroundColor: "rgba(247, 154, 70, 0.8)" }}
                   />
                 </IconButton>

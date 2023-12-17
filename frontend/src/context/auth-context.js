@@ -13,9 +13,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  const login = () => {
+  const login = (data) => {
     console.log("logged in");
     setIsLoggedIn(true);
+    
+    setUser(data);
+    console.log(data);
   };
 
   const logout = () => {

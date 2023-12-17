@@ -18,7 +18,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-export default function Login() {
+export default function Login({ users }) {
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState } = useForm({
@@ -29,10 +29,41 @@ export default function Login() {
   const { login } = useAuth();
 
   const onSubmit = (data) => {
-    // send form data to the server using fetchRequest
-    // server should return if the user exists on not.
     console.log(data);
-    login();
+
+    // Check if the users array is defined and iterable
+    // if (!users) {
+    //   console.log("Users array is missing or not iterable");
+    //   return alert("An error occurred, please try again later");
+    // }
+
+    // Find user by email, which is unique
+    const user = users.find((user) => user.email === data.email);
+
+    // Incorrect email (not in the database)
+    if (!user) {
+      console.log("Email is incorrect");
+      return alert("Email is incorrect, try again");
+    }
+
+    // Correct email, incorrect password
+    if (user.password !== data.password) {
+      console.log("Password is incorrect");
+      return alert("Password is incorrect, try again");
+    }
+
+    // Correct email, correct password
+    console.log("Logged in successfully");
+
+    // Check if the user has a profileImage property
+    const profilePicture = user.profilePicture;
+    const firstName = user.firstName;
+    const lastName = user.lastName;
+
+    // Send the user information (including profileImage) to the login function
+    login({ ...data, profilePicture, firstName, lastName });
+
+    // Navigate to the desired page (e.g., '/')
     navigate("/");
   };
 
@@ -47,7 +78,7 @@ export default function Login() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+        <Avatar sx={{ margin: 1, bgcolor: "primary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -102,7 +133,7 @@ export default function Login() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ marginTop: 3, marginBottom: 2 }}
           >
             log In
           </Button>

@@ -1,14 +1,14 @@
 import React from "react";
-import Avatar from "@mui/material/Avatar";
-import Dialog from "@mui/material/Dialog";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import CloseIcon from "@mui/icons-material/Close";
 
 import GameItem from "../../games/GameItem";
+
+import Dialog from "@mui/material/Dialog";
+import IconButton from "@mui/material/IconButton";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+
+import CloseIcon from "@mui/icons-material/Close";
+
 
 export default function EventGameDialog({ isOpen, onClose, game }) {
   return (
@@ -25,7 +25,6 @@ export default function EventGameDialog({ isOpen, onClose, game }) {
           key={game.id}
           id={game.id}
           title={game.title}
-          genre={game.genre}
           minAgeLimit={game.minAgeLimit}
           minParticipantsLimit={game.minParticipantsLimit}
           maxParticipantsLimit={game.maxParticipantsLimit}
