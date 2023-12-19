@@ -8,8 +8,8 @@ import GameList from "../components/games/GameList";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
-export default function Games(props) {
-  const { filteredData, filterData } = useInputSearch(props.games, "title");
+export default function Games({ games }) {
+  const { filteredData, filterData } = useInputSearch(games, "title");
 
   return (
     <Box mb={4}>

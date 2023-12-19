@@ -56,12 +56,13 @@ export default function Login({ users }) {
     console.log("Logged in successfully");
 
     // Check if the user has a profileImage property
-    const profilePicture = user.profilePicture;
+    const id = user.id;
     const firstName = user.firstName;
     const lastName = user.lastName;
+    const profilePicture = user.profilePicture;
 
     // Send the user information (including profileImage) to the login function
-    login({ ...data, profilePicture, firstName, lastName });
+    login({ ...data, id, profilePicture, firstName, lastName });
 
     // Navigate to the desired page (e.g., '/')
     navigate("/");

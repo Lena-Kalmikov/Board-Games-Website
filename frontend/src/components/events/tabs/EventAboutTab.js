@@ -67,6 +67,8 @@ export default function EventAboutTab({ event, users, games }) {
   const avatarWidth = 45;
   const avatarHeight = 45;
 
+  
+
   return (
     <Box>
       <Typography gutterBottom fontSize={26}>
@@ -113,13 +115,15 @@ export default function EventAboutTab({ event, users, games }) {
           </AvatarGroup>
         </Tooltip>
       </Box>
-      {eventParticipants && <EventParticipantsDialog
-        isOpen={isParticipantDialogOpen}
-        onClose={handleParticipantDialogClose}
-        participants={eventParticipants}
-        avatarHeight={avatarHeight}
-        avatarWidth={avatarWidth}
-      />}
+      {eventParticipants && (
+        <EventParticipantsDialog
+          isOpen={isParticipantDialogOpen}
+          onClose={handleParticipantDialogClose}
+          participants={eventParticipants}
+          avatarHeight={avatarHeight}
+          avatarWidth={avatarWidth}
+        />
+      )}
       {gameInDialog && (
         <EventGameDialog
           isOpen={isGameDialogOpen}
