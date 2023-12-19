@@ -252,14 +252,14 @@ export default function MainNavigation() {
               >
                 <MenuItem
                   component={Link}
-                  to="/userId/events"
+                  to="/myEvents"
                   onClick={handleCloseUserMenu}
                 >
                   <Typography textAlign="center">My Events</Typography>
                 </MenuItem>
                 <MenuItem
                   component={Link}
-                  to="/userId/createEvent"
+                  to="/createEvent"
                   onClick={handleCloseUserMenu}
                 >
                   <Typography textAlign="center">Create New Event</Typography>

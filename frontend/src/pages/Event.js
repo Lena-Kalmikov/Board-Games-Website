@@ -1,12 +1,16 @@
 import React from "react";
+
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
+
 import EventAboutTab from "../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
+
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
+
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Card from "@mui/material/Card";
@@ -16,49 +20,60 @@ import Divider from "@mui/material/Divider";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
+
 import EventIcon from "@mui/icons-material/Event";
 import PlaceIcon from "@mui/icons-material/Place";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
-export default function Event({ events, users, games }) {
+export default function Event({ events, users, games, onUpdateEvent }) {
   const { user } = useAuth();
   const { eventId } = useParams();
   const navigate = useNavigate();
 
+  const event = events.find((event) => event.id === eventId);
+
   const [tabValue, setTabValue] = useState("1");
-  const [buttonVariant, setButtonVariant] = useState("outlined");
-  const [updatedEvent, setUpdatedEvent] = useState(null);
-  const [isUserParticipant, setIsUserParticipant] = useState(
-    events
-      .find((event) => event.id === eventId)
-      ?.participants.includes(user?.id) || false
-  );
+
+  const [isLoggedUserParticipantInEvent, setIsLoggedUserParticipantInEvent] =
+    useState(event?.participants.includes(user?.id) || false);
 
   const handleTabChange = (e, newValue) => {
     setTabValue(newValue);
   };
 
-  const event = events.find((event) => event.id === eventId);
-
   if (!event) {
-    return <div>Event was not found</div>;
+    return (
+      <Box
+        sx={{
+          margin: { xs: 0, sm: 7 },
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Event was not found :(
+      </Box>
+    );
   }
 
   const handleGoingToEvent = () => {
     if (!user) {
-      navigate("/");
+      navigate("/login");
       return;
     }
 
-    const updatedParticipants = isUserParticipant
+    // first part checks if user is a participant in event, if yes - he's removed from event.
+    // second part handles the other case - if user is not a participant in event - he's added to it.
+    const updatedParticipants = isLoggedUserParticipantInEvent
       ? event.participants.filter((participantId) => participantId !== user.id)
       : [...event.participants, user.id];
 
-    setIsUserParticipant(!isUserParticipant);
+    setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
+
+    // spread operator uses the current event data + sets participants to be the updatedParticipants determined before.
     const updatedEvent = { ...event, participants: updatedParticipants };
-    setUpdatedEvent(updatedEvent);
-    // Toggle between 'outlined' and 'contained' variants
-    setButtonVariant(isUserParticipant ? "outlined" : "contained");
+
+    // sends updated data to the EVENTS array in app.js
+    onUpdateEvent(updatedEvent);
   };
 
   return (
@@ -122,11 +137,7 @@ export default function Event({ events, users, games }) {
                   sx={{ textTransform: "none" }}
                 />
                 <Button
-                  variant={buttonVariant}
                   color="secondary"
-                  startIcon={
-                    isUserParticipant && <CheckCircleOutlineOutlinedIcon />
-                  }
                   onClick={handleGoingToEvent}
                   sx={{
                     textTransform: "none",
@@ -134,17 +145,21 @@ export default function Event({ events, users, games }) {
                     borderRadius: 5,
                     marginLeft: "auto",
                   }}
+                  variant={
+                    isLoggedUserParticipantInEvent ? "contained" : "outlined"
+                  }
+                  startIcon={
+                    isLoggedUserParticipantInEvent && (
+                      <CheckCircleOutlineOutlinedIcon />
+                    )
+                  }
                 >
-                  Going
+                  {isLoggedUserParticipantInEvent ? "Going" : "Join event"}
                 </Button>
               </TabList>
             </Box>
             <TabPanel value="1">
-              <EventAboutTab
-                event={updatedEvent || event}
-                users={users}
-                games={games}
-              />
+              <EventAboutTab event={event} users={users} games={games} />
             </TabPanel>
             <TabPanel value="2">
               <EventDiscussionTab users={users} />

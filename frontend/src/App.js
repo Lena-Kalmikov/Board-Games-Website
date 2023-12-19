@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./context/auth-context";
@@ -289,6 +289,14 @@ const USERS = [
 ];
 
 export default function App() {
+  const [events, setEvents] = useState(EVENTS);
+
+  const handleEventUpdate = (updatedEvent) => {
+    const updatedEvents = events.map((event) =>
+      event.id === updatedEvent.id ? updatedEvent : event
+    );
+    setEvents(updatedEvents);
+  };
   return (
     <AuthProvider>
       <Router>
@@ -302,12 +310,19 @@ export default function App() {
           />
           <Route
             path="/events/:eventId"
-            element={<Event events={EVENTS} users={USERS} games={GAMES} />}
+            element={
+              <Event
+                events={events}
+                users={USERS}
+                games={GAMES}
+                onUpdateEvent={handleEventUpdate}
+              />
+            }
           />
           <Route path="/login" element={<Login users={USERS} />} />
           <Route path="/signup" element={<SignUp users={USERS} />} />
-          <Route path="/userId/events" element={<UserEvents />} />
-          <Route path="/userId/createEvent" element={<CreateEvent />} />
+          <Route path="/myEvents" element={<UserEvents />} />
+          <Route path="/createEvent" element={<CreateEvent />} />
         </Routes>
       </Router>
     </AuthProvider>
