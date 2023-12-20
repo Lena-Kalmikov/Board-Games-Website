@@ -1,16 +1,13 @@
-import * as React from "react";
-
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/auth-context";
 
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../context/auth-context";
 
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-
-import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -28,14 +25,8 @@ export default function Login({ users }) {
   const { errors } = formState;
   const { login } = useAuth();
 
-  const onSubmit = (data) => {
+  const handleFormSubmit = (data) => {
     console.log(data);
-
-    // Check if the users array is defined and iterable
-    // if (!users) {
-    //   console.log("Users array is missing or not iterable");
-    //   return alert("An error occurred, please try again later");
-    // }
 
     // Find user by email, which is unique
     const user = users.find((user) => user.email === data.email);
@@ -52,19 +43,13 @@ export default function Login({ users }) {
       return alert("Password is incorrect, try again");
     }
 
-    // Correct email, correct password
-    console.log("Logged in successfully");
-
-    // Check if the user has a profileImage property
     const id = user.id;
     const firstName = user.firstName;
     const lastName = user.lastName;
     const profilePicture = user.profilePicture;
 
-    // Send the user information (including profileImage) to the login function
+    // Send user information to the login function in useAuth
     login({ ...data, id, profilePicture, firstName, lastName });
-
-    // Navigate to the desired page (e.g., '/')
     navigate("/");
   };
 
@@ -88,7 +73,7 @@ export default function Login({ users }) {
         <Box
           component="form"
           noValidate
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(handleFormSubmit)}
           sx={{ mt: 1 }}
         >
           <TextField

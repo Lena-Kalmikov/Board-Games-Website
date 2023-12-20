@@ -1,5 +1,3 @@
-import React from "react";
-
 import useInputSearch from "../hooks/useInputSearch";
 
 import SearchBar from "../components/UI/SearchBar";

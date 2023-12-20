@@ -1,22 +1,21 @@
-import * as React from "react";
 import { useState } from "react";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./context/auth-context";
 
-import "./App.css";
-
-// import { ThemeProvider } from "@mui/material/styles";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Event from "./pages/Event";
+import Events from "./pages/Events"
 import UserEvents from "./pages/UserEvents";
 
 import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
 import CreateEvent from "./components/events/CreateEvent";
 import MainNavigation from "./components/UI/MainNavigationBar";
-import EventPreviewList from "./components/events/preview/EventPreviewList";
+// import { ThemeProvider } from "@mui/material/styles";
+import "./App.css";
 
 const GAMES = [
   {
@@ -304,10 +303,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/games" element={<Games games={GAMES} />} />
-          <Route
-            path="/events"
-            element={<EventPreviewList events={EVENTS} />}
-          />
+          <Route path="/events" element={<Events events={EVENTS} />} />
           <Route
             path="/events/:eventId"
             element={

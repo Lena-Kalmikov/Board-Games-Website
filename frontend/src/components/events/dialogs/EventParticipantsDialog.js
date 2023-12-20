@@ -1,5 +1,3 @@
-import React from "react";
-
 import styled from "@mui/system/styled";
 
 import Avatar from "@mui/material/Avatar";

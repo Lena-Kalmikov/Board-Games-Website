@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { useForm } from "react-hook-form";
+
 import useImagePreview from "../../hooks/useImagePreview";
 
 import Box from "@mui/material/Box";

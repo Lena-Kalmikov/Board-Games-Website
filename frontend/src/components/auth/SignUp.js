@@ -1,7 +1,7 @@
-import * as React from "react";
-
 import { useForm } from "react-hook-form";
+
 import { Link } from "react-router-dom";
+
 import useImagePreview from "../../hooks/useImagePreview";
 
 import Box from "@mui/material/Box";
@@ -13,10 +13,10 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-export default function SignUp({users}) {
+export default function SignUp({ users }) {
   const { preview, onSelectFile } = useImagePreview();
 
   const { register, handleSubmit, formState } = useForm({
@@ -25,10 +25,9 @@ export default function SignUp({users}) {
 
   const { errors } = formState;
 
-  const onSubmit = (data) => {
-    // send form data to the server using fetchRequest
-    // save image data to the server//
-    // check if email already exists in the array, and if it does - show error message
+  const handleFormSubmit = (data) => {
+    // check if email already exists in the array, and if it does - show message that user already exists.
+    // if all data is ok, push new user to the users array.
     console.log(data);
   };
 
@@ -52,7 +51,7 @@ export default function SignUp({users}) {
         <Box
           component="form"
           noValidate
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(handleFormSubmit)}
           sx={{ mt: 3 }}
         >
           <Grid container spacing={2}>

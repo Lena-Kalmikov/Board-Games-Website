@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";

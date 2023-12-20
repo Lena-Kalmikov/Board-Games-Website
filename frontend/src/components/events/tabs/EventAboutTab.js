@@ -4,17 +4,16 @@ import EventGameDialog from "../dialogs/EventGameDialog";
 import EventParticipantsDialog from "../dialogs/EventParticipantsDialog";
 
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import AvatarGroup from "@mui/material/AvatarGroup";
 
-import { Link } from "@mui/material";
-
 export default function EventAboutTab({ event, users, games }) {
-  const [isParticipantDialogOpen, setParticipantDialogOpen] = useState(false);
-  const [isGameDialogOpen, setIsGameDialogOpen] = useState(false);
   const [gameInDialog, setGameInDialog] = useState(null);
+  const [isGameDialogOpen, setIsGameDialogOpen] = useState(false);
+  const [isParticipantDialogOpen, setParticipantDialogOpen] = useState(false);
 
   const handleGameLinkClick = (game) => {
     setGameInDialog(game);
@@ -66,8 +65,6 @@ export default function EventAboutTab({ event, users, games }) {
 
   const avatarWidth = 45;
   const avatarHeight = 45;
-
-  
 
   return (
     <Box>

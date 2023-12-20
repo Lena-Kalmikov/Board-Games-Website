@@ -1,7 +1,7 @@
-import React from "react";
-
 import { useState } from "react";
+
 import { useNavigate, useParams } from "react-router-dom";
+
 import { useAuth } from "../context/auth-context";
 
 import EventAboutTab from "../components/events/tabs/EventAboutTab";
