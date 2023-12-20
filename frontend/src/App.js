@@ -7,7 +7,7 @@ import { AuthProvider } from "./context/auth-context";
 import Home from "./pages/Home";
 import Games from "./pages/Games";
 import Event from "./pages/Event";
-import Events from "./pages/Events"
+import Events from "./pages/Events";
 import UserEvents from "./pages/UserEvents";
 
 import Login from "./components/auth/Login";
@@ -15,6 +15,8 @@ import SignUp from "./components/auth/SignUp";
 import CreateEvent from "./components/events/CreateEvent";
 import MainNavigation from "./components/UI/MainNavigationBar";
 // import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
 import "./App.css";
 
 const GAMES = [
@@ -128,7 +130,7 @@ const EVENTS = [
       "Join us for a night of laughter and friendly competition at our Game Night with friends! Dive into a mix of board games, card games, and video games for an evening filled with excitement. Don't miss out on the fun and camaraderie. Bring your competitive spirit and get ready for a memorable game night experience!",
     image:
       "https://images.pexels.com/photos/8111324/pexels-photo-8111324.jpeg?auto=compress&cs=tinysrgb&w=600",
-    games: ["g1", "g3"],
+    games: ["g1", "g3", "g2"],
     creator: "u2",
     participants: ["u1", "u2", "u3", "u4", "u5"],
   },
@@ -173,7 +175,7 @@ const EVENTS = [
       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMGz4AgGx_Ww3pb-T7eACWSvlGknIFNPgag&usqp=CAU",
-    games: ["g1", "g3"],
+    games: ["g1", "g5"],
     creator: "u1",
     participants: ["u1", "u2"],
   },
@@ -298,6 +300,7 @@ export default function App() {
   };
   return (
     <AuthProvider>
+      <CssBaseline />
       <Router>
         <MainNavigation />
         <Routes>
