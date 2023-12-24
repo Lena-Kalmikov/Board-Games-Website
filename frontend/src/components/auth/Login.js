@@ -13,7 +13,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 export default function Login({ users }) {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ export default function Login({ users }) {
         }}
       >
         <Avatar sx={{ margin: 1, bgcolor: "primary.main" }}>
-          <LockOutlinedIcon />
+          <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Log in
@@ -126,7 +126,7 @@ export default function Login({ users }) {
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link to="/signup" variant="body2">
-                {"Don't have an account? Sign up"}
+                Don't have an account? Sign up
               </Link>
             </Grid>
           </Grid>

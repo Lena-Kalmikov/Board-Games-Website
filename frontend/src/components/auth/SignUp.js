@@ -13,8 +13,8 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export default function SignUp({ users }) {
   const { preview, onSelectFile } = useImagePreview();
@@ -43,7 +43,7 @@ export default function SignUp({ users }) {
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-          <LockOutlinedIcon />
+          <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up

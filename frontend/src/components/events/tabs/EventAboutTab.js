@@ -10,7 +10,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import AvatarGroup from "@mui/material/AvatarGroup";
 
-export default function EventAboutTab({ event, users, games }) {
+const EventAboutTab = React.memo(({ event, users, games }) => {
   const [gameInDialog, setGameInDialog] = useState(null);
   const [isGameDialogOpen, setIsGameDialogOpen] = useState(false);
   const [isParticipantDialogOpen, setParticipantDialogOpen] = useState(false);
@@ -133,4 +133,6 @@ export default function EventAboutTab({ event, users, games }) {
       )}
     </Box>
   );
-}
+});
+
+export default EventAboutTab;

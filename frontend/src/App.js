@@ -289,7 +289,7 @@ const USERS = [
   },
 ];
 
-const DISCUSSIONBOARD = [
+const DISCUSSIONBOARDS = [
   {
     eventId: "e1",
     content: [
@@ -339,12 +339,35 @@ const DISCUSSIONBOARD = [
 
 export default function App() {
   const [events, setEvents] = useState(EVENTS);
+  const [discussionBoards, setDiscussionBoards] = useState(DISCUSSIONBOARDS);
 
   const handleEventUpdate = (updatedEvent) => {
     const updatedEvents = events.map((event) =>
       event.id === updatedEvent.id ? updatedEvent : event
     );
     setEvents(updatedEvents);
+  };
+
+  const handleSendMessage = (eventId, userId, message) => {
+    // Find the discussion board for the given eventId
+    const updatedDiscussionBoards = discussionBoards.map((board) =>
+      board.eventId === eventId
+        ? {
+            ...board,
+            content: [
+              ...board.content,
+              {
+                userId,
+                message,
+                creationTime: "now", // You might want to use a proper timestamp here
+              },
+            ],
+          }
+        : board
+    );
+
+    // Update the state with the new discussionBoards array
+    setDiscussionBoards(updatedDiscussionBoards);
   };
 
   return (
@@ -363,8 +386,9 @@ export default function App() {
                 events={events}
                 users={USERS}
                 games={GAMES}
-                discussionBoard={DISCUSSIONBOARD}
+                discussionBoards={discussionBoards}
                 onUpdateEvent={handleEventUpdate}
+                onSendMessage={handleSendMessage}
               />
             }
           />

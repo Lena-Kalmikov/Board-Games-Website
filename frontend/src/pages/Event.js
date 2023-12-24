@@ -19,8 +19,9 @@ export default function Event({
   events,
   users,
   games,
-  discussionBoard,
+  discussionBoards,
   onUpdateEvent,
+  onSendMessage
 }) {
   const { user } = useAuth();
   const { eventId } = useParams();
@@ -172,7 +173,9 @@ export default function Event({
             >
               <EventDiscussionTab
                 users={users}
-                discussionBoard={discussionBoard}
+                discussionBoards={discussionBoards}
+                eventId={eventId}
+                onSendMessage={onSendMessage}
               />
             </Box>
           </Box>
