@@ -163,7 +163,7 @@ export default function Event({
               {isLoggedUserParticipantInEvent ? "Going" : "Join event"}
             </Button>
           </Box>
-          <Box margin={1} marginTop={3}>
+          <Box margin={1} marginTop={3} sx={{ width: { sm: 550 } }}>
             <Box style={{ display: activeTab === "about" ? "block" : "none" }}>
               <EventAboutTab event={event} users={users} games={games} />
             </Box>
