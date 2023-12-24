@@ -27,12 +27,11 @@ export default function EventPreviewItem(props) {
         <Typography color="text.secondary">
           {props.city}, {props.address}
         </Typography>
-        {/* Use the Link component to navigate to the event URL */}
         <Link to={`/events/${props.id}`} style={{ textDecoration: "none" }}>
           <Button
             fullWidth
             variant="outlined"
-            sx={{ mt: 2, textTransform: "none" }}
+            sx={{ marginTop: 2, textTransform: "none" }}
           >
             Explore event
           </Button>

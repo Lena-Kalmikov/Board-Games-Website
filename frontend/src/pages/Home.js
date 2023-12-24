@@ -1,73 +1,172 @@
-import { Typography } from "@mui/material";
+import EventPreviewList from "../components/events/preview/EventPreviewList";
+
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../context/auth-context";
+
 import Box from "@mui/material/Box";
-import "./Home.css";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-export default function Home() {
+export default function Home({ events }) {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const displayedEvents = events.slice(0, 4);
+
+  const redirectToCreateNewEvent = () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+    navigate("/createEvent");
+  };
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", sm: "row" },
-        alignItems: "center",
-        maxWidth: 1000,
-        margin: { xs: 2, sm: "auto" },
-        marginTop: { sm: 5 },
-        position: "relative",
-        // backgroundColor: "rgb(251, 239, 255)",
-      }}
-    >
-      {/* Gradient Top Border */}
+    <Box sx={{ margin: 2, marginBottom: 10 }}>
       <Box
         sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 8,
-          width: 115, // Adjust the height of the border as needed
-          background: "linear-gradient(to right, pink, purple)",
-          content: "''",
-        }}
-      ></Box>
-
-      {/* Gradient Left Border */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          bottom: 0,
-          width: 8, // Adjust the width of the border as needed
-          height: 100,
-          background: "linear-gradient(to bottom, pink, purple)",
-          content: "''",
-        }}
-      ></Box>
-
-      <Box
-        sx={{
-          width: "100%",
-          padding: 3,
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
+          position: "relative",
+          margin: "auto",
+          maxWidth: 1000,
+          backgroundColor: "rgb(242, 246, 250)",
+          marginTop: { sm: 10 },
+          marginBottom: 10,
         }}
       >
-        <Typography fontSize={35}>Game On.</Typography>
-        <Typography fontSize={22}>Unleash the Board Game Magic!</Typography>
-        <Typography>
-          Immerse yourself in a realm of board game brilliance where excitement
-          knows no bounds. Plan your next tabletop adventure effortlessly by
-          scheduling meet-ups and game nights. Whether you're a seasoned player
-          or new to the game, our community invites you to join the excitement.
-          Brace yourself for unforgettable moments, new friendships, and the
-          sheer joy of board games in a way that's effortlessly cool and
-          eternally fun!
-        </Typography>
+        {/* Gradient Top Border */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 8,
+            width: 115,
+            background:
+              "linear-gradient(to right, rgba(197,216,241,1), rgba(15,123,236,1))",
+          }}
+        ></Box>
+
+        {/* Gradient Left Border */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            height: 100,
+            width: 8,
+            background:
+              "linear-gradient(to bottom, rgba(197,216,241,1), rgba(15,123,236,1))",
+          }}
+        ></Box>
+        {/* Gradient right Border */}
+        <Box
+          sx={{
+            position: "absolute",
+            right: 0,
+            bottom: 0,
+            width: 8,
+            height: 100,
+            background:
+              "linear-gradient(to top, rgba(197,216,241,1), rgba(15,123,236,1))",
+          }}
+        ></Box>
+        {/* Gradient bottom Border */}
+        <Box
+          sx={{
+            position: "absolute",
+            right: 0,
+            bottom: 0,
+            height: 8,
+            width: 115,
+            background:
+              "linear-gradient(to left, rgba(197,216,241,1), rgba(15,123,236,1))",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            marginLeft: 4,
+            width: "100%",
+            padding: 2,
+          }}
+        >
+          <Typography fontWeight={"bold"} fontSize={22}>
+            Unleash the Board Game Magic!
+          </Typography>
+          <Typography>
+            Embark on a journey of fun and laughter with your friends. Create
+            unforgettable moments by hosting your own board game meetup with the
+            help of our website. Whether you're a strategic mastermind, a trivia
+            guru, or just a casual player, bring your favorite board games to
+            the table and let the good times roll. Connect with fellow gamers,
+            share your passion, and make lasting memories together.
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            width: { xs: "85%", sm: "100%", md: "90%" },
+            margin: { sm: 5 },
+            marginBottom: { xs: 2 },
+          }}
+        >
+          <img
+            alt=""
+            src="https://images.pexels.com/photos/4691567/pexels-photo-4691567.jpeg?auto=compress&cs=tinysrgb&w=800"
+            style={{
+              maxWidth: "100%",
+              borderRadius: 50,
+            }}
+          />
+        </Box>
       </Box>
-      <Box sx={{ width: "100%", marginRight: 2 }}>
-        <img
-          alt=""
-          src="https://images.pexels.com/photos/4691567/pexels-photo-4691567.jpeg?auto=compress&cs=tinysrgb&w=800"
-          style={{ width: "100%", maxWidth: "100%" }}
-        />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "rgb(242, 246, 250)",
+          marginTop: 10,
+          marginBottom: 10,
+        }}
+      >
+        <Typography variant="h3">Upcoming events</Typography>
+        <EventPreviewList events={displayedEvents} />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          backgroundColor: "rgb(242, 246, 250)",
+          maxWidth: 800,
+          padding: 2,
+          margin: { xs: 1, md: "auto" },
+        }}
+      >
+        <Box>
+          <Typography fontWeight={"bold"} fontSize={22}>
+            Start crafting your event now.
+          </Typography>
+          <Typography>
+            From classic board games to the latest releases, our platform is
+            your canvas for creating memorable gatherings. Let the games begin
+            and the laughter echo – forge new friendships and make every
+            playdate an event to remember!
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            onClick={redirectToCreateNewEvent}
+            variant="outlined"
+            sx={{ padding: 2, margin: 2, width: 200, borderRadius: 50 }}
+          >
+            Create new event
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

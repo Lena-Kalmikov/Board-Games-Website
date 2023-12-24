@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import EventGameDialog from "../dialogs/EventGameDialog";
 import EventParticipantsDialog from "../dialogs/EventParticipantsDialog";
@@ -66,6 +66,8 @@ export default function EventAboutTab({ event, users, games }) {
   const avatarWidth = 45;
   const avatarHeight = 45;
 
+  console.log("re-render about tab");
+
   return (
     <Box>
       <Typography gutterBottom fontSize={26}>
@@ -77,7 +79,7 @@ export default function EventAboutTab({ event, users, games }) {
       <Typography>
         Event by: {creatorName.firstName} {creatorName.lastName}
       </Typography>
-      <Typography sx={{ display: "flex" }}>
+      <Typography sx={{ display: "flex", flexWrap: "wrap" }}>
         Games:&nbsp;
         {eventGames.map((game) => (
           <Link
@@ -86,7 +88,7 @@ export default function EventAboutTab({ event, users, games }) {
             onClick={() => handleGameLinkClick(game)}
             marginRight={1}
           >
-            {game.title}
+            {game.title},
           </Link>
         ))}
       </Typography>
@@ -96,6 +98,7 @@ export default function EventAboutTab({ event, users, games }) {
           alignItems: { xs: "start", sm: "center" },
           flexDirection: { xs: "column", sm: "row" },
           marginTop: 1,
+          marginBottom: 2,
         }}
       >
         <Typography marginRight={1}>Participants:</Typography>

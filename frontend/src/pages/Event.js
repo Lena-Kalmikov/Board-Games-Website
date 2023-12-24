@@ -1,18 +1,9 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { useAuth } from "../context/auth-context";
-
 import EventAboutTab from "../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
-
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import TabContext from "@mui/lab/TabContext";
-
 import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -20,25 +11,30 @@ import Divider from "@mui/material/Divider";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-
 import EventIcon from "@mui/icons-material/Event";
 import PlaceIcon from "@mui/icons-material/Place";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
-export default function Event({ events, users, games, onUpdateEvent }) {
+export default function Event({
+  events,
+  users,
+  games,
+  discussionBoard,
+  onUpdateEvent,
+}) {
   const { user } = useAuth();
   const { eventId } = useParams();
   const navigate = useNavigate();
 
   const event = events.find((event) => event.id === eventId);
 
-  const [tabValue, setTabValue] = useState("1");
-
   const [isLoggedUserParticipantInEvent, setIsLoggedUserParticipantInEvent] =
     useState(event?.participants.includes(user?.id) || false);
 
-  const handleTabChange = (e, newValue) => {
-    setTabValue(newValue);
+  const [activeTab, setActiveTab] = useState("about");
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
   };
 
   if (!event) {
@@ -61,18 +57,14 @@ export default function Event({ events, users, games, onUpdateEvent }) {
       return;
     }
 
-    // first part checks if user is a participant in event, if yes - he's removed from event.
-    // second part handles the other case - if user is not a participant in event - he's added to it.
     const updatedParticipants = isLoggedUserParticipantInEvent
       ? event.participants.filter((participantId) => participantId !== user.id)
       : [...event.participants, user.id];
 
     setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
 
-    // spread operator uses the current event data + sets participants to be the updatedParticipants determined before.
     const updatedEvent = { ...event, participants: updatedParticipants };
 
-    // sends updated data to the EVENTS array in app.js
     onUpdateEvent(updatedEvent);
   };
 
@@ -90,7 +82,7 @@ export default function Event({ events, users, games, onUpdateEvent }) {
         }}
       >
         <CardMedia sx={{ height: { xs: 150, sm: 210 } }} image={event.image} />
-        <CardContent sx={{ maxWidth: 550 }}>
+        <CardContent sx={{ maxWidth: 600 }}>
           <Box
             sx={{
               display: "flex",
@@ -122,49 +114,68 @@ export default function Event({ events, users, games, onUpdateEvent }) {
             </Typography>
           </Box>
           <Divider sx={{ marginTop: 1.5 }} />
-          <TabContext value={tabValue}>
-            <Box
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              display: "flex",
+            }}
+          >
+            <Button
+              onClick={() => handleTabClick("about")}
               sx={{
-                borderBottom: 1,
-                borderColor: "divider",
+                borderBottom:
+                  activeTab === "about" ? "2px solid #92beef" : "none",
+                borderRadius: "0",
               }}
             >
-              <TabList onChange={handleTabChange}>
-                <Tab label="About" value="1" sx={{ textTransform: "none" }} />
-                <Tab
-                  label="Discussion"
-                  value="2"
-                  sx={{ textTransform: "none" }}
-                />
-                <Button
-                  color="secondary"
-                  onClick={handleGoingToEvent}
-                  sx={{
-                    textTransform: "none",
-                    margin: 1,
-                    borderRadius: 5,
-                    marginLeft: "auto",
-                  }}
-                  variant={
-                    isLoggedUserParticipantInEvent ? "contained" : "outlined"
-                  }
-                  startIcon={
-                    isLoggedUserParticipantInEvent && (
-                      <CheckCircleOutlineOutlinedIcon />
-                    )
-                  }
-                >
-                  {isLoggedUserParticipantInEvent ? "Going" : "Join event"}
-                </Button>
-              </TabList>
-            </Box>
-            <TabPanel value="1">
+              About
+            </Button>
+            <Button
+              onClick={() => handleTabClick("discussion")}
+              sx={{
+                borderBottom:
+                  activeTab === "discussion" ? "2px solid #92beef" : "none",
+                borderRadius: "0",
+              }}
+            >
+              Discussion
+            </Button>
+            <Button
+              color="secondary"
+              onClick={handleGoingToEvent}
+              sx={{
+                textTransform: "none",
+                margin: 1,
+                borderRadius: 5,
+                marginLeft: "auto",
+                alignSelf: "flex-end",
+              }}
+              variant={
+                isLoggedUserParticipantInEvent ? "contained" : "outlined"
+              }
+              startIcon={
+                isLoggedUserParticipantInEvent && (
+                  <CheckCircleOutlineOutlinedIcon />
+                )
+              }
+            >
+              {isLoggedUserParticipantInEvent ? "Going" : "Join event"}
+            </Button>
+          </Box>
+          <Box margin={1} marginTop={3}>
+            <Box style={{ display: activeTab === "about" ? "block" : "none" }}>
               <EventAboutTab event={event} users={users} games={games} />
-            </TabPanel>
-            <TabPanel value="2">
-              <EventDiscussionTab users={users} />
-            </TabPanel>
-          </TabContext>
+            </Box>
+            <Box
+              style={{ display: activeTab === "discussion" ? "block" : "none" }}
+            >
+              <EventDiscussionTab
+                users={users}
+                discussionBoard={discussionBoard}
+              />
+            </Box>
+          </Box>
         </CardContent>
       </Card>
     </Box>

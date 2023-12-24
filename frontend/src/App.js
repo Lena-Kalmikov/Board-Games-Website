@@ -289,6 +289,54 @@ const USERS = [
   },
 ];
 
+const DISCUSSIONBOARD = [
+  {
+    eventId: "e1",
+    content: [
+      {
+        userId: "u1",
+        message: "Hello friends, where is this building located? I'm not sure... ",
+        creationTime: "now",
+      },
+      {
+        userId: "u2",
+        message: "It's near the cinema, on the left",
+        creationTime: "now",
+      },
+      {
+        userId: "u1",
+        message: "Thanks! Also, I'll bring beers, hope it's ok.",
+        creationTime: "now",
+      },
+      {
+        userId: "u3",
+        message: "Sounds cool, I'll bring cookies. See ya",
+        creationTime: "now",
+      },
+    ],
+  },
+  {
+    eventId: "e2",
+    content: [
+      {
+        userId: "u1",
+        message: "Hey, can we also play checkers?",
+        creationTime: "now",
+      },
+      {
+        userId: "u2",
+        message: "Yeah sure, if we have extra time left.",
+        creationTime: "now",
+      },
+      {
+        userId: "u1",
+        message: "Cool.",
+        creationTime: "now",
+      },
+    ],
+  },
+];
+
 export default function App() {
   const [events, setEvents] = useState(EVENTS);
 
@@ -298,13 +346,14 @@ export default function App() {
     );
     setEvents(updatedEvents);
   };
+
   return (
     <AuthProvider>
       <CssBaseline />
       <Router>
         <MainNavigation />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home events={events} />} />
           <Route path="/games" element={<Games games={GAMES} />} />
           <Route path="/events" element={<Events events={EVENTS} />} />
           <Route
@@ -314,6 +363,7 @@ export default function App() {
                 events={events}
                 users={USERS}
                 games={GAMES}
+                discussionBoard={DISCUSSIONBOARD}
                 onUpdateEvent={handleEventUpdate}
               />
             }
