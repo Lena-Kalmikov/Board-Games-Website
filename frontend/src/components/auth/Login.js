@@ -33,13 +33,11 @@ export default function Login({ users }) {
 
     // Incorrect email (not in the database)
     if (!user) {
-      console.log("Email is incorrect");
       return alert("Email is incorrect, try again");
     }
 
     // Correct email, incorrect password
     if (user.password !== data.password) {
-      console.log("Password is incorrect");
       return alert("Password is incorrect, try again");
     }
 

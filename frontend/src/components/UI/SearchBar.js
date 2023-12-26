@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -7,12 +7,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBar({ onSearch }) {
-  const [searchQuery, setSearchQuery] = useState("");
+  // const [searchQuery, setSearchQuery] = useState("");
 
   const handleChange = (event) => {
     const query = event.target.value;
-    setSearchQuery(query);
-
+    // setSearchQuery(query);
     // Call the onSearch function (which is in the explore games component)
     // with the current query (even.target.value)
     onSearch(query);
@@ -24,7 +23,7 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search games"
         variant="outlined"
         size="small"
-        value={searchQuery}
+        // value={searchQuery}
         onChange={handleChange}
         InputProps={{
           startAdornment: (
