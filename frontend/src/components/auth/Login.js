@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +14,6 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 export default function Login({ users }) {
@@ -56,7 +54,6 @@ export default function Login({ users }) {
     navigate("/");
   };
 
-
   return (
     <Fade in={isLoaded} timeout={{ enter: 500 }}>
       <Container maxWidth="xs">
@@ -79,7 +76,7 @@ export default function Login({ users }) {
             component="form"
             noValidate
             onSubmit={handleSubmit(handleFormSubmit)}
-            sx={{ mt: 1 }}
+            marginTop={1}
           >
             <TextField
               id="email"
@@ -88,6 +85,11 @@ export default function Login({ users }) {
               type="email"
               size="small"
               autoComplete="email"
+              inputProps={{
+                form: {
+                  autocomplete: "off",
+                },
+              }}
               {...register("email", {
                 required: "email is required",
                 validate: {

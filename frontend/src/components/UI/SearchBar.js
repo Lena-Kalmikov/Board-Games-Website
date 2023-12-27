@@ -23,9 +23,12 @@ export default function SearchBar({ onSearch }) {
         placeholder="Search games"
         variant="outlined"
         size="small"
-        // value={searchQuery}
+        autoComplete="off"
         onChange={handleChange}
         InputProps={{
+          form: {
+            autocomplete: "off",
+          },
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon

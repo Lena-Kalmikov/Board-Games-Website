@@ -66,8 +66,6 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
   const avatarWidth = 45;
   const avatarHeight = 45;
 
-  console.log("re-render about tab");
-
   return (
     <Box>
       <Typography gutterBottom fontSize={26}>

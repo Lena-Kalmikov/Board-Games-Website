@@ -1,3 +1,19 @@
 {
-  "cSpell.words": ["bgcolor", "BOARDLAND"]
+  "cSpell.words": ["bgcolor", "BOARDLAND", "DISCUSSIONBOARDS", "Firestore"],
+
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+
+  "emmet.triggerExpansionOnTab": true,
+
+  "files.associations": {
+    "*.react.js": "javascriptreact",
+    "*.jsx": "javascriptreact",
+    "*.js": "javascript"
+  },
+
+  "typescript.suggest.paths": false,
+
+  "javascript.suggest.paths": false
 }

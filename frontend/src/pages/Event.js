@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
+import useFadeInEffect from "../hooks/useFadeInEffect";
 import EventAboutTab from "../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
+
 import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -21,11 +24,12 @@ export default function Event({
   games,
   discussionBoards,
   onUpdateEvent,
-  onSendMessage
+  onSendMessage,
 }) {
   const { user } = useAuth();
   const { eventId } = useParams();
   const navigate = useNavigate();
+  const isLoaded = useFadeInEffect();
 
   const event = events.find((event) => event.id === eventId);
 
@@ -40,15 +44,17 @@ export default function Event({
 
   if (!event) {
     return (
-      <Box
-        sx={{
-          margin: { xs: 0, sm: 7 },
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Event was not found :(
-      </Box>
+      <Fade in={isLoaded} timeout={{ enter: 500 }}>
+        <Box
+          sx={{
+            margin: { xs: 0, sm: 7 },
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Event was not found :(
+        </Box>
+      </Fade>
     );
   }
 
@@ -70,117 +76,126 @@ export default function Event({
   };
 
   return (
-    <Box
-      sx={{
-        margin: { xs: 0, sm: 7 },
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Card
+    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+      <Box
         sx={{
-          backgroundColor: "#FCFDFF",
+          margin: { xs: 0, sm: 7 },
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <CardMedia sx={{ height: { xs: 150, sm: 210 } }} image={event.image} />
-        <CardContent sx={{ maxWidth: 600 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: 1,
-            }}
-          >
-            <Avatar
-              sx={{
-                bgcolor: "primary.main",
-              }}
-            >
-              <EventIcon />
-            </Avatar>
-            <Typography marginLeft={1}>
-              {event.date} at {event.time}
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Avatar
-              sx={{
-                bgcolor: "primary.main",
-              }}
-            >
-              <PlaceIcon />
-            </Avatar>
-            <Typography marginLeft={1}>
-              {event.city}, {event.address}
-            </Typography>
-          </Box>
-          <Divider sx={{ marginTop: 1.5 }} />
-          <Box
-            sx={{
-              borderBottom: 1,
-              borderColor: "divider",
-              display: "flex",
-            }}
-          >
-            <Button
-              onClick={() => handleTabClick("about")}
-              sx={{
-                borderBottom:
-                  activeTab === "about" ? "2px solid #92beef" : "none",
-                borderRadius: "0",
-              }}
-            >
-              About
-            </Button>
-            <Button
-              onClick={() => handleTabClick("discussion")}
-              sx={{
-                borderBottom:
-                  activeTab === "discussion" ? "2px solid #92beef" : "none",
-                borderRadius: "0",
-              }}
-            >
-              Discussion
-            </Button>
-            <Button
-              color="secondary"
-              onClick={handleGoingToEvent}
-              sx={{
-                textTransform: "none",
-                margin: 1,
-                borderRadius: 5,
-                marginLeft: "auto",
-                alignSelf: "flex-end",
-              }}
-              variant={
-                isLoggedUserParticipantInEvent ? "contained" : "outlined"
-              }
-              startIcon={
-                isLoggedUserParticipantInEvent && (
-                  <CheckCircleOutlineOutlinedIcon />
-                )
-              }
-            >
-              {isLoggedUserParticipantInEvent ? "Going" : "Join event"}
-            </Button>
-          </Box>
-          <Box margin={1} marginTop={3} sx={{ width: { sm: 550 } }}>
-            <Box style={{ display: activeTab === "about" ? "block" : "none" }}>
-              <EventAboutTab event={event} users={users} games={games} />
-            </Box>
+        <Card
+          sx={{
+            backgroundColor: "#FCFDFF",
+          }}
+        >
+          <CardMedia
+            sx={{ height: { xs: 150, sm: 210 } }}
+            image={event.image}
+          />
+          <CardContent sx={{ maxWidth: 600 }}>
             <Box
-              style={{ display: activeTab === "discussion" ? "block" : "none" }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: 1,
+              }}
             >
-              <EventDiscussionTab
-                users={users}
-                discussionBoards={discussionBoards}
-                eventId={eventId}
-                onSendMessage={onSendMessage}
-              />
+              <Avatar
+                sx={{
+                  bgcolor: "primary.main",
+                }}
+              >
+                <EventIcon />
+              </Avatar>
+              <Typography marginLeft={1}>
+                {event.date} at {event.time}
+              </Typography>
             </Box>
-          </Box>
-        </CardContent>
-      </Card>
-    </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Avatar
+                sx={{
+                  bgcolor: "primary.main",
+                }}
+              >
+                <PlaceIcon />
+              </Avatar>
+              <Typography marginLeft={1}>
+                {event.city}, {event.address}
+              </Typography>
+            </Box>
+            <Divider sx={{ marginTop: 1.5 }} />
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+                display: "flex",
+              }}
+            >
+              <Button
+                onClick={() => handleTabClick("about")}
+                sx={{
+                  borderBottom:
+                    activeTab === "about" ? "2px solid #92beef" : "none",
+                  borderRadius: "0",
+                }}
+              >
+                About
+              </Button>
+              <Button
+                onClick={() => handleTabClick("discussion")}
+                sx={{
+                  borderBottom:
+                    activeTab === "discussion" ? "2px solid #92beef" : "none",
+                  borderRadius: "0",
+                }}
+              >
+                Discussion
+              </Button>
+              <Button
+                color="secondary"
+                onClick={handleGoingToEvent}
+                sx={{
+                  textTransform: "none",
+                  margin: 1,
+                  borderRadius: 5,
+                  marginLeft: "auto",
+                  alignSelf: "flex-end",
+                }}
+                variant={
+                  isLoggedUserParticipantInEvent ? "contained" : "outlined"
+                }
+                startIcon={
+                  isLoggedUserParticipantInEvent && (
+                    <CheckCircleOutlineOutlinedIcon />
+                  )
+                }
+              >
+                {isLoggedUserParticipantInEvent ? "Going" : "Join event"}
+              </Button>
+            </Box>
+            <Box margin={1} marginTop={3} sx={{ width: { sm: 550 } }}>
+              <Box
+                style={{ display: activeTab === "about" ? "block" : "none" }}
+              >
+                <EventAboutTab event={event} users={users} games={games} />
+              </Box>
+              <Box
+                style={{
+                  display: activeTab === "discussion" ? "block" : "none",
+                }}
+              >
+                <EventDiscussionTab
+                  users={users}
+                  discussionBoards={discussionBoards}
+                  eventId={eventId}
+                  onSendMessage={onSendMessage}
+                />
+              </Box>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </Fade>
   );
 }

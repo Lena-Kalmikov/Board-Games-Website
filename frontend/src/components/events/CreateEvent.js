@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 
 import useImagePreview from "../../hooks/useImagePreview";
+import useFadeInEffect from "../../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
@@ -15,6 +17,8 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
 export default function CreateEvent() {
+    const isLoaded = useFadeInEffect();
+
   const { preview, onSelectFile } = useImagePreview();
 
   const { register, handleSubmit, formState } = useForm({
@@ -28,6 +32,8 @@ export default function CreateEvent() {
   };
 
   return (
+        <Fade in={isLoaded} timeout={{ enter: 500 }}>
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -181,5 +187,6 @@ export default function CreateEvent() {
         </Box>
       </Box>
     </Container>
+    </Fade>
   );
 }
