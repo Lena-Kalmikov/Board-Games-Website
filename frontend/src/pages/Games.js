@@ -1,8 +1,7 @@
-import useInputSearch from "../hooks/useInputSearch";
-import useFadeInEffect from "../hooks/useFadeInEffect";
-
 import SearchBar from "../components/UI/SearchBar";
 import GameList from "../components/games/GameList";
+import useInputSearch from "../hooks/useInputSearch";
+import useFadeInEffect from "../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";

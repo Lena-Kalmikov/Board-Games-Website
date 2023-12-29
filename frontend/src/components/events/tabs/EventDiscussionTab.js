@@ -1,17 +1,15 @@
 import React, { useState, useRef } from "react";
-
-import { useAuth } from "../../../context/auth-context";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../context/auth-context";
 
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
-
-import SendIcon from "@mui/icons-material/Send";
 
 const EventDiscussionTab = React.memo(
   ({ users, discussionBoards, eventId, onSendMessage }) => {

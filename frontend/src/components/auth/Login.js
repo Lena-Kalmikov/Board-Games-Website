@@ -1,23 +1,28 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import { useAuth } from "../../context/auth-context";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
+import Alert from "@mui/material/Alert";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import Collapse from "@mui/material/Collapse";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import CssBaseline from "@mui/material/CssBaseline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 export default function Login({ users }) {
   const isLoaded = useFadeInEffect();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -36,12 +41,16 @@ export default function Login({ users }) {
 
     // Incorrect email (not in the database)
     if (!user) {
-      return alert("Email is incorrect, try again");
+      setAlertMessage("Email is incorrect, try again");
+      setIsAlertOpen(true);
+      return;
     }
 
     // Correct email, incorrect password
     if (user.password !== data.password) {
-      return alert("Password is incorrect, try again");
+      setAlertMessage("Password is incorrect, try again");
+      setIsAlertOpen(true);
+      return;
     }
 
     const id = user.id;
@@ -52,6 +61,10 @@ export default function Login({ users }) {
     // Send user information to the login function in useAuth
     login({ ...data, id, profilePicture, firstName, lastName });
     navigate("/");
+  };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
   };
 
   return (
@@ -122,6 +135,23 @@ export default function Login({ users }) {
               helperText={errors.password?.message}
               fullWidth
             />
+            <Collapse in={isAlertOpen}>
+              <Alert
+                severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    size="small"
+                    onClick={handleAlertClose}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mt: 2 }}
+              >
+                {alertMessage}
+              </Alert>
+            </Collapse>
             <Button
               type="submit"
               fullWidth

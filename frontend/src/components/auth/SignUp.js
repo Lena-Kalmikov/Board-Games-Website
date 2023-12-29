@@ -1,27 +1,35 @@
+import React, { useState } from "react";
+import { signup, useAuth } from "../../firebase";
 import { useForm } from "react-hook-form";
-
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import useImagePreview from "../../hooks/useImagePreview";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
+import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
+import Collapse from "@mui/material/Collapse";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function SignUp({ users }) {
+  const currentUser = useAuth();
+  const navigate = useNavigate();
   const isLoaded = useFadeInEffect();
-
   const { preview, onSelectFile } = useImagePreview();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const { register, handleSubmit, formState } = useForm({
     mode: "all",
@@ -29,11 +37,29 @@ export default function SignUp({ users }) {
 
   const { errors } = formState;
 
-  const handleFormSubmit = (data) => {
-    // check if email already exists in the array, and if it does - show message that user already exists.
-    // if all data is ok, push new user to the users array.
+  const handleFormSubmit = async (data) => {
+    setIsLoading(true);
+    try {
+      await signup(data.email, data.password);
+      console.log("User signed up successfully!");
+      navigate("/");
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        setAlertMessage(
+          "email address already in use, try logging in instead."
+        );
+        setIsAlertOpen(true);
+      }
+    }
+    setIsLoading(false);
     console.log(data);
   };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
+  };
+
+  console.log("current user:", currentUser?.email);
 
   return (
     <Fade in={isLoaded} timeout={{ enter: 500 }}>
@@ -60,7 +86,7 @@ export default function SignUp({ users }) {
             marginTop={3}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
                 <TextField
                   id="firstName"
                   name="firstName"
@@ -89,7 +115,7 @@ export default function SignUp({ users }) {
                   helperText={errors.lastName?.message}
                   fullWidth
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   id="email"
@@ -132,7 +158,7 @@ export default function SignUp({ users }) {
                   fullWidth
                 />
               </Grid>
-              <Grid container item justifyContent="space-between">
+              {/* <Grid container item justifyContent="space-between">
                 <Button
                   variant="outlined"
                   component="label"
@@ -162,12 +188,30 @@ export default function SignUp({ users }) {
                   }}
                   src={preview}
                 ></Avatar>
-              </Grid>
+              </Grid> */}
             </Grid>
+            <Collapse in={isAlertOpen}>
+              <Alert
+                severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    size="small"
+                    onClick={handleAlertClose}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ marginTop: 2 }}
+              >
+                {alertMessage}
+              </Alert>
+            </Collapse>
             <Button
               fullWidth
               type="submit"
               variant="contained"
+              disabled={isLoading}
               sx={{ marginTop: 2, marginBottom: 2 }}
             >
               Sign Up

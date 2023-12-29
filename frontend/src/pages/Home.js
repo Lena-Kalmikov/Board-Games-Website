@@ -1,9 +1,7 @@
-import EventPreviewList from "../components/events/preview/EventPreviewList";
-
-import { useNavigate } from "react-router-dom";
-
 import { useAuth } from "../context/auth-context";
+import { Link, useNavigate } from "react-router-dom";
 import useFadeInEffect from "../hooks/useFadeInEffect";
+import EventPreviewList from "../components/events/preview/EventPreviewList";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -134,50 +132,63 @@ export default function Home({ events }) {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
+            position: "relative",
+            margin: "auto",
+            maxWidth: 1500,
             backgroundColor: "rgb(242, 246, 250)",
-            marginTop: 10,
             marginBottom: 10,
           }}
         >
-          <Typography variant="h3">Upcoming events</Typography>
           <EventPreviewList events={displayedEvents} />
+          <Link to="/events">
+            <Button
+              sx={{
+                margin: 1,
+                fontSize: 16,
+                textTransform: "none",
+                borderRadius: 2,
+              }}
+            >
+              Explore more events...
+            </Button>
+          </Link>
         </Box>
       </Fade>
       <Fade in={isLoaded} timeout={{ enter: 1500 }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: "rgb(242, 246, 250)",
-          maxWidth: 800,
-          padding: 2,
-          margin: { xs: 1, md: "auto" },
-        }}
-      >
-        <Box>
-          <Typography fontWeight={"bold"} fontSize={22}>
-            Start crafting your event now.
-          </Typography>
-          <Typography>
-            From classic board games to the latest releases, our platform is
-            your canvas for creating memorable gatherings. Let the games begin
-            and the laughter echo – forge new friendships and make every
-            playdate an event to remember!
-          </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            backgroundColor: "rgb(242, 246, 250)",
+            maxWidth: 800,
+            padding: 2,
+            margin: { xs: 1, md: "auto" },
+          }}
+        >
+          <Box>
+            <Typography fontWeight={"bold"} fontSize={22}>
+              Start crafting your event now.
+            </Typography>
+            <Typography>
+              From classic board games to the latest releases, our platform is
+              your canvas for creating memorable gatherings. Let the games begin
+              and the laughter echo – forge new friendships and make every
+              playdate an event to remember!
+            </Typography>
+          </Box>
+          <Box>
+            <Button
+              onClick={redirectToCreateNewEvent}
+              variant="outlined"
+              sx={{ padding: 2, margin: 2, width: 200, borderRadius: 50 }}
+            >
+              Create new event
+            </Button>
+          </Box>
         </Box>
-        <Box>
-          <Button
-            onClick={redirectToCreateNewEvent}
-            variant="outlined"
-            sx={{ padding: 2, margin: 2, width: 200, borderRadius: 50 }}
-          >
-            Create new event
-          </Button>
-        </Box>
-      </Box>
       </Fade>
     </Box>
   );

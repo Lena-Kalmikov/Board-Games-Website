@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import useFadeInEffect from "../hooks/useFadeInEffect";
+import { useNavigate, useParams } from "react-router-dom";
 import EventAboutTab from "../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
 
@@ -13,9 +13,9 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import CardContent from "@mui/material/CardContent";
 import EventIcon from "@mui/icons-material/Event";
 import PlaceIcon from "@mui/icons-material/Place";
+import CardContent from "@mui/material/CardContent";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
 export default function Event({

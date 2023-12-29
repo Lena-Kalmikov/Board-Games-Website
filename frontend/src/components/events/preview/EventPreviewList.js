@@ -1,12 +1,12 @@
 import Stack from "@mui/material/Stack";
 import EventPreviewItem from "./EventPreviewItem";
 
-export default function EventPreviewList({events}) {
+export default function EventPreviewList({ events }) {
   return (
     <Stack
       sx={{
         display: "flex",
-        flexWrap: "wrap",
+        flexWrap: { xs: "wrap" },
         flexDirection: "row",
         justifyContent: "center",
       }}

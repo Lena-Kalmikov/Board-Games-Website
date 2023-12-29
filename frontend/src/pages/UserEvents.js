@@ -1,4 +1,5 @@
 import useFadeInEffect from "../hooks/useFadeInEffect";
+
 import Fade from "@mui/material/Fade";
 
 export default function UserEvents() {

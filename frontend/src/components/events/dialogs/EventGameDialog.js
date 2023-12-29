@@ -2,10 +2,9 @@ import GameItem from "../../games/GameItem";
 
 import Dialog from "@mui/material/Dialog";
 import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-
-import CloseIcon from "@mui/icons-material/Close";
 
 export default function EventGameDialog({ isOpen, onClose, game }) {
   return (

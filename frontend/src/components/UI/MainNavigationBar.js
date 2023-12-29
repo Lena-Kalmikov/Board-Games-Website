@@ -1,8 +1,7 @@
 import { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import { useAuth } from "../../context/auth-context";
+import { logout } from "../../firebase";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -13,10 +12,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Container from "@mui/material/Container";
+import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-
-import MenuIcon from "@mui/icons-material/Menu";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
 export default function MainNavigation() {
@@ -24,7 +22,8 @@ export default function MainNavigation() {
   const [anchorElementUser, setAnchorElementUser] = useState(null);
 
   const navigate = useNavigate();
-  const { logout, isLoggedIn, user } = useAuth();
+  // const { logout, isLoggedIn, user } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   const userProfilePicture = user?.profilePicture;
   const userName = `${user?.firstName} ${user?.lastName}`;
@@ -45,8 +44,13 @@ export default function MainNavigation() {
     setAnchorElementUser(null);
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      alert(error.message);
+    }
+    // logout();
     navigate("/");
     setAnchorElementUser(null);
   };
