@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { logout } from "../../firebase";
+// import { useAuth } from "../../context/auth-context";
+import { logout, useAuth } from "../../firebase";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -23,10 +23,11 @@ export default function MainNavigation() {
 
   const navigate = useNavigate();
   // const { logout, isLoggedIn, user } = useAuth();
-  const { isLoggedIn, user } = useAuth();
+  // const { isLoggedIn, user } = useAuth();
+  const currentUser = useAuth();
 
-  const userProfilePicture = user?.profilePicture;
-  const userName = `${user?.firstName} ${user?.lastName}`;
+  // const userProfilePicture = user?.profilePicture;
+  // const userName = `${user?.firstName} ${user?.lastName}`;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElementNav(event.currentTarget);
@@ -47,12 +48,13 @@ export default function MainNavigation() {
   const handleLogout = async () => {
     try {
       await logout();
+      navigate("/");
+      setAnchorElementUser(null);
+      console.log("User logged out successfully!");
     } catch (error) {
       alert(error.message);
     }
     // logout();
-    navigate("/");
-    setAnchorElementUser(null);
   };
 
   return (
@@ -123,7 +125,7 @@ export default function MainNavigation() {
               >
                 <Typography textAlign="center">Events</Typography>
               </MenuItem>
-              {!isLoggedIn && (
+              {!currentUser && (
                 <div>
                   <MenuItem
                     component={Link}
@@ -190,7 +192,7 @@ export default function MainNavigation() {
               Events
             </Button>
           </Box>
-          {!isLoggedIn && (
+          {!currentUser && (
             <Box sx={{ display: { xs: "none", sm: "flex" } }}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -223,7 +225,7 @@ export default function MainNavigation() {
             </Box>
           )}
 
-          {isLoggedIn && (
+          {currentUser && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton
@@ -231,8 +233,8 @@ export default function MainNavigation() {
                   sx={{ p: 0, color: "primary.dark" }}
                 >
                   <Avatar
-                    alt={userName}
-                    src={userProfilePicture}
+                    alt={currentUser?.email}
+                    // src={userProfilePicture}
                     sx={{ backgroundColor: "rgba(247, 154, 70, 0.8)" }}
                   />
                 </IconButton>

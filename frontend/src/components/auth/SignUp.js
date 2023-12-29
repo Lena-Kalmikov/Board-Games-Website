@@ -28,8 +28,8 @@ export default function SignUp({ users }) {
   const { preview, onSelectFile } = useImagePreview();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const { register, handleSubmit, formState } = useForm({
     mode: "all",

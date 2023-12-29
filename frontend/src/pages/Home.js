@@ -1,7 +1,10 @@
-import { useAuth } from "../context/auth-context";
+// import { useAuth } from "../context/auth-context";
+import { useAuth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import useFadeInEffect from "../hooks/useFadeInEffect";
 import EventPreviewList from "../components/events/preview/EventPreviewList";
+import EventLoadingSkeleton from "../components/UI/skeletons/EventLoadingSkeleton";
+import EventPreviewLoadingSkeleton from "../components/UI/skeletons/EventPreviewLoadingSkeleton";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -9,20 +12,23 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function Home({ events }) {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const currentUser = useAuth();
+
   const isLoaded = useFadeInEffect();
 
   const navigate = useNavigate();
 
-  const displayedEvents = events.slice(0, 4);
+  // const displayedEvents = events.slice(0, 4);
 
   const redirectToCreateNewEvent = () => {
-    if (!user) {
+    if (!currentUser) {
       navigate("/login");
       return;
     }
     navigate("/createEvent");
   };
+
   return (
     <Box sx={{ margin: 2, marginBottom: 10 }}>
       <Fade in={isLoaded} timeout={{ enter: 500 }}>
@@ -132,16 +138,33 @@ export default function Home({ events }) {
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column", xl: "row" },
             alignItems: "center",
-            position: "relative",
+            justifyContent: "center",
             margin: "auto",
-            maxWidth: 1500,
+            maxWidth: { md: 900, xl: 1500 },
             backgroundColor: "rgb(242, 246, 250)",
             marginBottom: 10,
           }}
         >
-          <EventPreviewList events={displayedEvents} />
+          {events ? (
+            <EventPreviewList events={events} />
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: { xs: "wrap" },
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <EventPreviewLoadingSkeleton />
+              <EventPreviewLoadingSkeleton />
+              <EventPreviewLoadingSkeleton />
+              <EventPreviewLoadingSkeleton />
+            </Box>
+          )}
+
           <Link to="/events">
             <Button
               sx={{
@@ -151,7 +174,7 @@ export default function Home({ events }) {
                 borderRadius: 2,
               }}
             >
-              Explore more events...
+              explore more...
             </Button>
           </Link>
         </Box>

@@ -2,6 +2,7 @@ import SearchBar from "../components/UI/SearchBar";
 import GameList from "../components/games/GameList";
 import useInputSearch from "../hooks/useInputSearch";
 import useFadeInEffect from "../hooks/useFadeInEffect";
+import GameLoadingSkeleton from "../components/UI/skeletons/GameLoadingSkeleton";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -34,7 +35,23 @@ export default function Games({ games }) {
             justifyContent: "center",
           }}
         >
-          <GameList games={filteredData} />
+          {games ? (
+            <GameList games={filteredData} />
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: { xs: "wrap" },
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <GameLoadingSkeleton />
+              <GameLoadingSkeleton />
+              <GameLoadingSkeleton />
+              <GameLoadingSkeleton />
+            </Box>
+          )}
         </Stack>
       </Fade>
     </Box>

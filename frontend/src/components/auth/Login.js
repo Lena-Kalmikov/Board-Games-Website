@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { login, useAuth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
+// import { useAuth } from "../../context/auth-context";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
@@ -20,47 +21,75 @@ import CssBaseline from "@mui/material/CssBaseline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 export default function Login({ users }) {
-  const isLoaded = useFadeInEffect();
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-
+  const currentUser = useAuth();
   const navigate = useNavigate();
+  const isLoaded = useFadeInEffect();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const { register, handleSubmit, formState } = useForm({
     mode: "all",
   });
 
   const { errors } = formState;
-  const { login } = useAuth();
 
-  const handleFormSubmit = (data) => {
-    console.log(data);
+  // const { login } = useAuth();
 
-    // Find user by email, which is unique
-    const user = users.find((user) => user.email === data.email);
+  // const handleFormSubmit = (data) => {
+  //   console.log(data);
 
-    // Incorrect email (not in the database)
-    if (!user) {
-      setAlertMessage("Email is incorrect, try again");
-      setIsAlertOpen(true);
-      return;
+  //   // Find user by email, which is unique
+  //   const user = users.find((user) => user.email === data.email);
+
+  //   // Incorrect email (not in the database)
+  //   if (!user) {
+  //     setAlertMessage("Email is incorrect, try again");
+  //     setIsAlertOpen(true);
+  //     return;
+  //   }
+
+  //   // Correct email, incorrect password
+  //   if (user.password !== data.password) {
+  //     setAlertMessage("Password is incorrect, try again");
+  //     setIsAlertOpen(true);
+  //     return;
+  //   }
+
+  //   const id = user.id;
+  //   const firstName = user.firstName;
+  //   const lastName = user.lastName;
+  //   const profilePicture = user.profilePicture;
+
+  //   // Send user information to the login function in useAuth
+  //   login({ ...data, id, profilePicture, firstName, lastName });
+  //   navigate("/");
+  // };
+
+  const handleFormSubmit = async (data) => {
+    setIsLoading(true);
+    try {
+      await login(data.email, data.password);
+      console.log("User logged in successfully!");
+      navigate("/");
+    } catch (error) {
+      if (error.code === "auth/wrong-password") {
+        setAlertMessage("password is incorrect, try again");
+        setIsAlertOpen(true);
+      }
+      if (error.code === "auth/user-not-found") {
+        setAlertMessage("email is incorrect, try again");
+        setIsAlertOpen(true);
+      }
+      if (error.code === "auth/invalid-credential") {
+        setAlertMessage("email or password is incorrect, try again");
+        setIsAlertOpen(true);
+      }
+      console.log(error.code);
     }
-
-    // Correct email, incorrect password
-    if (user.password !== data.password) {
-      setAlertMessage("Password is incorrect, try again");
-      setIsAlertOpen(true);
-      return;
-    }
-
-    const id = user.id;
-    const firstName = user.firstName;
-    const lastName = user.lastName;
-    const profilePicture = user.profilePicture;
-
-    // Send user information to the login function in useAuth
-    login({ ...data, id, profilePicture, firstName, lastName });
-    navigate("/");
+    setIsLoading(false);
+    console.log("form data:", data);
   };
 
   const handleAlertClose = () => {

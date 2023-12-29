@@ -239,6 +239,7 @@ const EVENTS = [
   },
 ];
 
+//all on firebase
 const USERS = [
   {
     id: "u1",
@@ -337,7 +338,7 @@ const DISCUSSIONBOARDS = [
 ];
 
 export default function App() {
-  const [events, setEvents] = useState(EVENTS);
+  const [events, setEvents] = useState();
   const [discussionBoards, setDiscussionBoards] = useState(DISCUSSIONBOARDS);
   const [games, setGames] = useState();
   const [users, setUsers] = useState();
@@ -400,9 +401,9 @@ export default function App() {
       <Router>
         <MainNavigation />
         <Routes>
-          <Route path="/" element={<Home events={EVENTS} />} />
+          <Route path="/" element={<Home events={events} />} />
           <Route path="/games" element={<Games games={games} />} />
-          <Route path="/events" element={<Events events={EVENTS} />} />
+          <Route path="/events" element={<Events events={events} />} />
           <Route
             path="/events/:eventId"
             element={

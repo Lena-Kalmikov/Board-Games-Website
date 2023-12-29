@@ -2,8 +2,9 @@
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
+
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function SearchBar({ onSearch }) {
   // const [searchQuery, setSearchQuery] = useState("");
@@ -19,15 +20,13 @@ export default function SearchBar({ onSearch }) {
   return (
     <Box>
       <TextField
+        name="searchQuery"
         placeholder="Search games"
         variant="outlined"
         size="small"
-        autoComplete="off"
+        // value={searchQuery}
         onChange={handleChange}
         InputProps={{
-          form: {
-            autocomplete: "off",
-          },
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon
