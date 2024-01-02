@@ -27,15 +27,15 @@ export default function EventPreviewItem(props) {
         <Typography color="text.secondary">
           {props.city}, {props.address}
         </Typography>
-        <Link to={`/events/${props.id}`} style={{ textDecoration: "none" }}>
           <Button
             fullWidth
             variant="outlined"
             sx={{ marginTop: 2, textTransform: "none" }}
+            component={Link}
+            to={`/events/${props.id}`}
           >
             Explore event
           </Button>
-        </Link>
       </CardContent>
     </Card>
   );

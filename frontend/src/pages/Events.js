@@ -8,6 +8,8 @@ import Fade from "@mui/material/Fade";
 export default function Events({ events }) {
   const isLoaded = useFadeInEffect();
 
+  const skeletonNumber = 4;
+
   return (
     <Fade in={isLoaded} timeout={{ enter: 500 }}>
       <Box sx={{ margin: { xs: 0, sm: 7 } }}>
@@ -22,10 +24,11 @@ export default function Events({ events }) {
               justifyContent: "center",
             }}
           >
-            <EventPreviewLoadingSkeleton />
-            <EventPreviewLoadingSkeleton />
-            <EventPreviewLoadingSkeleton />
-            <EventPreviewLoadingSkeleton />
+            {Array(skeletonNumber)
+              .fill()
+              .map((index) => (
+                <EventPreviewLoadingSkeleton key={index} />
+              ))}
           </Box>
         )}
       </Box>

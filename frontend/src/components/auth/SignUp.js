@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { signup, useAuth } from "../../firebase";
 import { useForm } from "react-hook-form";
+import db from "../../firebase";
+import { updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import { signup, useAuth, upload, auth, storage } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import useImagePreview from "../../hooks/useImagePreview";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
@@ -27,32 +31,56 @@ export default function SignUp({ users }) {
   const isLoaded = useFadeInEffect();
   const { preview, onSelectFile } = useImagePreview();
 
+  const [photo, setPhoto] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  const { register, handleSubmit, formState } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: "all",
   });
 
-  const { errors } = formState;
-
   const handleFormSubmit = async (data) => {
-    setIsLoading(true);
     try {
-      await signup(data.email, data.password);
+
+      const userInfo = await signup(data.email, data.password);
+      const { uid } = userInfo.user;
+
+      let imageUrl = "";
+      // Upload the profile picture
+      if (photo) {
+        imageUrl = await upload(photo, userInfo.user, setIsLoading);
+
+        //imageUrl = await getDownloadURL(ref(storage, imageRef));
+      }
+
+      // Update user data in Firestore
+      const userDocRef = doc(db, "users", uid);
+      await setDoc(
+        userDocRef,
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          profilePicture: imageUrl,
+        },
+        { merge: true }
+      );
+
+      // Update user profile
+      await updateProfile(userInfo.user, {
+        displayName: `${data.firstName} ${data.lastName}`,
+        photoURL: imageUrl,
+      });
+
       console.log("User signed up successfully!");
       navigate("/");
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        setAlertMessage(
-          "email address already in use, try logging in instead."
-        );
-        setIsAlertOpen(true);
-      }
+      console.error("Error during signup:", error.message);
     }
-    setIsLoading(false);
-    console.log(data);
   };
 
   const handleAlertClose = () => {
@@ -60,6 +88,14 @@ export default function SignUp({ users }) {
   };
 
   console.log("current user:", currentUser?.email);
+  console.log("current image:", currentUser?.photoURL);
+
+  const handleImageChange = (e) => {
+    onSelectFile(e);
+    setPhoto(e.target.files[0]);
+
+    console.log("image change:", e.target.files);
+  };
 
   return (
     <Fade in={isLoaded} timeout={{ enter: 500 }}>
@@ -86,7 +122,7 @@ export default function SignUp({ users }) {
             marginTop={3}
           >
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   id="firstName"
                   name="firstName"
@@ -115,7 +151,7 @@ export default function SignUp({ users }) {
                   helperText={errors.lastName?.message}
                   fullWidth
                 />
-              </Grid> */}
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   id="email"
@@ -158,7 +194,7 @@ export default function SignUp({ users }) {
                   fullWidth
                 />
               </Grid>
-              {/* <Grid container item justifyContent="space-between">
+              <Grid container item justifyContent="space-between">
                 <Button
                   variant="outlined"
                   component="label"
@@ -167,6 +203,8 @@ export default function SignUp({ users }) {
                     textTransform: "none",
                     marginTop: 6.6,
                     marginBottom: 6.6,
+                    borderColor: errors.image ? "red" : undefined,
+                    color: errors.image ? "red" : undefined,
                   }}
                 >
                   Upload Profile Picture
@@ -175,8 +213,14 @@ export default function SignUp({ users }) {
                     name="image"
                     type="file"
                     accept=".png, .jpg, .jpeg"
-                    {...register("image")}
-                    onChange={onSelectFile}
+                    {...register("image", {
+                      required: "image is required",
+                      validate: {
+                        minLength: (v) => v.length >= 0 || "image is required",
+                      },
+                    })}
+                    error={!!errors.image}
+                    onChange={handleImageChange}
                     hidden
                   />
                 </Button>
@@ -188,7 +232,7 @@ export default function SignUp({ users }) {
                   }}
                   src={preview}
                 ></Avatar>
-              </Grid> */}
+              </Grid>
             </Grid>
             <Collapse in={isAlertOpen}>
               <Alert

@@ -1,6 +1,16 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../context/auth-context";
+import db from "../../../firebase";
+import { useAuth } from "../../../firebase";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -13,14 +23,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 const EventDiscussionTab = React.memo(
   ({ users, discussionBoards, eventId, onSendMessage }) => {
-    const { user } = useAuth();
     const inputRef = useRef(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-    const userProfilePicture = user?.profilePicture;
+    const currentUser = useAuth();
 
     const getUserInfo = (userId) => {
-      return users.find((user) => user.id === userId);
+      return users?.find((user) => user.id === userId);
     };
 
     // comparing eventId from url param to the eventId in the discussionboards array and getting it's content.
@@ -30,7 +38,7 @@ const EventDiscussionTab = React.memo(
 
     // mapping over the content data from the event discussion board.
     // comparing userId from content to userId in users and extracting the username and image.
-    const contentData = eventDiscussionBoard.map((content) => {
+    const contentData = eventDiscussionBoard?.map((content) => {
       const userInfo = getUserInfo(content.userId);
       return {
         avatarSrc: userInfo?.profilePicture,
@@ -42,25 +50,34 @@ const EventDiscussionTab = React.memo(
 
     const handleInputChange = () => {
       const inputValue = inputRef.current.value.trim();
-      // Enable or disable the button based on whether the input is empty
       setIsButtonDisabled(inputValue === "");
     };
 
-    const handleSendMessage = () => {
-      const inputValue = inputRef.current.value.trim();
+const handleSendMessage = async () => {
+  const inputValue = inputRef.current.value.trim();
 
-      // Check if the user is logged in
-      if (user && inputValue !== "") {
-        console.log("User typed:", inputValue);
+  if (currentUser && inputValue !== "") {
+    console.log("User typed:", inputValue);
 
-        // Add your logic to send the message or perform other actions here
-        onSendMessage(eventId, user.id, inputValue);
+    const discussionBoardsRef = collection(db, "discussion_boards");
+    const q = query(discussionBoardsRef, where("eventId", "==", eventId));
+    const querySnapshot = await getDocs(q);
 
-        // Clear the input and disable the button
-        inputRef.current.value = "";
-        setIsButtonDisabled(true);
-      }
-    };
+    if (!querySnapshot.empty) {
+      const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
+      await updateDoc(docRef, {
+        content: arrayUnion({
+          userId: currentUser.uid,
+          message: inputValue,
+          creationTime: new Date(),
+        }),
+      });
+    }
+
+    inputRef.current.value = "";
+    setIsButtonDisabled(true);
+  }
+};
 
     const handleEnterKeyDown = (e) => {
       if (e.key === "Enter") {
@@ -71,7 +88,7 @@ const EventDiscussionTab = React.memo(
 
     return (
       <Box>
-        {contentData.map((data, index) => (
+        {contentData?.map((data, index) => (
           <Box key={index} sx={{ display: "flex" }}>
             <Avatar sx={{ marginTop: 1 }} src={data.avatarSrc} />
             <Box
@@ -87,11 +104,11 @@ const EventDiscussionTab = React.memo(
             >
               <Typography fontWeight={"bold"}>{data.userName}</Typography>
               <Typography>{data.message}</Typography>
-              <Typography variant={"body2"}>{data.creationTime}</Typography>
+              {/* <Typography variant={"body2"}>{data.creationTime}</Typography> */}
             </Box>
           </Box>
         ))}
-        {user ? (
+        {currentUser ? (
           <Box
             sx={{
               display: "flex",
@@ -99,7 +116,7 @@ const EventDiscussionTab = React.memo(
               marginTop: 3,
             }}
           >
-            <Avatar src={userProfilePicture} />
+            <Avatar src={currentUser.photoURL} />
             <OutlinedInput
               placeholder="Write a comment..."
               inputRef={inputRef}
@@ -134,16 +151,16 @@ const EventDiscussionTab = React.memo(
               marginLeft: 6,
             }}
           >
-            <Link to="/login" variant="body2">
-              <Button
-                variant="outlined"
-                sx={{
-                  textTransform: "none",
-                }}
-              >
-                Login to comment
-              </Button>
-            </Link>
+            <Button
+              variant="outlined"
+              component={Link}
+              to="/login"
+              sx={{
+                textTransform: "none",
+              }}
+            >
+              Login to comment
+            </Button>
           </Box>
         )}
       </Box>

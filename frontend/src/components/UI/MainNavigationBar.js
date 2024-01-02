@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { useAuth } from "../../context/auth-context";
 import { logout, useAuth } from "../../firebase";
 
+
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
+import styled from "@mui/system/styled";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import AppBar from "@mui/material/AppBar";
@@ -18,13 +20,13 @@ import Typography from "@mui/material/Typography";
 import ExtensionIcon from "@mui/icons-material/Extension";
 
 export default function MainNavigation() {
+  const currentUser = useAuth();
+  const navigate = useNavigate();
+
   const [anchorElementNav, setAnchorElementNav] = useState(null);
   const [anchorElementUser, setAnchorElementUser] = useState(null);
-
-  const navigate = useNavigate();
   // const { logout, isLoggedIn, user } = useAuth();
   // const { isLoggedIn, user } = useAuth();
-  const currentUser = useAuth();
 
   // const userProfilePicture = user?.profilePicture;
   // const userName = `${user?.firstName} ${user?.lastName}`;
@@ -57,44 +59,51 @@ export default function MainNavigation() {
     // logout();
   };
 
+  const StyledButton = styled(Button)({
+    color: "white",
+    display: "block",
+    textTransform: "none",
+    fontSize: 16,
+  });
+
+  const StyledTypography = styled(Typography)({
+    marginRight: 2,
+    fontFamily: "monospace",
+    fontWeight: 700,
+    letterSpacing: "0.3rem",
+    color: "inherit",
+    textDecoration: "none",
+  });
+
   return (
     <AppBar position="static">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
-          <ExtensionIcon sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }} />
-          <Typography
+          <ExtensionIcon
+            sx={{ display: { xs: "none", sm: "flex" }, marginRight: 1 }}
+          />
+          <StyledTypography
             variant="h6"
-            textTransform="none"
             noWrap
             component={Link}
             to="/"
             sx={{
-              mr: 2,
               display: { xs: "none", sm: "flex" },
-              fontFamily: "monospace",
               fontSize: 25,
-              fontWeight: 700,
-              letterSpacing: "0.3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
             PlayDate
-          </Typography>
+          </StyledTypography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", sm: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElementNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -145,83 +154,65 @@ export default function MainNavigation() {
               )}
             </Menu>
           </Box>
-          <ExtensionIcon sx={{ display: { xs: "flex", sm: "none" }, mr: 1 }} />
-          <Typography
+          <ExtensionIcon
+            sx={{ display: { xs: "flex", sm: "none" }, marginRight: 1 }}
+          />
+          <StyledTypography
             variant="h5"
             noWrap
             component={Link}
             to="/"
             sx={{
-              mr: 2,
               display: { xs: "flex", sm: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
             PlayDate
-          </Typography>
-          <Box sx={{ ml: 2, flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
-            <Button
+          </StyledTypography>
+          <Box
+            sx={{
+              marginLeft: 2,
+              flexGrow: 1,
+              display: { xs: "none", sm: "flex" },
+            }}
+          >
+            <StyledButton
               onClick={handleCloseNavMenu}
               component={Link}
               to="/games"
-              sx={{
-                color: "white",
-                display: "block",
-                textTransform: "none",
-                fontSize: 16,
-              }}
             >
               Games
-            </Button>
-            <Button
+            </StyledButton>
+            <StyledButton
               onClick={handleCloseNavMenu}
               component={Link}
               to="/events"
-              sx={{
-                color: "white",
-                display: "block",
-                textTransform: "none",
-                fontSize: 16,
-              }}
             >
               Events
-            </Button>
+            </StyledButton>
           </Box>
           {!currentUser && (
             <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-              <Button
+              <StyledButton
                 onClick={handleCloseNavMenu}
                 component={Link}
                 to="/login"
                 sx={{
                   my: 2,
-                  color: "white",
-                  display: "block",
-                  textTransform: "none",
-                  fontSize: 16,
                 }}
               >
                 Log in
-              </Button>
-              <Button
+              </StyledButton>
+              <StyledButton
                 onClick={handleCloseNavMenu}
                 component={Link}
                 to="/signup"
                 sx={{
                   my: 2,
-                  color: "white",
-                  display: "block",
-                  textTransform: "none",
-                  fontSize: 16,
                 }}
               >
                 Join us
-              </Button>
+              </StyledButton>
             </Box>
           )}
 
@@ -233,15 +224,14 @@ export default function MainNavigation() {
                   sx={{ p: 0, color: "primary.dark" }}
                 >
                   <Avatar
-                    alt={currentUser?.email}
-                    // src={userProfilePicture}
+                    alt={currentUser?.firstName}
+                    src={currentUser?.photoURL}
                     sx={{ backgroundColor: "rgba(247, 154, 70, 0.8)" }}
                   />
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
+                sx={{ marginTop: "45px" }}
                 anchorEl={anchorElementUser}
                 anchorOrigin={{
                   vertical: "top",

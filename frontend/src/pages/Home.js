@@ -3,7 +3,6 @@ import { useAuth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import useFadeInEffect from "../hooks/useFadeInEffect";
 import EventPreviewList from "../components/events/preview/EventPreviewList";
-import EventLoadingSkeleton from "../components/UI/skeletons/EventLoadingSkeleton";
 import EventPreviewLoadingSkeleton from "../components/UI/skeletons/EventPreviewLoadingSkeleton";
 
 import Box from "@mui/material/Box";
@@ -28,6 +27,8 @@ export default function Home({ events }) {
     }
     navigate("/createEvent");
   };
+
+  const skeletonNumber = 4;
 
   return (
     <Box sx={{ margin: 2, marginBottom: 10 }}>
@@ -158,25 +159,26 @@ export default function Home({ events }) {
                 justifyContent: "center",
               }}
             >
-              <EventPreviewLoadingSkeleton />
-              <EventPreviewLoadingSkeleton />
-              <EventPreviewLoadingSkeleton />
-              <EventPreviewLoadingSkeleton />
+              {Array(skeletonNumber)
+                .fill()
+                .map((index) => (
+                  <EventPreviewLoadingSkeleton key={index} />
+                ))}
             </Box>
           )}
 
-          <Link to="/events">
-            <Button
-              sx={{
-                margin: 1,
-                fontSize: 16,
-                textTransform: "none",
-                borderRadius: 2,
-              }}
-            >
-              explore more...
-            </Button>
-          </Link>
+          <Button
+            component={Link}
+            to="/events"
+            sx={{
+              margin: 1,
+              fontSize: 16,
+              textTransform: "none",
+              borderRadius: 2,
+            }}
+          >
+            explore more...
+          </Button>
         </Box>
       </Fade>
       <Fade in={isLoaded} timeout={{ enter: 1500 }}>

@@ -13,6 +13,8 @@ export default function Games({ games }) {
 
   const { filteredData, filterData } = useInputSearch(games, "title");
 
+  const skeletonNumber = 4;
+
   return (
     <Box mb={4}>
       <Fade in={isLoaded} timeout={{ enter: 500 }}>
@@ -46,10 +48,11 @@ export default function Games({ games }) {
                 justifyContent: "center",
               }}
             >
-              <GameLoadingSkeleton />
-              <GameLoadingSkeleton />
-              <GameLoadingSkeleton />
-              <GameLoadingSkeleton />
+              {Array(skeletonNumber)
+                .fill()
+                .map((index) => (
+                  <GameLoadingSkeleton key={index} />
+                ))}
             </Box>
           )}
         </Stack>

@@ -31,36 +31,20 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
     setParticipantDialogOpen(false);
   };
 
-  const eventParticipants = event.participants.map((participantId) => {
-    const participant = users.find((user) => user.id === participantId);
-    return {
-      id: participant.id,
-      firstName: participant.firstName,
-      lastName: participant.lastName,
-      profilePicture: participant.profilePicture,
-    };
+  // comparing eventParticipants ids to the ids in users array and getting their info from it
+  const eventParticipants = event?.participants?.map((participantId) => {
+    const participant = users?.find((user) => user.id === participantId);
+    return participant;
   });
 
-  const eventGames = event.games.map((gameId) => {
-    const eventGame = games.find((game) => game.id === gameId);
-    return {
-      id: eventGame.id,
-      title: eventGame.title,
-      description: eventGame.description,
-      genre: eventGame.genre,
-      image: eventGame.image,
-      minAgeLimit: eventGame.minAgeLimit,
-      minParticipantsLimit: eventGame.minParticipantsLimit,
-      maxParticipantsLimit: eventGame.maxParticipantsLimit,
-    };
+  // comparing eventGames ids to the ids in games array and getting their info from it
+  const eventGames = event?.games?.map((gameId) => {
+    const eventGame = games?.find((game) => game.id === gameId);
+    return eventGame;
   });
 
-  const eventCreator = users.find((user) => user.id === event.creator);
-
-  const creatorName = {
-    firstName: eventCreator.firstName,
-    lastName: eventCreator.lastName,
-  };
+  // comparing eventCreator id and getting their info from the users array
+  const eventCreator = users?.find((user) => user.id === event.creator);
 
   const avatarWidth = 45;
   const avatarHeight = 45;
@@ -74,7 +58,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
         {event.description}
       </Typography>
       <Typography>
-        Event by: {creatorName.firstName} {creatorName.lastName}
+        Event by: {eventCreator.firstName} {eventCreator.lastName}
       </Typography>
       <Typography sx={{ display: "flex", flexWrap: "wrap" }}>
         Games:&nbsp;

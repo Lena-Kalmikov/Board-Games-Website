@@ -116,232 +116,232 @@ import "./App.css";
 //   },
 // ];
 
-const EVENTS = [
-  {
-    id: "e1",
-    title: "Play night at Lena's",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Join us for a night of laughter and friendly competition at our Game Night with friends! Dive into a mix of board games, card games, and video games for an evening filled with excitement. Don't miss out on the fun and camaraderie. Bring your competitive spirit and get ready for a memorable game night experience!",
-    image:
-      "https://images.pexels.com/photos/8111324/pexels-photo-8111324.jpeg?auto=compress&cs=tinysrgb&w=600",
-    games: ["g1", "g3", "g2"],
-    creator: "u2",
-    participants: ["u1", "u2", "u3", "u4", "u5"],
-  },
-  {
-    id: "e2",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://images.pexels.com/photos/8111307/pexels-photo-8111307.jpeg?auto=compress&cs=tinysrgb&w=600",
-    games: ["g1", "g3"],
-    creator: "u2",
-    participants: ["u1", "u2"],
-  },
-  {
-    id: "e3",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233.jpg",
-    games: ["g1", "g3"],
-    creator: "u1",
-    participants: ["u1", "u2"],
-  },
-  {
-    id: "e4",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMGz4AgGx_Ww3pb-T7eACWSvlGknIFNPgag&usqp=CAU",
-    games: ["g1", "g5"],
-    creator: "u1",
-    participants: ["u1", "u2"],
-  },
-  {
-    id: "e5",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHGbRnCgCl08DBl2WUSTNkLtvGaUKCW3t04Q&usqp=CAU",
-    games: ["g1", "g3"],
-    creator: "u1",
-    participants: ["u1", "u2"],
-  },
-  {
-    id: "e6",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPk_Tu0XG6H-JAYrsWL_FyYuECwJQG3uiJiQ&usqp=CAU",
-    games: ["g1", "g3"],
-    creator: "u1",
-    participants: ["u1", "u2"],
-  },
-  {
-    id: "e7",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjvJnrMkflbZ60pIDHkI5WNuqZf9SWJpWbA&usqp=CAU",
-    games: ["g1", "g3"],
-    creator: "u1",
-    participants: ["u1", "u2"],
-  },
-  {
-    id: "e8",
-    title: "Play night at Lena's 2",
-    date: "25/09/2023",
-    time: "18:00",
-    city: "Ramat-Gan",
-    address: "Alenby 20, apartment 2",
-    description:
-      "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScwM7Iuqe2q2aciN5m1qniQ8EeLC0JXOqbSw&usqp=CAU",
-    games: ["g1", "g3"],
-    creator: "u1",
-    participants: ["u1", "u2", "u3"],
-  },
-];
+// const EVENTS = [
+//   {
+//     id: "e1",
+//     title: "Play night at Lena's",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Join us for a night of laughter and friendly competition at our Game Night with friends! Dive into a mix of board games, card games, and video games for an evening filled with excitement. Don't miss out on the fun and camaraderie. Bring your competitive spirit and get ready for a memorable game night experience!",
+//     image:
+//       "https://images.pexels.com/photos/8111324/pexels-photo-8111324.jpeg?auto=compress&cs=tinysrgb&w=600",
+//     games: ["g1", "g3", "g2"],
+//     creator: "u2",
+//     participants: ["u1", "u2", "u3", "u4", "u5"],
+//   },
+//   {
+//     id: "e2",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://images.pexels.com/photos/8111307/pexels-photo-8111307.jpeg?auto=compress&cs=tinysrgb&w=600",
+//     games: ["g1", "g3"],
+//     creator: "u2",
+//     participants: ["u1", "u2"],
+//   },
+//   {
+//     id: "e3",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233.jpg",
+//     games: ["g1", "g3"],
+//     creator: "u1",
+//     participants: ["u1", "u2"],
+//   },
+//   {
+//     id: "e4",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMGz4AgGx_Ww3pb-T7eACWSvlGknIFNPgag&usqp=CAU",
+//     games: ["g1", "g5"],
+//     creator: "u1",
+//     participants: ["u1", "u2"],
+//   },
+//   {
+//     id: "e5",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHGbRnCgCl08DBl2WUSTNkLtvGaUKCW3t04Q&usqp=CAU",
+//     games: ["g1", "g3"],
+//     creator: "u1",
+//     participants: ["u1", "u2"],
+//   },
+//   {
+//     id: "e6",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPk_Tu0XG6H-JAYrsWL_FyYuECwJQG3uiJiQ&usqp=CAU",
+//     games: ["g1", "g3"],
+//     creator: "u1",
+//     participants: ["u1", "u2"],
+//   },
+//   {
+//     id: "e7",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjvJnrMkflbZ60pIDHkI5WNuqZf9SWJpWbA&usqp=CAU",
+//     games: ["g1", "g3"],
+//     creator: "u1",
+//     participants: ["u1", "u2"],
+//   },
+//   {
+//     id: "e8",
+//     title: "Play night at Lena's 2",
+//     date: "25/09/2023",
+//     time: "18:00",
+//     city: "Ramat-Gan",
+//     address: "Alenby 20, apartment 2",
+//     description:
+//       "Let's gather to place Azul at my place. I'll bring snacks, you bring dessert.",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScwM7Iuqe2q2aciN5m1qniQ8EeLC0JXOqbSw&usqp=CAU",
+//     games: ["g1", "g3"],
+//     creator: "u1",
+//     participants: ["u1", "u2", "u3"],
+//   },
+// ];
 
 //all on firebase
-const USERS = [
-  {
-    id: "u1",
-    email: "luno@gmail.com",
-    password: "123456",
-    firstName: "Luno",
-    lastName: "Black",
-    profilePicture:
-      "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2022-07/black-cat-halloween-mc-220713-02-b10ec0.jpg",
-  },
-  {
-    id: "u2",
-    email: "lenak@gmail.com",
-    password: "123456",
-    firstName: "Lena",
-    lastName: "Kalmikov",
-    profilePicture:
-      "https://scontent.ftlv18-1.fna.fbcdn.net/v/t39.30808-6/271812078_10227817512571555_7772189592708328059_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=5Ux7I_pyKoYAX9HVRww&_nc_ht=scontent.ftlv18-1.fna&oh=00_AfA9clqpIG1jirX468pxSy3BVjmrNdedewM3ne_P3qt-yw&oe=657DF6C8",
-  },
-  {
-    id: "u3",
-    email: "rose@gmail.com",
-    password: "123456",
-    firstName: "Rose",
-    lastName: "Full",
-    profilePicture:
-      "https://nurserylive.com/cdn/shop/products/nurserylive-plants-rose-pink-plant_512x512.png?v=1670223566",
-  },
-  {
-    id: "u4",
-    email: "red@gmail.com",
-    password: "555555",
-    firstName: "Red",
-    lastName: "Panda",
-    profilePicture:
-      "https://www.akronzoo.org/sites/default/files/styles/square_large/public/assets/animals/Red-panda-main.png?h=00546c34&itok=xxHa5juf",
-  },
-  {
-    id: "u5",
-    email: "liz@gmail.com",
-    password: "123456",
-    firstName: "Liz",
-    lastName: "Dane",
-    profilePicture:
-      "https://plus.unsplash.com/premium_photo-1661676142673-ae7ef08965de?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
+// const USERS = [
+//   {
+//     id: "u1",
+//     email: "luno@gmail.com",
+//     password: "123456",
+//     firstName: "Luno",
+//     lastName: "Black",
+//     profilePicture:
+//       "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2022-07/black-cat-halloween-mc-220713-02-b10ec0.jpg",
+//   },
+//   {
+//     id: "u2",
+//     email: "lenak@gmail.com",
+//     password: "123456",
+//     firstName: "Lena",
+//     lastName: "Kalmikov",
+//     profilePicture:
+//       "https://scontent.ftlv18-1.fna.fbcdn.net/v/t39.30808-6/271812078_10227817512571555_7772189592708328059_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=5Ux7I_pyKoYAX9HVRww&_nc_ht=scontent.ftlv18-1.fna&oh=00_AfA9clqpIG1jirX468pxSy3BVjmrNdedewM3ne_P3qt-yw&oe=657DF6C8",
+//   },
+//   {
+//     id: "u3",
+//     email: "rose@gmail.com",
+//     password: "123456",
+//     firstName: "Rose",
+//     lastName: "Full",
+//     profilePicture:
+//       "https://nurserylive.com/cdn/shop/products/nurserylive-plants-rose-pink-plant_512x512.png?v=1670223566",
+//   },
+//   {
+//     id: "u4",
+//     email: "red@gmail.com",
+//     password: "555555",
+//     firstName: "Red",
+//     lastName: "Panda",
+//     profilePicture:
+//       "https://www.akronzoo.org/sites/default/files/styles/square_large/public/assets/animals/Red-panda-main.png?h=00546c34&itok=xxHa5juf",
+//   },
+//   {
+//     id: "u5",
+//     email: "liz@gmail.com",
+//     password: "123456",
+//     firstName: "Liz",
+//     lastName: "Dane",
+//     profilePicture:
+//       "https://plus.unsplash.com/premium_photo-1661676142673-ae7ef08965de?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
+// ];
 
-const DISCUSSIONBOARDS = [
-  {
-    eventId: "e1",
-    content: [
-      {
-        userId: "u1",
-        message:
-          "Hello friends, where is this building located? I'm not sure... ",
-        creationTime: "now",
-      },
-      {
-        userId: "u2",
-        message: "It's near the cinema, on the left",
-        creationTime: "now",
-      },
-      {
-        userId: "u1",
-        message: "Thanks! Also, I'll bring beers, hope it's ok.",
-        creationTime: "now",
-      },
-      {
-        userId: "u3",
-        message: "Sounds cool, I'll bring cookies. See ya",
-        creationTime: "now",
-      },
-    ],
-  },
-  {
-    eventId: "e2",
-    content: [
-      {
-        userId: "u1",
-        message: "Hey, can we also play checkers?",
-        creationTime: "now",
-      },
-      {
-        userId: "u2",
-        message: "Yeah sure, if we have extra time left.",
-        creationTime: "now",
-      },
-      {
-        userId: "u1",
-        message: "Cool.",
-        creationTime: "now",
-      },
-    ],
-  },
-];
+// const DISCUSSIONBOARDS = [
+//   {
+//     eventId: "e1",
+//     content: [
+//       {
+//         userId: "u1",
+//         message:
+//           "Hello friends, where is this building located? I'm not sure... ",
+//         creationTime: "now",
+//       },
+//       {
+//         userId: "u2",
+//         message: "It's near the cinema, on the left",
+//         creationTime: "now",
+//       },
+//       {
+//         userId: "u1",
+//         message: "Thanks! Also, I'll bring beers, hope it's ok.",
+//         creationTime: "now",
+//       },
+//       {
+//         userId: "u3",
+//         message: "Sounds cool, I'll bring cookies. See ya",
+//         creationTime: "now",
+//       },
+//     ],
+//   },
+//   {
+//     eventId: "e2",
+//     content: [
+//       {
+//         userId: "u1",
+//         message: "Hey, can we also play checkers?",
+//         creationTime: "now",
+//       },
+//       {
+//         userId: "u2",
+//         message: "Yeah sure, if we have extra time left.",
+//         creationTime: "now",
+//       },
+//       {
+//         userId: "u1",
+//         message: "Cool.",
+//         creationTime: "now",
+//       },
+//     ],
+//   },
+// ];
 
 export default function App() {
-  const [events, setEvents] = useState();
-  const [discussionBoards, setDiscussionBoards] = useState(DISCUSSIONBOARDS);
   const [games, setGames] = useState();
   const [users, setUsers] = useState();
+  const [events, setEvents] = useState();
+  const [discussionBoards, setDiscussionBoards] = useState();
 
   const handleEventUpdate = (updatedEvent) => {
     const updatedEvents = events.map((event) =>
@@ -373,25 +373,48 @@ export default function App() {
   // getting games data from firebase
   useEffect(() => {
     onSnapshot(collection(db, "games"), (snapshot) => {
-      setGames(snapshot.docs.map((doc) => doc.data()));
+      setGames(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
     });
   }, []);
 
+  // getting events data from firebase
   useEffect(() => {
     onSnapshot(collection(db, "events"), (snapshot) => {
-      setEvents(snapshot.docs.map((doc) => doc.data()));
+      setEvents(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
     });
   }, []);
 
+  // getting discussion boards data from firebase
   useEffect(() => {
-    onSnapshot(collection(db, "discussionBoards"), (snapshot) => {
-      setDiscussionBoards(snapshot.docs.map((doc) => doc.data()));
+    onSnapshot(collection(db, "discussion_boards"), (snapshot) => {
+      setDiscussionBoards(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
     });
   }, []);
 
+  // getting users data from firebase
   useEffect(() => {
     onSnapshot(collection(db, "users"), (snapshot) => {
-      setUsers(snapshot.docs.map((doc) => doc.data()));
+      setUsers(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
     });
   }, []);
 
@@ -409,7 +432,7 @@ export default function App() {
             element={
               <Event
                 events={events}
-                users={USERS}
+                users={users}
                 games={games}
                 discussionBoards={discussionBoards}
                 onUpdateEvent={handleEventUpdate}
@@ -417,8 +440,8 @@ export default function App() {
               />
             }
           />
-          <Route path="/login" element={<Login users={USERS} />} />
-          <Route path="/signup" element={<SignUp users={USERS} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/myEvents" element={<UserEvents />} />
           <Route path="/createEvent" element={<CreateEvent />} />
         </Routes>
