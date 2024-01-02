@@ -46,7 +46,6 @@ export default function SignUp({ users }) {
 
   const handleFormSubmit = async (data) => {
     try {
-
       const userInfo = await signup(data.email, data.password);
       const { uid } = userInfo.user;
 
@@ -54,8 +53,6 @@ export default function SignUp({ users }) {
       // Upload the profile picture
       if (photo) {
         imageUrl = await upload(photo, userInfo.user, setIsLoading);
-
-        //imageUrl = await getDownloadURL(ref(storage, imageRef));
       }
 
       // Update user data in Firestore
@@ -79,7 +76,11 @@ export default function SignUp({ users }) {
       console.log("User signed up successfully!");
       navigate("/");
     } catch (error) {
-      console.error("Error during signup:", error.message);
+      if (error.code === "auth/email-already-in-use") {
+        setAlertMessage("email is already in use, try to log-in instead");
+        setIsAlertOpen(true);
+      }
+      console.log("Error during signup:", error.message);
     }
   };
 
@@ -93,8 +94,6 @@ export default function SignUp({ users }) {
   const handleImageChange = (e) => {
     onSelectFile(e);
     setPhoto(e.target.files[0]);
-
-    console.log("image change:", e.target.files);
   };
 
   return (
@@ -203,8 +202,6 @@ export default function SignUp({ users }) {
                     textTransform: "none",
                     marginTop: 6.6,
                     marginBottom: 6.6,
-                    borderColor: errors.image ? "red" : undefined,
-                    color: errors.image ? "red" : undefined,
                   }}
                 >
                   Upload Profile Picture
@@ -212,14 +209,9 @@ export default function SignUp({ users }) {
                     id="image"
                     name="image"
                     type="file"
+                    placeholder="image"
                     accept=".png, .jpg, .jpeg"
-                    {...register("image", {
-                      required: "image is required",
-                      validate: {
-                        minLength: (v) => v.length >= 0 || "image is required",
-                      },
-                    })}
-                    error={!!errors.image}
+                    {...register("image")}
                     onChange={handleImageChange}
                     hidden
                   />

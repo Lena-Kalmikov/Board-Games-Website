@@ -35,38 +35,6 @@ export default function Login({ users }) {
 
   const { errors } = formState;
 
-  // const { login } = useAuth();
-
-  // const handleFormSubmit = (data) => {
-  //   console.log(data);
-
-  //   // Find user by email, which is unique
-  //   const user = users.find((user) => user.email === data.email);
-
-  //   // Incorrect email (not in the database)
-  //   if (!user) {
-  //     setAlertMessage("Email is incorrect, try again");
-  //     setIsAlertOpen(true);
-  //     return;
-  //   }
-
-  //   // Correct email, incorrect password
-  //   if (user.password !== data.password) {
-  //     setAlertMessage("Password is incorrect, try again");
-  //     setIsAlertOpen(true);
-  //     return;
-  //   }
-
-  //   const id = user.id;
-  //   const firstName = user.firstName;
-  //   const lastName = user.lastName;
-  //   const profilePicture = user.profilePicture;
-
-  //   // Send user information to the login function in useAuth
-  //   login({ ...data, id, profilePicture, firstName, lastName });
-  //   navigate("/");
-  // };
-
   const handleFormSubmit = async (data) => {
     setIsLoading(true);
     try {
@@ -89,7 +57,6 @@ export default function Login({ users }) {
       console.log(error.code);
     }
     setIsLoading(false);
-    console.log("form data:", data);
   };
 
   const handleAlertClose = () => {
@@ -186,8 +153,9 @@ export default function Login({ users }) {
               fullWidth
               variant="contained"
               sx={{ marginTop: 3, marginBottom: 2 }}
+              disabled={isLoading}
             >
-              log In
+              Log In
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
