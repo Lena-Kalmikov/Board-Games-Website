@@ -6,12 +6,12 @@ import {
   collection,
   query,
   where,
+  getDoc,
   getDocs,
   doc,
   updateDoc,
   arrayUnion,
   arrayRemove,
-  Timestamp,
 } from "firebase/firestore";
 
 import { v4 as uuidv4 } from "uuid";
@@ -32,9 +32,11 @@ import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 
 const EventDiscussionTab = React.memo(
   ({ users, discussionBoards, eventId }) => {
+    const currentUser = useAuth();
     const inputRef = useRef(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const currentUser = useAuth();
+    const [editingMessageId, setEditingMessageId] = useState(null);
+    const [editingMessageValue, setEditingMessageValue] = useState("");
 
     const getUserInfo = (userId) => {
       return users?.find((user) => user.id === userId);
@@ -55,6 +57,7 @@ const EventDiscussionTab = React.memo(
         userId: content.userId,
         message: content.message,
         creationTime: content.creationTime,
+        messageId: content.messageId,
       };
     });
 
@@ -95,10 +98,63 @@ const EventDiscussionTab = React.memo(
       }
     };
 
+    const handleDeleteMessage = async (messageId) => {
+      const discussionBoardsRef = collection(db, "discussion_boards");
+      const q = query(discussionBoardsRef, where("eventId", "==", eventId));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
+        const eventDiscussionBoard = await getDoc(docRef);
+        const contentArray = eventDiscussionBoard.data().content;
+
+        const messageToDelete = contentArray.find(
+          (content) => content.messageId === messageId
+        );
+
+        if (messageToDelete) {
+          await updateDoc(docRef, {
+            content: arrayRemove(messageToDelete),
+          });
+        }
+      }
+    };
+
+    const handleEditMessage = (messageId, message) => {
+      setEditingMessageId(messageId);
+      setEditingMessageValue(message);
+    };
+
+    const handleUpdateMessage = async () => {
+      const discussionBoardsRef = collection(db, "discussion_boards");
+      const q = query(discussionBoardsRef, where("eventId", "==", eventId));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
+        const eventDiscussionBoard = await getDoc(docRef);
+        const contentArray = eventDiscussionBoard.data().content;
+
+        const messageIndex = contentArray.findIndex(
+          (content) => content.messageId === editingMessageId
+        );
+
+        if (messageIndex !== -1) {
+          contentArray[messageIndex].message = editingMessageValue;
+          await updateDoc(docRef, {
+            content: contentArray,
+          });
+        }
+
+        setEditingMessageId(null);
+        setEditingMessageValue("");
+      }
+    };
+
     return (
       <Box>
         {contentData?.map((data) => (
-          <Box key={data.messageId} sx={{ display: "flex" }}>
+          <Box key={data.messageId} sx={{display: "flex" }}>
             <Avatar sx={{ marginTop: 1 }} src={data.avatarSrc} />
             <Stack
               sx={{
@@ -106,10 +162,54 @@ const EventDiscussionTab = React.memo(
                 borderRadius: 4,
                 margin: 0.5,
                 padding: 1,
+                overflowWrap: "break-word",
               }}
             >
               <Typography fontWeight={"bold"}>{data.userName}</Typography>
-              <Typography>{data.message}</Typography>
+              {editingMessageId === data.messageId ? (
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <OutlinedInput
+                    value={editingMessageValue}
+                    onChange={(e) => setEditingMessageValue(e.target.value)}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton onClick={handleUpdateMessage}>
+                          <SendIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    sx={{
+                      width: "100%",
+                      backgroundColor: "#efefef",
+                      margin: 0.5,
+                    }}
+                    multiline
+                  />
+                  <Button
+                    variant="text"
+                    sx={{
+                      textTransform: "none",
+                      alignSelf: "flex-end",
+                      mb: -3.3,
+                    }}
+                    onClick={() => setEditingMessageId(null)}
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              ) : (
+                <Typography
+                  sx={{
+                    overflowWrap: "break-word",
+                    wordWrap: "break-word",
+                    hyphens: "auto",
+                    maxWidth: 600,
+                    width: "100%",
+                  }}
+                >
+                  {data.message}
+                </Typography>
+              )}
               <Typography
                 fontSize={"0.80rem"}
                 color={"GrayText"}
@@ -130,9 +230,15 @@ const EventDiscussionTab = React.memo(
                   <ModeEditOutlinedIcon
                     fontSize="inherit"
                     sx={{ color: "#7cb342" }}
+                    onClick={() =>
+                      handleEditMessage(data.messageId, data.message)
+                    }
                   />
                 </IconButton>
-                <IconButton size="small">
+                <IconButton
+                  size="small"
+                  onClick={() => handleDeleteMessage(data?.messageId)}
+                >
                   <DeleteOutlinedIcon
                     fontSize="inherit"
                     sx={{
