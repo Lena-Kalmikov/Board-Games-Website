@@ -11,6 +11,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
+import moment from "moment";
 
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -53,31 +54,31 @@ const EventDiscussionTab = React.memo(
       setIsButtonDisabled(inputValue === "");
     };
 
-const handleSendMessage = async () => {
-  const inputValue = inputRef.current.value.trim();
+    const handleSendMessage = async () => {
+      const inputValue = inputRef.current.value.trim();
 
-  if (currentUser && inputValue !== "") {
-    console.log("User typed:", inputValue);
+      if (currentUser && inputValue !== "") {
+        console.log("User typed:", inputValue);
 
-    const discussionBoardsRef = collection(db, "discussion_boards");
-    const q = query(discussionBoardsRef, where("eventId", "==", eventId));
-    const querySnapshot = await getDocs(q);
+        const discussionBoardsRef = collection(db, "discussion_boards");
+        const q = query(discussionBoardsRef, where("eventId", "==", eventId));
+        const querySnapshot = await getDocs(q);
 
-    if (!querySnapshot.empty) {
-      const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
-      await updateDoc(docRef, {
-        content: arrayUnion({
-          userId: currentUser.uid,
-          message: inputValue,
-          creationTime: new Date(),
-        }),
-      });
-    }
+        if (!querySnapshot.empty) {
+          const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
+          await updateDoc(docRef, {
+            content: arrayUnion({
+              userId: currentUser.uid,
+              message: inputValue,
+              creationTime: new Date(),
+            }),
+          });
+        }
 
-    inputRef.current.value = "";
-    setIsButtonDisabled(true);
-  }
-};
+        inputRef.current.value = "";
+        setIsButtonDisabled(true);
+      }
+    };
 
     const handleEnterKeyDown = (e) => {
       if (e.key === "Enter") {
@@ -104,7 +105,10 @@ const handleSendMessage = async () => {
             >
               <Typography fontWeight={"bold"}>{data.userName}</Typography>
               <Typography>{data.message}</Typography>
-              {/* <Typography variant={"body2"}>{data.creationTime}</Typography> */}
+              <Typography fontSize={"0.85rem"} color={"GrayText"}>
+                {data.creationTime &&
+                  moment(data.creationTime.toDate()).format("HH:mm DD.MM.YYYY")}
+              </Typography>
             </Box>
           </Box>
         ))}
