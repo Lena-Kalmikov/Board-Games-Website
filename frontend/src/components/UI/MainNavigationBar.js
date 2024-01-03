@@ -56,7 +56,6 @@ export default function MainNavigation() {
     } catch (error) {
       alert(error.message);
     }
-    // logout();
   };
 
   const StyledButton = styled(Button)({

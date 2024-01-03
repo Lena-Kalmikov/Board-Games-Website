@@ -1,5 +1,11 @@
 {
-  "cSpell.words": ["bgcolor", "BOARDLAND", "DISCUSSIONBOARDS", "Firestore"],
+  "cSpell.words": [
+    "bgcolor",
+    "BOARDLAND",
+    "DISCUSSIONBOARDS",
+    "Firestore",
+    "uuidv"
+  ],
 
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"

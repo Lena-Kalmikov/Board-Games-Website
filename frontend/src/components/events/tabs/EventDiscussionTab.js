@@ -10,10 +10,16 @@ import {
   doc,
   updateDoc,
   arrayUnion,
+  arrayRemove,
+  Timestamp,
 } from "firebase/firestore";
+
+import { v4 as uuidv4 } from "uuid";
+
 import moment from "moment";
 
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
@@ -21,9 +27,11 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 
 const EventDiscussionTab = React.memo(
-  ({ users, discussionBoards, eventId, onSendMessage }) => {
+  ({ users, discussionBoards, eventId }) => {
     const inputRef = useRef(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const currentUser = useAuth();
@@ -44,6 +52,7 @@ const EventDiscussionTab = React.memo(
       return {
         avatarSrc: userInfo?.profilePicture,
         userName: `${userInfo?.firstName} ${userInfo?.lastName}`,
+        userId: content.userId,
         message: content.message,
         creationTime: content.creationTime,
       };
@@ -54,12 +63,17 @@ const EventDiscussionTab = React.memo(
       setIsButtonDisabled(inputValue === "");
     };
 
+    const handleEnterKeyDown = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSendMessage();
+      }
+    };
+
     const handleSendMessage = async () => {
       const inputValue = inputRef.current.value.trim();
 
       if (currentUser && inputValue !== "") {
-        console.log("User typed:", inputValue);
-
         const discussionBoardsRef = collection(db, "discussion_boards");
         const q = query(discussionBoardsRef, where("eventId", "==", eventId));
         const querySnapshot = await getDocs(q);
@@ -69,6 +83,7 @@ const EventDiscussionTab = React.memo(
           await updateDoc(docRef, {
             content: arrayUnion({
               userId: currentUser.uid,
+              messageId: uuidv4(),
               message: inputValue,
               creationTime: new Date(),
             }),
@@ -80,23 +95,13 @@ const EventDiscussionTab = React.memo(
       }
     };
 
-    const handleEnterKeyDown = (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        handleSendMessage();
-      }
-    };
-
     return (
       <Box>
-        {contentData?.map((data, index) => (
-          <Box key={index} sx={{ display: "flex" }}>
+        {contentData?.map((data) => (
+          <Box key={data.messageId} sx={{ display: "flex" }}>
             <Avatar sx={{ marginTop: 1 }} src={data.avatarSrc} />
-            <Box
+            <Stack
               sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: "column",
                 backgroundColor: "#efefef",
                 borderRadius: 4,
                 margin: 0.5,
@@ -105,11 +110,38 @@ const EventDiscussionTab = React.memo(
             >
               <Typography fontWeight={"bold"}>{data.userName}</Typography>
               <Typography>{data.message}</Typography>
-              <Typography fontSize={"0.85rem"} color={"GrayText"}>
+              <Typography
+                fontSize={"0.80rem"}
+                color={"GrayText"}
+                sx={{ letterSpacing: "-0.02rem" }}
+              >
                 {data.creationTime &&
-                  moment(data.creationTime.toDate()).format("HH:mm DD.MM.YYYY")}
+                  moment(data.creationTime.toDate()).format("HH:mm DD/MM/YY")}
               </Typography>
-            </Box>
+            </Stack>
+            {currentUser?.uid === data.userId && (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <IconButton size="small">
+                  <ModeEditOutlinedIcon
+                    fontSize="inherit"
+                    sx={{ color: "#7cb342" }}
+                  />
+                </IconButton>
+                <IconButton size="small">
+                  <DeleteOutlinedIcon
+                    fontSize="inherit"
+                    sx={{
+                      color: "#f44336",
+                    }}
+                  />
+                </IconButton>
+              </Box>
+            )}
           </Box>
         ))}
         {currentUser ? (

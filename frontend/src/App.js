@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/auth-context";
-import db from "./firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import useFetchDataFromFirestore from "./hooks/useFetchDataFromFirestore";
 
 import Home from "./pages/Home";
 import Games from "./pages/Games";
@@ -338,114 +335,35 @@ import "./App.css";
 // ];
 
 export default function App() {
-  const [games, setGames] = useState();
-  const [users, setUsers] = useState();
-  const [events, setEvents] = useState();
-  const [discussionBoards, setDiscussionBoards] = useState();
-
-  const handleEventUpdate = (updatedEvent) => {
-    const updatedEvents = events.map((event) =>
-      event.id === updatedEvent.id ? updatedEvent : event
-    );
-    setEvents(updatedEvents);
-  };
-
-  const handleSendMessage = (eventId, userId, message) => {
-    // Find the discussion board for the given eventId
-    const updatedDiscussionBoards = discussionBoards.map((board) =>
-      board.eventId === eventId
-        ? {
-            eventId,
-            content: [
-              ...board.content,
-              {
-                userId,
-                message,
-                creationTime: "now",
-              },
-            ],
-          }
-        : board
-    );
-    setDiscussionBoards(updatedDiscussionBoards);
-  };
-
-  // getting games data from firebase
-  useEffect(() => {
-    onSnapshot(collection(db, "games"), (snapshot) => {
-      setGames(
-        snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }))
-      );
-    });
-  }, []);
-
-  // getting events data from firebase
-  useEffect(() => {
-    onSnapshot(collection(db, "events"), (snapshot) => {
-      setEvents(
-        snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }))
-      );
-    });
-  }, []);
-
-  // getting discussion boards data from firebase
-  useEffect(() => {
-    onSnapshot(collection(db, "discussion_boards"), (snapshot) => {
-      setDiscussionBoards(
-        snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }))
-      );
-    });
-  }, []);
-
-  // getting users data from firebase
-  useEffect(() => {
-    onSnapshot(collection(db, "users"), (snapshot) => {
-      setUsers(
-        snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }))
-      );
-    });
-  }, []);
+  const games = useFetchDataFromFirestore("games");
+  const users = useFetchDataFromFirestore("users");
+  const events = useFetchDataFromFirestore("events");
+  const discussionBoards = useFetchDataFromFirestore("discussion_boards");
 
   return (
-    <AuthProvider>
+    <Router>
       <CssBaseline />
-      <Router>
-        <MainNavigation />
-        <Routes>
-          <Route path="/" element={<Home events={events} />} />
-          <Route path="/games" element={<Games games={games} />} />
-          <Route path="/events" element={<Events events={events} />} />
-          <Route
-            path="/events/:eventId"
-            element={
-              <Event
-                events={events}
-                users={users}
-                games={games}
-                discussionBoards={discussionBoards}
-                onUpdateEvent={handleEventUpdate}
-                onSendMessage={handleSendMessage}
-              />
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/myEvents" element={<UserEvents />} />
-          <Route path="/createEvent" element={<CreateEvent />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+      <MainNavigation />
+      <Routes>
+        <Route path="/" element={<Home events={events} />} />
+        <Route path="/games" element={<Games games={games} />} />
+        <Route path="/events" element={<Events events={events} />} />
+        <Route
+          path="/events/:eventId"
+          element={
+            <Event
+              events={events}
+              users={users}
+              games={games}
+              discussionBoards={discussionBoards}
+            />
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/myEvents" element={<UserEvents />} />
+        <Route path="/createEvent" element={<CreateEvent />} />
+      </Routes>
+    </Router>
   );
 }
