@@ -28,7 +28,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 export default function SignUp({ users }) {
   const currentUser = useAuth();
   const navigate = useNavigate();
-  const isLoaded = useFadeInEffect();
+  const isComponentLoaded = useFadeInEffect();
   const { preview, onSelectFile } = useImagePreview();
 
   const [photo, setPhoto] = useState(null);
@@ -97,7 +97,7 @@ export default function SignUp({ users }) {
   };
 
   return (
-    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

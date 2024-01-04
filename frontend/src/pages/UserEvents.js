@@ -3,10 +3,10 @@ import useFadeInEffect from "../hooks/useFadeInEffect";
 import Fade from "@mui/material/Fade";
 
 export default function UserEvents() {
-  const isLoaded = useFadeInEffect();
+  const isComponentLoaded = useFadeInEffect();
 
   return (
-    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <h1>My Events</h1>
     </Fade>
   );

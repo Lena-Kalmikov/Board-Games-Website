@@ -6,16 +6,15 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
 export default function Events({ events }) {
-  const isLoaded = useFadeInEffect();
+  const isComponentLoaded = useFadeInEffect();
+  const isLoading = events.length === 0;
 
   const skeletonNumber = 4;
 
   return (
-    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Box sx={{ margin: { xs: 0, sm: 7 } }}>
-        {events ? (
-          <EventPreviewList events={events} />
-        ) : (
+        {isLoading ? (
           <Box
             sx={{
               display: "flex",
@@ -30,6 +29,8 @@ export default function Events({ events }) {
                 <EventPreviewLoadingSkeleton key={index} />
               ))}
           </Box>
+        ) : (
+          <EventPreviewList events={events} />
         )}
       </Box>
     </Fade>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../firebase";
 import db from "../firebase";
+import { useAuth } from "../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import useFadeInEffect from "../hooks/useFadeInEffect";
 import { useNavigate, useParams } from "react-router-dom";
 import EventAboutTab from "../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
 import EventLoadingSkeleton from "../components/UI/skeletons/EventLoadingSkeleton";
+
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Card from "@mui/material/Card";
@@ -20,19 +21,12 @@ import PlaceIcon from "@mui/icons-material/Place";
 import CardContent from "@mui/material/CardContent";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
-export default function Event({
-  events,
-  users,
-  games,
-  discussionBoards,
-  onUpdateEvent,
-  onSendMessage,
-}) {
+export default function Event({ events, users, games, discussionBoards }) {
   const currentUser = useAuth();
-  const { eventId } = useParams();
   const navigate = useNavigate();
-  const isLoaded = useFadeInEffect();
+  const { eventId } = useParams();
   const [event, setEvent] = useState(null);
+  const isComponentLoaded = useFadeInEffect();
 
   const [isLoggedUserParticipantInEvent, setIsLoggedUserParticipantInEvent] =
     useState(false);
@@ -57,48 +51,28 @@ export default function Event({
     setActiveTab(tab);
   };
 
-  // const handleGoingToEvent = () => {
-  //   if (!currentUser) {
-  //     navigate("/login");
-  //     return;
-  //   }
+  const handleGoingToEvent = async () => {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
 
-  //   // change this to update firebase event participants add/remove
-  //   const updatedParticipants = isLoggedUserParticipantInEvent
-  //     ? event.participants.filter(
-  //         (participantId) => participantId !== currentUser.uid
-  //       )
-  //     : [...event.participants, currentUser.uid];
+    const updatedParticipants = isLoggedUserParticipantInEvent
+      ? event.participants.filter(
+          (participantId) => participantId !== currentUser.uid
+        )
+      : [...event.participants, currentUser.uid];
 
-  //   setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
+    setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
 
-  //   const updatedEvent = { ...event, participants: updatedParticipants };
-
-  //   onUpdateEvent(updatedEvent);
-  // };
-
-const handleGoingToEvent = async () => {
-  if (!currentUser) {
-    navigate("/login");
-    return;
-  }
-
-  const updatedParticipants = isLoggedUserParticipantInEvent
-    ? event.participants.filter(
-        (participantId) => participantId !== currentUser.uid
-      )
-    : [...event.participants, currentUser.uid];
-
-  setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
-
-  const eventRef = doc(db, "events", event.id);
-  await updateDoc(eventRef, {
-    participants: updatedParticipants,
-  });
-};
+    const eventRef = doc(db, "events", event.id);
+    await updateDoc(eventRef, {
+      participants: updatedParticipants,
+    });
+  };
 
   return (
-    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Box
         sx={{
           margin: { xs: 0, sm: 7 },
@@ -212,7 +186,6 @@ const handleGoingToEvent = async () => {
                     users={users}
                     discussionBoards={discussionBoards}
                     eventId={eventId}
-                    onSendMessage={onSendMessage}
                   />
                 </Box>
               </Box>

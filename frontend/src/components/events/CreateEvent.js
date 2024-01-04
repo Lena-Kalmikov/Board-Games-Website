@@ -15,7 +15,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
 export default function CreateEvent() {
-  const isLoaded = useFadeInEffect();
+  const isComponentLoaded = useFadeInEffect();
 
   const { preview, onSelectFile } = useImagePreview();
 
@@ -30,7 +30,7 @@ export default function CreateEvent() {
   };
 
   return (
-    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

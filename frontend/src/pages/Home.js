@@ -11,14 +11,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function Home({ events }) {
-  // const { user } = useAuth();
   const currentUser = useAuth();
+  const isLoading = events.length === 0;
 
-  const isLoaded = useFadeInEffect();
+  const isComponentLoaded = useFadeInEffect();
 
   const navigate = useNavigate();
-
-  // const displayedEvents = events.slice(0, 4);
 
   const redirectToCreateNewEvent = () => {
     if (!currentUser) {
@@ -32,7 +30,7 @@ export default function Home({ events }) {
 
   return (
     <Box sx={{ margin: 2, marginBottom: 10 }}>
-      <Fade in={isLoaded} timeout={{ enter: 500 }}>
+      <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
         <Box
           sx={{
             display: "flex",
@@ -135,7 +133,7 @@ export default function Home({ events }) {
           </Box>
         </Box>
       </Fade>
-      <Fade in={isLoaded} timeout={{ enter: 1000 }}>
+      <Fade in={isComponentLoaded} timeout={{ enter: 1000 }}>
         <Box
           sx={{
             display: "flex",
@@ -148,9 +146,7 @@ export default function Home({ events }) {
             marginBottom: 10,
           }}
         >
-          {events ? (
-            <EventPreviewList events={events} />
-          ) : (
+          {isLoading ? (
             <Box
               sx={{
                 display: "flex",
@@ -165,6 +161,8 @@ export default function Home({ events }) {
                   <EventPreviewLoadingSkeleton key={index} />
                 ))}
             </Box>
+          ) : (
+            <EventPreviewList events={events} />
           )}
 
           <Button
@@ -181,7 +179,7 @@ export default function Home({ events }) {
           </Button>
         </Box>
       </Fade>
-      <Fade in={isLoaded} timeout={{ enter: 1500 }}>
+      <Fade in={isComponentLoaded} timeout={{ enter: 1500 }}>
         <Box
           sx={{
             display: "flex",

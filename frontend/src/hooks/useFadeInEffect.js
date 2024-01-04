@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
 export default function useFadeInEffect(delay = 50) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isComponentLoaded, setIsComponentLoaded] = useState(false);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setIsLoaded(true);
+      setIsComponentLoaded(true);
     }, delay);
 
     return () => clearTimeout(timeoutId);
   }, [delay]);
 
-  return isLoaded;
+  return isComponentLoaded;
 }

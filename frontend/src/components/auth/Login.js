@@ -23,7 +23,7 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 export default function Login({ users }) {
   const currentUser = useAuth();
   const navigate = useNavigate();
-  const isLoaded = useFadeInEffect();
+  const isComponentLoaded = useFadeInEffect();
 
   const [isLoading, setIsLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -64,7 +64,7 @@ export default function Login({ users }) {
   };
 
   return (
-    <Fade in={isLoaded} timeout={{ enter: 500 }}>
+    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Container maxWidth="xs">
         <CssBaseline />
         <Box

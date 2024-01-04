@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import db from "../../../firebase";
 import { useAuth } from "../../../firebase";
+import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
+import DeleteDialog from "../../UI/DeleteDialog";
 import {
   collection,
   query,
@@ -14,12 +17,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 
-import { v4 as uuidv4 } from "uuid";
-
-import moment from "moment";
-
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
@@ -34,9 +32,15 @@ const EventDiscussionTab = React.memo(
   ({ users, discussionBoards, eventId }) => {
     const currentUser = useAuth();
     const inputRef = useRef(null);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const editedInputRef = useRef(null);
+
+    const [inputValue, setInputValue] = useState("");
     const [editingMessageId, setEditingMessageId] = useState(null);
-    const [editingMessageValue, setEditingMessageValue] = useState("");
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isEditingButtonDisabled, setIsEditingButtonDisabled] =
+      useState(true);
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [deleteMessageId, setDeleteMessageId] = useState(null);
 
     const getUserInfo = (userId) => {
       return users?.find((user) => user.id === userId);
@@ -66,10 +70,23 @@ const EventDiscussionTab = React.memo(
       setIsButtonDisabled(inputValue === "");
     };
 
+    const handleEditedInputChange = () => {
+      const inputValue = editedInputRef.current.value.trim();
+      setIsEditingButtonDisabled(inputValue === "");
+      setInputValue(inputValue);
+    };
+
     const handleEnterKeyDown = (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
         handleSendMessage();
+      }
+    };
+
+    const handleEnterKeyDownOnEdit = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleEditMessage();
       }
     };
 
@@ -98,6 +115,51 @@ const EventDiscussionTab = React.memo(
       }
     };
 
+    const handleSetMessageForEditing = (messageId, message) => {
+      setEditingMessageId(messageId);
+      setInputValue(message);
+    };
+
+    const handleEditMessage = async () => {
+      if (currentUser && inputValue !== "") {
+        const discussionBoardsRef = collection(db, "discussion_boards");
+        const q = query(discussionBoardsRef, where("eventId", "==", eventId));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
+
+          // Get the current content from the document
+          const eventDiscussionBoard = await getDoc(docRef);
+          const contentArray = eventDiscussionBoard.data().content;
+
+          // Find the index of the message to be updated
+          const messageIndex = contentArray.findIndex(
+            (content) => content.messageId === editingMessageId
+          );
+
+          if (messageIndex !== -1) {
+            // Update the message content in the array
+            contentArray[messageIndex].message = inputValue;
+
+            // Update the document with the modified content
+            await updateDoc(docRef, {
+              content: contentArray,
+            });
+
+            // Clear the editing state
+            setEditingMessageId(null);
+            setIsEditingButtonDisabled(true);
+          }
+        }
+      }
+    };
+
+    const handleDelete = () => {
+      // Delete the message here
+      setIsDeleteDialogOpen(false); // Close the dialog after deletion
+    };
+
     const handleDeleteMessage = async (messageId) => {
       const discussionBoardsRef = collection(db, "discussion_boards");
       const q = query(discussionBoardsRef, where("eventId", "==", eventId));
@@ -120,44 +182,15 @@ const EventDiscussionTab = React.memo(
       }
     };
 
-    const handleEditMessage = (messageId, message) => {
-      setEditingMessageId(messageId);
-      setEditingMessageValue(message);
-    };
-
-    const handleUpdateMessage = async () => {
-      const discussionBoardsRef = collection(db, "discussion_boards");
-      const q = query(discussionBoardsRef, where("eventId", "==", eventId));
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
-        const eventDiscussionBoard = await getDoc(docRef);
-        const contentArray = eventDiscussionBoard.data().content;
-
-        const messageIndex = contentArray.findIndex(
-          (content) => content.messageId === editingMessageId
-        );
-
-        if (messageIndex !== -1) {
-          contentArray[messageIndex].message = editingMessageValue;
-          await updateDoc(docRef, {
-            content: contentArray,
-          });
-        }
-
-        setEditingMessageId(null);
-        setEditingMessageValue("");
-      }
-    };
-
     return (
       <Box>
         {contentData?.map((data) => (
-          <Box key={data.messageId} sx={{display: "flex" }}>
+          <Box key={data.messageId} sx={{ display: "flex", wrap: "wrap" }}>
             <Avatar sx={{ marginTop: 1 }} src={data.avatarSrc} />
-            <Stack
+            <Box
               sx={{
+                display: "flex",
+                flexDirection: "column",
                 backgroundColor: "#efefef",
                 borderRadius: 4,
                 margin: 0.5,
@@ -165,25 +198,37 @@ const EventDiscussionTab = React.memo(
                 overflowWrap: "break-word",
               }}
             >
-              <Typography fontWeight={"bold"}>{data.userName}</Typography>
+              <Typography marginBottom={-0.5} fontWeight={"bold"}>
+                {data.userName}
+              </Typography>
               {editingMessageId === data.messageId ? (
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <OutlinedInput
-                    value={editingMessageValue}
-                    onChange={(e) => setEditingMessageValue(e.target.value)}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleUpdateMessage}>
-                          <SendIcon />
-                        </IconButton>
-                      </InputAdornment>
-                    }
+                    multiline
+                    value={inputValue}
+                    inputRef={editedInputRef}
+                    onKeyDown={handleEnterKeyDownOnEdit}
+                    onChange={handleEditedInputChange}
                     sx={{
-                      width: "100%",
                       backgroundColor: "#efefef",
                       margin: 0.5,
                     }}
-                    multiline
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handleEditMessage}
+                          disabled={isEditingButtonDisabled}
+                        >
+                          <SendIcon
+                            sx={{
+                              color: isEditingButtonDisabled
+                                ? "disabled"
+                                : "primary.main",
+                            }}
+                          />
+                        </IconButton>
+                      </InputAdornment>
+                    }
                   />
                   <Button
                     variant="text"
@@ -191,6 +236,7 @@ const EventDiscussionTab = React.memo(
                       textTransform: "none",
                       alignSelf: "flex-end",
                       mb: -3.3,
+                      "&:hover": { backgroundColor: "#efefef" },
                     }}
                     onClick={() => setEditingMessageId(null)}
                   >
@@ -198,51 +244,48 @@ const EventDiscussionTab = React.memo(
                   </Button>
                 </Box>
               ) : (
-                <Typography
-                  sx={{
-                    overflowWrap: "break-word",
-                    wordWrap: "break-word",
-                    hyphens: "auto",
-                    maxWidth: 600,
-                    width: "100%",
-                  }}
-                >
-                  {data.message}
-                </Typography>
+                <Typography>{data.message}</Typography>
               )}
               <Typography
                 fontSize={"0.80rem"}
                 color={"GrayText"}
-                sx={{ letterSpacing: "-0.02rem" }}
+                letterSpacing={"-0.02rem"}
+                marginTop={0.3}
               >
                 {data.creationTime &&
                   moment(data.creationTime.toDate()).format("HH:mm DD/MM/YY")}
               </Typography>
-            </Stack>
+            </Box>
             {currentUser?.uid === data.userId && (
               <Box
                 sx={{
                   display: "flex",
-                  alignItems: "center",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 <IconButton size="small">
                   <ModeEditOutlinedIcon
                     fontSize="inherit"
-                    sx={{ color: "#7cb342" }}
+                    sx={{
+                      "&:hover": { color: "#7cb342" },
+                    }}
                     onClick={() =>
-                      handleEditMessage(data.messageId, data.message)
+                      handleSetMessageForEditing(data.messageId, data.message)
                     }
                   />
                 </IconButton>
                 <IconButton
                   size="small"
-                  onClick={() => handleDeleteMessage(data?.messageId)}
+                  onClick={() => {
+                    setDeleteMessageId(data.messageId);
+                    setIsDeleteDialogOpen(true);
+                  }}
                 >
                   <DeleteOutlinedIcon
                     fontSize="inherit"
                     sx={{
-                      color: "#f44336",
+                      "&:hover": { color: "#f44336" },
                     }}
                   />
                 </IconButton>
@@ -250,6 +293,16 @@ const EventDiscussionTab = React.memo(
             )}
           </Box>
         ))}
+        <DeleteDialog
+          isOpen={isDeleteDialogOpen}
+          onClose={() => setIsDeleteDialogOpen(false)}
+          onDelete={() => {
+            // Handle delete logic here
+            handleDeleteMessage(deleteMessageId);
+            setIsDeleteDialogOpen(false);
+          }}
+          item="message"
+        />
         {currentUser ? (
           <Box
             sx={{
@@ -260,11 +313,11 @@ const EventDiscussionTab = React.memo(
           >
             <Avatar src={currentUser.photoURL} />
             <OutlinedInput
+              multiline
               placeholder="Write a comment..."
               inputRef={inputRef}
               onKeyDown={handleEnterKeyDown}
               onChange={handleInputChange}
-              multiline
               sx={{
                 width: "100%",
                 backgroundColor: "#efefef",
@@ -275,16 +328,22 @@ const EventDiscussionTab = React.memo(
                   <IconButton
                     onClick={handleSendMessage}
                     disabled={isButtonDisabled}
+                    sx={{
+                      backgroundColor: isButtonDisabled
+                        ? "disabled"
+                        : "primary.main",
+                      "&:hover": { backgroundColor: "primary.main" },
+                    }}
                   >
                     <SendIcon
                       sx={{
-                        color: isButtonDisabled ? "disabled" : "primary.main",
+                        color: isButtonDisabled ? "disabled" : "white",
                       }}
                     />
                   </IconButton>
                 </InputAdornment>
               }
-            ></OutlinedInput>
+            />
           </Box>
         ) : (
           <Box
