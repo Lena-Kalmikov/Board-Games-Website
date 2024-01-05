@@ -23,7 +23,7 @@ export default function Home({ events }) {
       navigate("/login");
       return;
     }
-    navigate("/createEvent");
+    navigate(`/${currentUser.uid}/createEvent`);
   };
 
   const skeletonNumber = 4;

@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 // import { useAuth } from "../../context/auth-context";
 import { logout, useAuth } from "../../firebase";
 
-
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import styled from "@mui/system/styled";
@@ -25,11 +24,6 @@ export default function MainNavigation() {
 
   const [anchorElementNav, setAnchorElementNav] = useState(null);
   const [anchorElementUser, setAnchorElementUser] = useState(null);
-  // const { logout, isLoggedIn, user } = useAuth();
-  // const { isLoggedIn, user } = useAuth();
-
-  // const userProfilePicture = user?.profilePicture;
-  // const userName = `${user?.firstName} ${user?.lastName}`;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElementNav(event.currentTarget);
@@ -246,14 +240,14 @@ export default function MainNavigation() {
               >
                 <MenuItem
                   component={Link}
-                  to="/myEvents"
+                  to={`/${currentUser.uid}/myEvents`}
                   onClick={handleCloseUserMenu}
                 >
                   <Typography textAlign="center">My Events</Typography>
                 </MenuItem>
                 <MenuItem
                   component={Link}
-                  to="/createEvent"
+                  to={`/${currentUser.uid}/createEvent`}
                   onClick={handleCloseUserMenu}
                 >
                   <Typography textAlign="center">Create New Event</Typography>

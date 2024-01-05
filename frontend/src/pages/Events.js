@@ -8,7 +8,6 @@ import Fade from "@mui/material/Fade";
 export default function Events({ events }) {
   const isComponentLoaded = useFadeInEffect();
   const isLoading = events.length === 0;
-
   const skeletonNumber = 4;
 
   return (

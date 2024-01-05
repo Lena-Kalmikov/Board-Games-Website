@@ -41,8 +41,11 @@ export default function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/myEvents" element={<UserEvents />} />
-        <Route path="/createEvent" element={<CreateEvent />} />
+        <Route
+          path="/:userId/myEvents"
+          element={<UserEvents events={events} />}
+        />
+        <Route path="/:userId/createEvent" element={<CreateEvent />} />
       </Routes>
     </Router>
   );
