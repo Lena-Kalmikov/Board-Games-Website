@@ -155,11 +155,6 @@ const EventDiscussionTab = React.memo(
       }
     };
 
-    const handleDelete = () => {
-      // Delete the message here
-      setIsDeleteDialogOpen(false); // Close the dialog after deletion
-    };
-
     const handleDeleteMessage = async (messageId) => {
       const discussionBoardsRef = collection(db, "discussion_boards");
       const q = query(discussionBoardsRef, where("eventId", "==", eventId));
@@ -297,7 +292,6 @@ const EventDiscussionTab = React.memo(
           isOpen={isDeleteDialogOpen}
           onClose={() => setIsDeleteDialogOpen(false)}
           onDelete={() => {
-            // Handle delete logic here
             handleDeleteMessage(deleteMessageId);
             setIsDeleteDialogOpen(false);
           }}

@@ -3,14 +3,13 @@ import { initializeApp } from "firebase/app";
 import { v4 as uuidv4 } from "uuid";
 
 import { getFirestore } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -66,7 +65,7 @@ export async function upload(file, currentUser, setLoading) {
 
   setLoading(true);
 
-  const snapshot = await uploadBytes(fileRef, file);
+  // const snapshot = await uploadBytes(fileRef, file);
   const photoURL = await getDownloadURL(fileRef);
 
   //updateProfile(currentUser, { photoURL });
@@ -84,7 +83,7 @@ export async function uploadImage(file, setLoading) {
 
   setLoading(true);
 
-  const snapshot = await uploadBytes(fileRef, file);
+  // const snapshot = await uploadBytes(fileRef, file);
   const imageUrl = await getDownloadURL(fileRef);
 
   setLoading(false);

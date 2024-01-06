@@ -5,7 +5,7 @@ import EventPreviewLoadingSkeleton from "../../components/UI/skeletons/EventPrev
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
-export default function Events({ events }) {
+export default function EventsPreview({ events }) {
   const isComponentLoaded = useFadeInEffect();
   const isLoading = events.length === 0;
   const skeletonNumber = 4;

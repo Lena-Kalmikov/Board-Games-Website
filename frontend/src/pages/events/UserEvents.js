@@ -1,20 +1,20 @@
+import React from "react";
 import { useAuth } from "../../firebase";
 import { Link, useParams } from "react-router-dom";
-import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsLoadingSkeleton";
-import EventPreviewList from "../../components/events/preview/EventPreviewList";
-import Links from "@mui/material/Link";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
+import EventPreviewList from "../../components/events/preview/EventPreviewList";
+import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsLoadingSkeleton";
 
-import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
-import { Typography } from "@mui/material";
+import Links from "@mui/material/Link";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
 
 export default function UserEvents({ events }) {
-  const isComponentLoaded = useFadeInEffect();
-
-  const { userId } = useParams();
   const currentUser = useAuth();
+  const { userId } = useParams();
+  const isComponentLoaded = useFadeInEffect();
   const isLoading = events.length === 0;
 
   if (isLoading) {
@@ -40,7 +40,9 @@ export default function UserEvents({ events }) {
           flexDirection={"column"}
           alignItems={"flex-start"}
         >
-          <Typography variant="h5">Events created by me:</Typography>
+          <Divider fullWidth textAlign="left" sx={{ width: "100%" }}>
+            Events created by me
+          </Divider>
           {eventsCreatedByUserLength ? (
             <EventPreviewList events={eventsCreatedByUser} />
           ) : (
@@ -52,12 +54,9 @@ export default function UserEvents({ events }) {
               {"."}
             </Typography>
           )}
-          <Divider
-            sx={{ marginTop: 3, marginBottom: 3, borderColor: "red" }}
-          />
-          <Typography marginTop={3} variant="h5">
-            Events I'm attending:
-          </Typography>
+          <Divider fullWidth textAlign="left" sx={{ width: "100%", marginTop:4 }}>
+            Events I'm attending
+          </Divider>
 
           {eventsUserIsGoingToLength ? (
             <EventPreviewList events={eventsUserIsGoingTo} />

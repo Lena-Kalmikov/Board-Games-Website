@@ -22,6 +22,7 @@ export default function EventPreviewList({ events }) {
             date={event.date}
             time={event.time}
             city={event.city}
+            creator={event.creator}
             address={event.address}
           />
         ))

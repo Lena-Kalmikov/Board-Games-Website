@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import db from "../../firebase";
+import moment from "moment";
 import { useAuth } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
@@ -106,7 +107,8 @@ export default function Event({ events, users, games, discussionBoards }) {
                   <EventIcon />
                 </Avatar>
                 <Typography marginLeft={1}>
-                  {event.date} at {event.time}
+                  {moment(event.date).format("DD/MM/YYYY")} at{" "}
+                  {moment(event.time, "HH:mm").format("HH:mm")}
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center" }}>

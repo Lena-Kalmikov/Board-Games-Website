@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { login, useAuth } from "../firebase";
+import { login } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import useFadeInEffect from "../hooks/useFadeInEffect";
 
@@ -37,7 +37,7 @@ export default function Login() {
     setIsLoading(true);
     try {
       await login(data.email, data.password);
-      console.log("User logged in successfully!");
+      //to-do: change this to navigate to the previous page the user was on
       navigate("/");
     } catch (error) {
       if (error.code === "auth/wrong-password") {
@@ -52,7 +52,7 @@ export default function Login() {
         setAlertMessage("email or password is incorrect, try again");
         setIsAlertOpen(true);
       }
-      console.log(error.code);
+      setAlertMessage(error.code);
     }
     setIsLoading(false);
   };
