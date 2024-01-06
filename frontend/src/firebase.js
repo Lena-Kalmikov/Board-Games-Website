@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
+import { v4 as uuidv4 } from "uuid";
 
 import { getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -74,4 +75,19 @@ export async function upload(file, currentUser, setLoading) {
   //alert("Uploaded file!");
 
   return photoURL;
+}
+
+//upload image to storage
+export async function uploadImage(file, setLoading) {
+  const uniqueId = uuidv4();
+  const fileRef = ref(storage, `images/${uniqueId}.png`);
+
+  setLoading(true);
+
+  const snapshot = await uploadBytes(fileRef, file);
+  const imageUrl = await getDownloadURL(fileRef);
+
+  setLoading(false);
+
+  return imageUrl;
 }

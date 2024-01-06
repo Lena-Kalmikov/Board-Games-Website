@@ -62,7 +62,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
       </Typography>
       <Typography sx={{ display: "flex", flexWrap: "wrap" }}>
         Games:&nbsp;
-        {eventGames.map((game) => (
+        {eventGames?.map((game) => (
           <Link
             style={{ cursor: "pointer" }}
             key={game.id}
@@ -85,7 +85,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
         <Typography marginRight={1}>Participants:</Typography>
         <Tooltip title="See participants">
           <AvatarGroup max={5} onClick={handleParticipantDialogOpen}>
-            {eventParticipants.map((participant) => (
+            {eventParticipants?.map((participant) => (
               <Avatar
                 key={participant.id}
                 src={participant.profilePicture}

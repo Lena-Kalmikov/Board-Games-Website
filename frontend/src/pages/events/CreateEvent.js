@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
-import { useAuth } from "../../firebase";
 import db from "../../firebase";
+import { useAuth, uploadImage } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 import useImagePreview from "../../hooks/useImagePreview";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 
@@ -23,9 +26,14 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
 export default function CreateEvent({ games }) {
-  const currentUser = useAuth();
-  const gameCreator = currentUser?.uid;
+  const [photo, setPhoto] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
+  const currentUser = useAuth();
+  const creator = currentUser?.uid;
+
+  const navigate = useNavigate();
   const isComponentLoaded = useFadeInEffect();
 
   const { preview, onSelectFile } = useImagePreview();
@@ -38,33 +46,40 @@ export default function CreateEvent({ games }) {
 
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  const alertMessage =
-    "Unfortunately, this feature is not available yet. Thank you for your patience.";
+  const handleImageChange = (e) => {
+    onSelectFile(e);
+    setPhoto(e.target.files[0]);
+  };
 
-    const addEventToFirebase = async (eventData) => {
-      try {
-        const eventRef = db.collection("events"); // replace "events" with your collection name
-        const docRef = await eventRef.add(eventData);
-        console.log("Document written with ID: ", docRef.id);
-      } catch (error) {
-        console.error("Error adding document: ", error);
-      }
-    };
+  const addEventToFirebase = async (eventData) => {
+    try {
+      const eventRef = doc(db, "events", uuidv4());
+      await setDoc(eventRef, eventData);
+    } catch (error) {
+      setAlertMessage("Error during adding new event: ", error.message);
+    }
+  };
 
+  const onSubmit = async (data) => {
+    const gameIds = data.games.map((game) => game.id);
 
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  //   setIsAlertOpen(true);
-  // };
+    let imageUrl = "";
+    if (photo) {
+      imageUrl = await uploadImage(photo, setIsLoading);
+    }
 
-  const onSubmit = (data) => {
     const eventData = {
       ...data,
-      gameCreator,
-      createdAt: new Date().toISOString(),
+      games: gameIds, // Send only game IDs
+      image: imageUrl, // Send image URL
+      creator,
+      participants: [creator], // Add creator to participants
+      isDeleted: false,
     };
+
     addEventToFirebase(eventData);
     setIsAlertOpen(true);
+    navigate("/events");
   };
 
   const handleAlertClose = () => {
@@ -153,7 +168,22 @@ export default function CreateEvent({ games }) {
                   })}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={4}>
+                <TextField
+                  id="city"
+                  name="city"
+                  label="City"
+                  required
+                  fullWidth
+                  size="small"
+                  error={!!errors.city}
+                  helperText={errors.city?.message}
+                  {...register("city", {
+                    required: "city is required",
+                  })}
+                />
+              </Grid>
+              <Grid item xs={8}>
                 <TextField
                   id="address"
                   name="address"
@@ -267,7 +297,7 @@ export default function CreateEvent({ games }) {
                     accept=".png, .jpg, .jpeg"
                     hidden
                     {...register("image")}
-                    onChange={onSelectFile}
+                    onChange={handleImageChange}
                   />
                 </Button>
               </Grid>
@@ -293,6 +323,7 @@ export default function CreateEvent({ games }) {
               fullWidth
               type="submit"
               variant="contained"
+              disabled={isLoading}
               sx={{ marginTop: 2, marginBottom: 4 }}
             >
               Create Event

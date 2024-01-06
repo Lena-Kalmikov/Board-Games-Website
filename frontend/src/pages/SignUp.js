@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import db from "../firebase";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { getDownloadURL, ref } from "firebase/storage";
-import { signup, useAuth, upload, auth, storage } from "../firebase";
+import { signup, useAuth, upload } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import useImagePreview from "../hooks/useImagePreview";
 import useFadeInEffect from "../hooks/useFadeInEffect";
@@ -25,7 +24,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-export default function SignUp({ users }) {
+export default function SignUp() {
   const currentUser = useAuth();
   const navigate = useNavigate();
   const isComponentLoaded = useFadeInEffect();

@@ -20,7 +20,7 @@ import "./App.css";
 export default function App() {
   const games = useFetchDataFromFirestore("games");
   const users = useFetchDataFromFirestore("users");
-  const events = useFetchDataFromFirestore("events");
+  const events = useFetchDataFromFirestore("events", true, "date");
   const discussionBoards = useFetchDataFromFirestore("discussion_boards");
 
   return (
@@ -29,7 +29,7 @@ export default function App() {
         <CssBaseline />
         <MainNavigation />
         <Routes>
-          <Route path="/" element={<Home events={events} />} />{" "}
+          <Route path="/" element={<Home events={events} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/games" element={<Games games={games} />} />

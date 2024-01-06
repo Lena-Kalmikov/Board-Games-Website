@@ -5,6 +5,7 @@ import EventPreviewList from "../../components/events/preview/EventPreviewList";
 import Links from "@mui/material/Link";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 
+import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import { Typography } from "@mui/material";
@@ -27,7 +28,7 @@ export default function UserEvents({ events }) {
     const eventsCreatedByUserLength = eventsCreatedByUser.length > 0;
 
     const eventsUserIsGoingTo = events.filter((event) =>
-      event.participants.includes(userId)
+      event?.participants?.includes(userId)
     );
     const eventsUserIsGoingToLength = eventsUserIsGoingTo.length > 0;
 
@@ -51,6 +52,9 @@ export default function UserEvents({ events }) {
               {"."}
             </Typography>
           )}
+          <Divider
+            sx={{ marginTop: 3, marginBottom: 3, borderColor: "red" }}
+          />
           <Typography marginTop={3} variant="h5">
             Events I'm attending:
           </Typography>

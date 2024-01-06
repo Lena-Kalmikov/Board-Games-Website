@@ -162,7 +162,7 @@ export default function Home({ events }) {
                 ))}
             </Box>
           ) : (
-            <EventPreviewList events={events} />
+            <EventPreviewList events={events.slice(0, 4)} />
           )}
 
           <Button

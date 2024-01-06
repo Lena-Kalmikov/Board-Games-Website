@@ -152,6 +152,7 @@ export default function Event({ events, users, games, discussionBoards }) {
                 <Button
                   color="secondary"
                   onClick={handleGoingToEvent}
+                  disabled={currentUser.uid === event.creator}
                   sx={{
                     textTransform: "none",
                     margin: 1,
