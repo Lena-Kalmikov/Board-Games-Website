@@ -1,6 +1,6 @@
-import useFadeInEffect from "../hooks/useFadeInEffect";
-import EventPreviewList from "../components/events/preview/EventPreviewList";
-import EventPreviewLoadingSkeleton from "../components/UI/skeletons/EventPreviewLoadingSkeleton";
+import useFadeInEffect from "../../hooks/useFadeInEffect";
+import EventPreviewList from "../../components/events/preview/EventPreviewList";
+import EventPreviewLoadingSkeleton from "../../components/UI/skeletons/EventPreviewLoadingSkeleton";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";

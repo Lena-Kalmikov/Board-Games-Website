@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import db from "../firebase";
-import { useAuth } from "../firebase";
+import db from "../../firebase";
+import { useAuth } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
-import useFadeInEffect from "../hooks/useFadeInEffect";
-import EventAboutTab from "../components/events/tabs/EventAboutTab";
-import EventDiscussionTab from "../components/events/tabs/EventDiscussionTab";
-import EventLoadingSkeleton from "../components/UI/skeletons/EventLoadingSkeleton";
+import useFadeInEffect from "../../hooks/useFadeInEffect";
+import EventAboutTab from "../../components/events/tabs/EventAboutTab";
+import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
+import EventLoadingSkeleton from "../../components/UI/skeletons/EventLoadingSkeleton";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";

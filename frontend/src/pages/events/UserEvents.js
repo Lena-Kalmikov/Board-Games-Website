@@ -1,9 +1,9 @@
-import { useAuth } from "../firebase";
+import { useAuth } from "../../firebase";
 import { Link, useParams } from "react-router-dom";
-import UserEventsLoadingSkeleton from "../components/UI/skeletons/UserEventsLoadingSkeleton";
-import EventPreviewList from "../components/events/preview/EventPreviewList";
+import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsLoadingSkeleton";
+import EventPreviewList from "../../components/events/preview/EventPreviewList";
 import Links from "@mui/material/Link";
-import useFadeInEffect from "../hooks/useFadeInEffect";
+import useFadeInEffect from "../../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -47,7 +47,8 @@ export default function UserEvents({ events }) {
               No events found.{" "}
               <Links component={Link} to={`/${currentUser.uid}/createEvent`}>
                 Create new event
-              </Links>{"."}
+              </Links>
+              {"."}
             </Typography>
           )}
           <Typography marginTop={3} variant="h5">

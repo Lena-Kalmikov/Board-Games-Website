@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import db from "../../firebase";
+import db from "../firebase";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
-import { signup, useAuth, upload, auth, storage } from "../../firebase";
+import { signup, useAuth, upload, auth, storage } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
-import useImagePreview from "../../hooks/useImagePreview";
-import useFadeInEffect from "../../hooks/useFadeInEffect";
+import useImagePreview from "../hooks/useImagePreview";
+import useFadeInEffect from "../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";

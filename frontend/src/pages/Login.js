@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { login, useAuth } from "../../firebase";
+import { login, useAuth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
-// import { useAuth } from "../../context/auth-context";
-import useFadeInEffect from "../../hooks/useFadeInEffect";
+import useFadeInEffect from "../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -20,8 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import CssBaseline from "@mui/material/CssBaseline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-export default function Login({ users }) {
-  const currentUser = useAuth();
+export default function Login() {
   const navigate = useNavigate();
   const isComponentLoaded = useFadeInEffect();
 

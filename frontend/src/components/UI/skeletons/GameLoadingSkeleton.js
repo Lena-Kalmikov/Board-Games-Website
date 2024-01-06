@@ -1,7 +1,7 @@
 import React from "react";
 
-import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
+import Skeleton from "@mui/material/Skeleton";
 
 export default function GameLoadingSkeleton() {
   return (
