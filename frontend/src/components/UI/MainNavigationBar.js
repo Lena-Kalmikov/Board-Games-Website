@@ -64,19 +64,19 @@ export default function MainNavigation() {
     fontFamily: "monospace",
     fontWeight: 700,
     letterSpacing: "0.3rem",
-    color: "#f13c87",
+    color: "#bdfade",
     textDecoration: "none",
   });
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "background.navBar" }}>
+    <AppBar position="static">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <ExtensionIcon
             sx={{
               display: { xs: "none", sm: "flex" },
               marginRight: 1,
-              color: "primary.main",
+              color: "#bdfade",
             }}
           />
           <StyledTypography
@@ -153,7 +153,7 @@ export default function MainNavigation() {
             sx={{
               display: { xs: "flex", sm: "none" },
               marginRight: 1,
-              color: "primary.main",
+              color: "#bdfade",
             }}
           />
           <StyledTypography

@@ -11,9 +11,10 @@ const lightTheme = createTheme({
     },
     background: {
       default: "#ececf3",
-      paper: "#e2d8e6",
+      paper: "#f3f3f3",
       navBar: "#423f44",
       deleteHover: "#fff6f3",
+      lightPaper: "#efebf2",
     },
     text: {
       primary: "#160325",
