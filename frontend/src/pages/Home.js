@@ -162,7 +162,7 @@ export default function Home({ events }) {
                 ))}
             </Box>
           ) : (
-            <EventPreviewList events={events.slice(0, 4)} />
+            <EventPreviewList events={events.slice(0, 4)} justifyContent={"center"} />
           )}
 
           <Button

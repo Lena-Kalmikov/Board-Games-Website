@@ -2,14 +2,15 @@ import EventPreviewItem from "./EventPreviewItem";
 
 import Stack from "@mui/material/Stack";
 
-export default function EventPreviewList({ events }) {
+export default function EventPreviewList({ events, justifyContent }) {
   return (
     <Stack
       sx={{
         display: "flex",
         flexWrap: { xs: "wrap" },
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: {justifyContent},
+        backgroundColor: "lightgreen",
       }}
     >
       {events ? (

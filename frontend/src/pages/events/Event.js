@@ -64,9 +64,9 @@ export default function Event({ events, users, games, discussionBoards }) {
 
     const updatedParticipants = isLoggedUserParticipantInEvent
       ? currentParticipants.filter(
-          (participantId) => participantId !== currentUser.uid
+          (participantId) => participantId !== currentUser?.uid
         )
-      : [...currentParticipants, currentUser.uid];
+      : [...currentParticipants, currentUser?.uid];
 
     setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
 
@@ -158,7 +158,7 @@ export default function Event({ events, users, games, discussionBoards }) {
                 <Button
                   color="secondary"
                   onClick={handleGoingToEvent}
-                  disabled={currentUser.uid === event.creator}
+                  disabled={currentUser?.uid === event.creator}
                   sx={{
                     textTransform: "none",
                     margin: 1,

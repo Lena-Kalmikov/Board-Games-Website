@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../firebase";
 import db from "../../../firebase";
+import { useAuth } from "../../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import DeleteDialog from "../../UI/DeleteDialog";
 import moment from "moment";
+
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import DeleteDialog from "../../UI/DeleteDialog";
-import CardActions from "@mui/material/CardActions";
+import IconButton from "@mui/material/IconButton";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 export default function EventPreviewItem(props) {
   const currentUser = useAuth();
@@ -26,15 +29,16 @@ export default function EventPreviewItem(props) {
   return (
     <Card
       sx={{
-        maxWidth: 310,
-        margin: 1.5,
+        maxWidth: 300,
+        margin: 1,
+        marginTop: 2,
         backgroundColor: "#FCFDFF",
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <CardMedia sx={{ height: 190, width: 450 }} image={props.image} />
+      <CardMedia sx={{ height: 190, width: 290 }} image={props.image} />
       <CardContent
         sx={{
           display: "flex",
@@ -49,40 +53,40 @@ export default function EventPreviewItem(props) {
         <Typography fontSize={22} fontWeight={550}>
           {props.title}
         </Typography>
-        <Typography color="text.secondary">
-          {props.city}
-        </Typography>
+        <Typography color="text.secondary">{props.city}</Typography>
 
+        <Box display={"flex"} flexDirection={"row"} marginTop={2}>
           <Button
             fullWidth
             variant="outlined"
-            sx={{ textTransform: "none", marginTop: 2 }}
+            sx={{ textTransform: "none" }}
             component={Link}
             to={`/events/${props.id}`}
           >
             Explore event
           </Button>
           {props.creator === currentUser?.uid && (
-            <Button
-              fullWidth
-              variant="outlined"
+            <IconButton
               sx={{
-                marginTop: 0.5,
-                marginBottom: -1,
-                borderColor: "salmon",
-                color: "salmon",
-                "&:hover": {
-                  backgroundColor: "#fff6f3",
-                  borderColor: "salmon",
-                },
+                marginLeft: 0.5,
+                fontSize: 23,
+                "&:hover": { color: "red" },
               }}
               onClick={() => {
                 setIsDeleteDialogOpen(true);
               }}
             >
-              Delete Event
-            </Button>
+              <DeleteOutlinedIcon
+                fontSize="inherit"
+                sx={{
+                  color: "#f44336",
+                  borderBlockColor: "#f44336",
+                  "&:hover": { color: "red" },
+                }}
+              />
+            </IconButton>
           )}
+        </Box>
       </CardContent>
       <DeleteDialog
         isOpen={isDeleteDialogOpen}

@@ -36,15 +36,15 @@ export default function UserEvents({ events }) {
       <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
         <Box
           margin={5}
-          display={"flex"}
-          flexDirection={"column"}
-          sx={{alignItems:{md:"center", lg:"flex-start"} }}
         >
           <Divider fullWidth textAlign="left" sx={{ width: "100%" }}>
             Events created by me
           </Divider>
           {eventsCreatedByUserLength ? (
-            <EventPreviewList events={eventsCreatedByUser} />
+            <EventPreviewList
+              events={eventsCreatedByUser}
+              justifyContent={"flex-start"}
+            />
           ) : (
             <Typography>
               No events found.{" "}
@@ -63,7 +63,10 @@ export default function UserEvents({ events }) {
           </Divider>
 
           {eventsUserIsGoingToLength ? (
-            <EventPreviewList events={eventsUserIsGoingTo} />
+            <EventPreviewList
+              events={eventsUserIsGoingTo}
+              justifyContent={"flex-start"}
+            />
           ) : (
             <Typography>
               No events found. Check upcoming{" "}

@@ -33,16 +33,7 @@ export default function EventsPreview({ events }) {
               ))}
           </Box>
         ) : (
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: { xs: "wrap" },
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <EventPreviewList events={events} />
-          </Box>
+          <EventPreviewList events={events} justifyContent={"flex-start"} />
         )}
       </Box>
     </Fade>

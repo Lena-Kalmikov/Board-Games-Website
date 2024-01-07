@@ -230,7 +230,7 @@ const EventDiscussionTab = React.memo(
                     sx={{
                       textTransform: "none",
                       alignSelf: "flex-end",
-                      mb: -3.3,
+                      marginBottom: -3.3,
                       "&:hover": { backgroundColor: "#efefef" },
                     }}
                     onClick={() => setEditingMessageId(null)}
