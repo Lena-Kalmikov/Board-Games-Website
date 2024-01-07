@@ -9,7 +9,7 @@ export default function GameItem(props) {
       sx={{
         maxWidth: 350,
         margin: 1,
-        backgroundColor: "#FCFDFF",
+        backgroundColor: "paper",
       }}
     >
       <CardMedia sx={{ height: 145 }} image={props.image} />

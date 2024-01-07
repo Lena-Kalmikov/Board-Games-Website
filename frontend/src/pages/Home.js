@@ -7,6 +7,7 @@ import EventPreviewLoadingSkeleton from "../components/UI/skeletons/EventPreview
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
+import Links from "@mui/material/Link";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
@@ -39,62 +40,13 @@ export default function Home({ events }) {
             position: "relative",
             margin: "auto",
             maxWidth: 1000,
-            backgroundColor: "rgb(242, 246, 250)",
+            backgroundColor: "#1D1B1E",
             marginTop: { sm: 10 },
             marginBottom: 10,
+            borderRadius: 5,
+            boxShadow: 1,
           }}
         >
-          {/* Gradient Top Border */}
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 8,
-              width: 115,
-              background:
-                "linear-gradient(to right, rgba(197,216,241,1), rgba(15,123,236,1))",
-            }}
-          ></Box>
-
-          {/* Gradient Left Border */}
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              bottom: 0,
-              height: 100,
-              width: 8,
-              background:
-                "linear-gradient(to bottom, rgba(197,216,241,1), rgba(15,123,236,1))",
-            }}
-          ></Box>
-          {/* Gradient right Border */}
-          <Box
-            sx={{
-              position: "absolute",
-              right: 0,
-              bottom: 0,
-              width: 8,
-              height: 100,
-              background:
-                "linear-gradient(to top, rgba(197,216,241,1), rgba(15,123,236,1))",
-            }}
-          ></Box>
-          {/* Gradient bottom Border */}
-          <Box
-            sx={{
-              position: "absolute",
-              right: 0,
-              bottom: 0,
-              height: 8,
-              width: 115,
-              background:
-                "linear-gradient(to left, rgba(197,216,241,1), rgba(15,123,236,1))",
-            }}
-          ></Box>
           <Box
             sx={{
               marginLeft: 4,
@@ -102,7 +54,11 @@ export default function Home({ events }) {
               padding: 2,
             }}
           >
-            <Typography fontWeight={"bold"} fontSize={22}>
+            <Typography
+              color={"secondary.main"}
+              fontWeight={"bold"}
+              fontSize={22}
+            >
               Unleash the Board Game Magic!
             </Typography>
             <Typography>
@@ -142,7 +98,7 @@ export default function Home({ events }) {
             justifyContent: "center",
             margin: "auto",
             maxWidth: { md: 900, xl: 1500 },
-            backgroundColor: "rgb(242, 246, 250)",
+            // backgroundColor: "rgb(242, 246, 250)",
             marginBottom: 10,
           }}
         >
@@ -162,10 +118,13 @@ export default function Home({ events }) {
                 ))}
             </Box>
           ) : (
-            <EventPreviewList events={events.slice(0, 4)} justifyContent={"center"} />
+            <EventPreviewList
+              events={events.slice(0, 4)}
+              justifyContent={"center"}
+            />
           )}
 
-          <Button
+          <Links
             component={Link}
             to="/events"
             sx={{
@@ -175,8 +134,8 @@ export default function Home({ events }) {
               borderRadius: 2,
             }}
           >
-            explore more...
-          </Button>
+            explore more
+          </Links>
         </Box>
       </Fade>
       <Fade in={isComponentLoaded} timeout={{ enter: 1500 }}>
@@ -185,14 +144,20 @@ export default function Home({ events }) {
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
-            backgroundColor: "rgb(242, 246, 250)",
+            backgroundColor: "#1D1B1E",
             maxWidth: 800,
             padding: 2,
             margin: { xs: 1, md: "auto" },
+            borderRadius: 5,
+            boxShadow: 1,
           }}
         >
-          <Box>
-            <Typography fontWeight={"bold"} fontSize={22}>
+          <Box marginLeft={1}>
+            <Typography
+              fontWeight={"bold"}
+              fontSize={22}
+              color={"secondary.main"}
+            >
               Start crafting your event now.
             </Typography>
             <Typography>

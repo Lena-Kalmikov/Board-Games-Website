@@ -9,6 +9,7 @@ import {
   collection,
   query,
   where,
+  addDoc,
   getDoc,
   getDocs,
   doc,
@@ -35,12 +36,11 @@ const EventDiscussionTab = React.memo(
     const editedInputRef = useRef(null);
 
     const [inputValue, setInputValue] = useState("");
-    const [editingMessageId, setEditingMessageId] = useState(null);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const [isEditingButtonDisabled, setIsEditingButtonDisabled] =
-      useState(true);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
     const [deleteMessageId, setDeleteMessageId] = useState(null);
+    const [editingMessageId, setEditingMessageId] = useState(null);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(true);
 
     const getUserInfo = (userId) => {
       return users?.find((user) => user.id === userId);
@@ -72,7 +72,7 @@ const EventDiscussionTab = React.memo(
 
     const handleEditedInputChange = () => {
       const inputValue = editedInputRef.current.value.trim();
-      setIsEditingButtonDisabled(inputValue === "");
+      setIsEditButtonDisabled(inputValue === "");
       setInputValue(inputValue);
     };
 
@@ -107,6 +107,19 @@ const EventDiscussionTab = React.memo(
               message: inputValue,
               creationTime: new Date(),
             }),
+          });
+        } else {
+          // Create a new discussion board if it doesn't exist
+          await addDoc(discussionBoardsRef, {
+            eventId: eventId,
+            content: [
+              {
+                userId: currentUser.uid,
+                messageId: uuidv4(),
+                message: inputValue,
+                creationTime: new Date(),
+              },
+            ],
           });
         }
 
@@ -149,7 +162,7 @@ const EventDiscussionTab = React.memo(
 
             // Clear the editing state
             setEditingMessageId(null);
-            setIsEditingButtonDisabled(true);
+            setIsEditButtonDisabled(true);
           }
         }
       }
@@ -186,7 +199,7 @@ const EventDiscussionTab = React.memo(
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                backgroundColor: "#efefef",
+                backgroundColor: "background.lightPaper",
                 borderRadius: 4,
                 margin: 0.5,
                 padding: 1,
@@ -205,18 +218,17 @@ const EventDiscussionTab = React.memo(
                     onKeyDown={handleEnterKeyDownOnEdit}
                     onChange={handleEditedInputChange}
                     sx={{
-                      backgroundColor: "#efefef",
                       margin: 0.5,
                     }}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
                           onClick={handleEditMessage}
-                          disabled={isEditingButtonDisabled}
+                          disabled={isEditButtonDisabled}
                         >
                           <SendIcon
                             sx={{
-                              color: isEditingButtonDisabled
+                              color: isEditButtonDisabled
                                 ? "disabled"
                                 : "primary.main",
                             }}
@@ -231,7 +243,10 @@ const EventDiscussionTab = React.memo(
                       textTransform: "none",
                       alignSelf: "flex-end",
                       marginBottom: -3.3,
-                      "&:hover": { backgroundColor: "#efefef" },
+                      color: "secondary.main",
+                      "&:hover": {
+                        backgroundColor: "rgba(209, 203, 213, 0.28)",
+                      },
                     }}
                     onClick={() => setEditingMessageId(null)}
                   >
@@ -243,7 +258,7 @@ const EventDiscussionTab = React.memo(
               )}
               <Typography
                 fontSize={"0.80rem"}
-                color={"GrayText"}
+                color={"text.footer"}
                 letterSpacing={"-0.02rem"}
                 marginTop={0.3}
               >
@@ -263,7 +278,7 @@ const EventDiscussionTab = React.memo(
                   <ModeEditOutlinedIcon
                     fontSize="inherit"
                     sx={{
-                      "&:hover": { color: "#7cb342" },
+                      "&:hover": { color: "rgba(236, 209, 65, 1)" },
                     }}
                     onClick={() =>
                       handleSetMessageForEditing(data.messageId, data.message)
@@ -280,7 +295,7 @@ const EventDiscussionTab = React.memo(
                   <DeleteOutlinedIcon
                     fontSize="inherit"
                     sx={{
-                      "&:hover": { color: "#f44336" },
+                      "&:hover": { color: "error.main" },
                     }}
                   />
                 </IconButton>
@@ -314,7 +329,6 @@ const EventDiscussionTab = React.memo(
               onChange={handleInputChange}
               sx={{
                 width: "100%",
-                backgroundColor: "#efefef",
                 margin: 0.5,
               }}
               endAdornment={

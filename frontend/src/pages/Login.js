@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
+import Links from "@mui/material/Link";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
@@ -73,7 +74,9 @@ export default function Login() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ margin: 1, bgcolor: "primary.main" }}>
+          <Avatar
+            sx={{ margin: 1, bgcolor: "primary.main", color: "text.primary" }}
+          >
             <LockOpenIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -83,7 +86,7 @@ export default function Login() {
             component="form"
             noValidate
             onSubmit={handleSubmit(handleFormSubmit)}
-            marginTop={1}
+            marginTop={3}
           >
             <TextField
               id="email"
@@ -105,8 +108,8 @@ export default function Login() {
                     "please enter a valid email address",
                 },
               })}
-              error={!!errors.email}
-              helperText={errors.email?.message}
+              error={formState.isSubmitted && !!errors.email}
+              helperText={formState.isSubmitted && errors.email?.message}
               fullWidth
             />
             <TextField
@@ -125,8 +128,8 @@ export default function Login() {
                     "password should be at least 6 characters long",
                 },
               })}
-              error={!!errors.password}
-              helperText={errors.password?.message}
+              error={formState.isSubmitted && !!errors.password}
+              helperText={formState.isSubmitted && errors.password?.message}
               fullWidth
             />
             <Collapse in={isAlertOpen}>
@@ -141,7 +144,7 @@ export default function Login() {
                     <CloseIcon fontSize="inherit" />
                   </IconButton>
                 }
-                sx={{ mt: 2 }}
+                sx={{ marginTop: 2 }}
               >
                 {alertMessage}
               </Alert>
@@ -158,7 +161,7 @@ export default function Login() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="/signup" variant="body2">
-                  Don't have an account? Sign up
+                  <Links>Don't have an account? Sign up</Links>
                 </Link>
               </Grid>
             </Grid>

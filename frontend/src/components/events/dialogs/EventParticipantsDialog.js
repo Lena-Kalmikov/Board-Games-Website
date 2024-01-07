@@ -14,7 +14,7 @@ const DialogDiv = styled("div")({
   marginBottom: 8,
   transition: "backgroundColor 0.3s",
   "&:hover": {
-    backgroundColor: "#eee",
+    backgroundColor: "#6c7173",
   },
 });
 

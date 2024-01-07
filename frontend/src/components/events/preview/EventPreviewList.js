@@ -10,7 +10,6 @@ export default function EventPreviewList({ events, justifyContent }) {
         flexWrap: { xs: "wrap" },
         flexDirection: "row",
         justifyContent: {justifyContent},
-        backgroundColor: "lightgreen",
       }}
     >
       {events ? (

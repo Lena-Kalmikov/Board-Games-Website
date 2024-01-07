@@ -64,6 +64,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
         Games:&nbsp;
         {eventGames?.map((game) => (
           <Link
+            color="secondary"
             style={{ cursor: "pointer" }}
             key={game.id}
             onClick={() => handleGameLinkClick(game)}

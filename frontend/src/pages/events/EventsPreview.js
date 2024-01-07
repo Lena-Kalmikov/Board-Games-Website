@@ -23,7 +23,7 @@ export default function EventsPreview({ events }) {
               display: "flex",
               flexWrap: { xs: "wrap" },
               flexDirection: "row",
-              justifyContent: "center",
+              justifyContent: "flex-start",
             }}
           >
             {Array(skeletonNumber)

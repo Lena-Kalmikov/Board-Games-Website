@@ -21,14 +21,14 @@ export default function SearchBar({ onSearch }) {
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon
-                sx={{ color: "primary.dark", marginRight: 1, marginLeft: 0.5 }}
+                sx={{ color: "primary.main", marginRight: 1, marginLeft: 0.5 }}
               />
             </InputAdornment>
           ),
           sx: {
             fontSize: "1.1rem",
             borderRadius: 5,
-            backgroundColor: "rgba(247, 247, 247, 0.8)",
+            backgroundColor: "default",
             boxShadow: 1,
             width: 350,
           },

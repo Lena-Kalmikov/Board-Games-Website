@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
+import Links from "@mui/material/Link";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Collapse from "@mui/material/Collapse";
@@ -35,13 +36,11 @@ export default function SignUp() {
   const [alertMessage, setAlertMessage] = useState("");
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: "all",
   });
+
+  const { errors } = formState;
 
   const handleFormSubmit = async (data) => {
     try {
@@ -107,7 +106,9 @@ export default function SignUp() {
             marginTop: 4,
           }}
         >
-          <Avatar sx={{ margin: 1, bgcolor: "primary.main" }}>
+          <Avatar
+            sx={{ margin: 1, bgcolor: "primary.main", color: "text.primary" }}
+          >
             <LockOpenIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -130,8 +131,10 @@ export default function SignUp() {
                   {...register("firstName", {
                     required: "first name is required",
                   })}
-                  error={!!errors.firstName}
-                  helperText={errors.firstName?.message}
+                  error={formState.isSubmitted && !!errors.firstName}
+                  helperText={
+                    formState.isSubmitted && errors.firstName?.message
+                  }
                   fullWidth
                 />
               </Grid>
@@ -145,8 +148,8 @@ export default function SignUp() {
                   {...register("lastName", {
                     required: "last name is required",
                   })}
-                  error={!!errors.lastName}
-                  helperText={errors.lastName?.message}
+                  error={formState.isSubmitted && !!errors.lastName}
+                  helperText={formState.isSubmitted && errors.lastName?.message}
                   fullWidth
                 />
               </Grid>
@@ -166,8 +169,8 @@ export default function SignUp() {
                         "please enter a valid email address",
                     },
                   })}
-                  error={!!errors.email}
-                  helperText={errors.email?.message}
+                  error={formState.isSubmitted && !!errors.email}
+                  helperText={formState.isSubmitted && errors.email?.message}
                   fullWidth
                 />
               </Grid>
@@ -187,8 +190,8 @@ export default function SignUp() {
                         "password should be at least 6 characters long",
                     },
                   })}
-                  error={!!errors.password}
-                  helperText={errors.password?.message}
+                  error={formState.isSubmitted && !!errors.password}
+                  helperText={formState.isSubmitted && errors.password?.message}
                   fullWidth
                 />
               </Grid>
@@ -219,7 +222,7 @@ export default function SignUp() {
                   sx={{
                     width: 140,
                     height: 140,
-                    bgcolor: "rgba(25,118,210,0.57)",
+                    bgcolor: "text.secondary",
                   }}
                   src={preview}
                 ></Avatar>
@@ -254,7 +257,7 @@ export default function SignUp() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="/login" variant="body2">
-                  Already have an account? Log in
+                  <Links>Already have an account? Log in</Links>
                 </Link>
               </Grid>
             </Grid>

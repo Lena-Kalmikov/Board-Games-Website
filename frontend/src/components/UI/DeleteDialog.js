@@ -9,21 +9,23 @@ export default function DeleteDialog({ isOpen, onClose, onDelete, item }) {
   return (
     <Dialog open={isOpen} keepMounted onClose={onClose}>
       <DialogContent>
-        <DialogContentText color="black" mt={2} mb={-1}>
+        <DialogContentText color="text.primary" mt={2} mb={-1}>
           Are you sure you want to delete this {item}?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button
           sx={{
-            color: "salmon",
-            "&:hover": { backgroundColor: "#fff6f3" },
+            color: "error.main",
+            "&:hover": { backgroundColor: "background.deleteHover" },
           }}
           onClick={onDelete}
         >
           Delete
         </Button>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={onClose} color={"secondary"}>
+          Cancel
+        </Button>
       </DialogActions>
     </Dialog>
   );

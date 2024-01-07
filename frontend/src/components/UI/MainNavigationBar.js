@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { useAuth } from "../../context/auth-context";
 import { logout, useAuth } from "../../firebase";
 
 import Box from "@mui/material/Box";
@@ -53,8 +52,9 @@ export default function MainNavigation() {
   };
 
   const StyledButton = styled(Button)({
-    color: "white",
+    color: "inherit",
     display: "block",
+    borderRadius: 50,
     textTransform: "none",
     fontSize: 16,
   });
@@ -64,7 +64,7 @@ export default function MainNavigation() {
     fontFamily: "monospace",
     fontWeight: 700,
     letterSpacing: "0.3rem",
-    color: "inherit",
+    color: "#f13c87",
     textDecoration: "none",
   });
 
@@ -73,10 +73,13 @@ export default function MainNavigation() {
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <ExtensionIcon
-            sx={{ display: { xs: "none", sm: "flex" }, marginRight: 1 }}
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              marginRight: 1,
+              color: "primary.main",
+            }}
           />
           <StyledTypography
-            variant="h6"
             noWrap
             component={Link}
             to="/"
@@ -87,7 +90,6 @@ export default function MainNavigation() {
           >
             PlayDate
           </StyledTypography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", sm: "none" } }}>
             <IconButton
               size="large"
@@ -148,16 +150,20 @@ export default function MainNavigation() {
             </Menu>
           </Box>
           <ExtensionIcon
-            sx={{ display: { xs: "flex", sm: "none" }, marginRight: 1 }}
+            sx={{
+              display: { xs: "flex", sm: "none" },
+              marginRight: 1,
+              color: "primary.main",
+            }}
           />
           <StyledTypography
-            variant="h5"
             noWrap
             component={Link}
             to="/"
             sx={{
               display: { xs: "flex", sm: "none" },
               flexGrow: 1,
+              fontSize: 25,
             }}
           >
             PlayDate

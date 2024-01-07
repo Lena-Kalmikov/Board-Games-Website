@@ -23,6 +23,8 @@ import CardContent from "@mui/material/CardContent";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
 export default function Event({ events, users, games, discussionBoards }) {
+
+  
   const currentUser = useAuth();
   const navigate = useNavigate();
   const { eventId } = useParams();
@@ -88,7 +90,7 @@ export default function Event({ events, users, games, discussionBoards }) {
         {event ? (
           <Card
             sx={{
-              backgroundColor: "#FCFDFF",
+              backgroundColor: "paper",
             }}
           >
             <CardMedia
@@ -105,7 +107,8 @@ export default function Event({ events, users, games, discussionBoards }) {
               >
                 <Avatar
                   sx={{
-                    bgcolor: "primary.main",
+                    bgcolor: "secondary.main",
+                    color: "background.default",
                   }}
                 >
                   <EventIcon />
@@ -118,7 +121,8 @@ export default function Event({ events, users, games, discussionBoards }) {
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Avatar
                   sx={{
-                    bgcolor: "primary.main",
+                    bgcolor: "secondary.main",
+                    color: "background.default",
                   }}
                 >
                   <PlaceIcon />
@@ -127,7 +131,7 @@ export default function Event({ events, users, games, discussionBoards }) {
                   {event.city}, {event.address}
                 </Typography>
               </Box>
-              <Divider sx={{ marginTop: 1.5 }} />
+              <Divider sx={{ marginTop: 2.5 }} />
               <Box
                 sx={{
                   borderBottom: 1,
@@ -139,8 +143,10 @@ export default function Event({ events, users, games, discussionBoards }) {
                   onClick={() => handleTabClick("about")}
                   sx={{
                     borderBottom:
-                      activeTab === "about" ? "2px solid #92beef" : "none",
+                      activeTab === "about" ? "3px solid #15E9C5" : "none",
                     borderRadius: "0",
+                    color: "text.primary",
+                    marginBottom: -0.2,
                   }}
                 >
                   About
@@ -149,14 +155,16 @@ export default function Event({ events, users, games, discussionBoards }) {
                   onClick={() => handleTabClick("discussion")}
                   sx={{
                     borderBottom:
-                      activeTab === "discussion" ? "2px solid #92beef" : "none",
+                      activeTab === "discussion" ? "3px solid #15E9C5" : "none",
                     borderRadius: "0",
+                    color: "text.primary",
+                    marginBottom: -0.2,
                   }}
                 >
                   Discussion
                 </Button>
                 <Button
-                  color="secondary"
+                  color="primary"
                   onClick={handleGoingToEvent}
                   disabled={currentUser?.uid === event.creator}
                   sx={{
@@ -165,6 +173,9 @@ export default function Event({ events, users, games, discussionBoards }) {
                     borderRadius: 5,
                     marginLeft: "auto",
                     alignSelf: "flex-end",
+                    boxShadow: !isLoggedUserParticipantInEvent
+                      ? "0px 0px 3px 1px #F53B7F"
+                      : "none",
                   }}
                   variant={
                     isLoggedUserParticipantInEvent ? "contained" : "outlined"

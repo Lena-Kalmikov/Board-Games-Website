@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { v4 as uuidv4 } from "uuid";
 
 import { getFirestore } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -83,7 +83,10 @@ export async function uploadImage(file, setLoading) {
 
   setLoading(true);
 
-  // const snapshot = await uploadBytes(fileRef, file);
+  // Upload the file to Firebase Storage
+  await uploadBytes(fileRef, file);
+
+  // After the upload is complete, get the download URL
   const imageUrl = await getDownloadURL(fileRef);
 
   setLoading(false);

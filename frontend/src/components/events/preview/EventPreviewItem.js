@@ -32,7 +32,7 @@ export default function EventPreviewItem(props) {
         maxWidth: 300,
         margin: 1,
         marginTop: 2,
-        backgroundColor: "#FCFDFF",
+        backgroundColor: "paper",
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",
@@ -43,7 +43,7 @@ export default function EventPreviewItem(props) {
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center", // Center vertically
+          justifyContent: "center"
         }}
       >
         <Typography color="text.secondary">

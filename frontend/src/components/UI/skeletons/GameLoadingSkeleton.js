@@ -15,6 +15,9 @@ export default function GameLoadingSkeleton() {
       <Skeleton width="90%" />
       <Skeleton width="90%" />
       <Skeleton width="90%" />
+      <Skeleton width="90%" />
+      <Skeleton width="90%" />
+      <Skeleton width="90%" />
     </Stack>
   );
 }

@@ -34,9 +34,7 @@ export default function UserEvents({ events }) {
 
     return (
       <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
-        <Box
-          margin={5}
-        >
+        <Box margin={5}>
           <Divider fullWidth textAlign="left" sx={{ width: "100%" }}>
             Events created by me
           </Divider>
@@ -46,7 +44,7 @@ export default function UserEvents({ events }) {
               justifyContent={"flex-start"}
             />
           ) : (
-            <Typography>
+            <Typography marginTop={3}>
               No events found.{" "}
               <Links component={Link} to={`/${currentUser.uid}/createEvent`}>
                 Create new event
@@ -68,7 +66,7 @@ export default function UserEvents({ events }) {
               justifyContent={"flex-start"}
             />
           ) : (
-            <Typography>
+            <Typography marginTop={3}>
               No events found. Check upcoming{" "}
               <Links component={Link} to="/events">
                 events
