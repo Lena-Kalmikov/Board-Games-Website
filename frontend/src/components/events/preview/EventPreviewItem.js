@@ -6,6 +6,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import DeleteDialog from "../../UI/DeleteDialog";
 import moment from "moment";
 
+import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
@@ -43,7 +44,7 @@ export default function EventPreviewItem(props) {
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Typography color="text.secondary">
@@ -66,25 +67,27 @@ export default function EventPreviewItem(props) {
             Explore event
           </Button>
           {props.creator === currentUser?.uid && (
-            <IconButton
-              sx={{
-                marginLeft: 0.5,
-                fontSize: 23,
-                "&:hover": { color: "red" },
-              }}
-              onClick={() => {
-                setIsDeleteDialogOpen(true);
-              }}
-            >
-              <DeleteOutlinedIcon
-                fontSize="inherit"
+            <Tooltip title="Delete event">
+              <IconButton
                 sx={{
-                  color: "#f44336",
-                  borderBlockColor: "#f44336",
+                  marginLeft: 0.5,
+                  fontSize: 23,
                   "&:hover": { color: "red" },
                 }}
-              />
-            </IconButton>
+                onClick={() => {
+                  setIsDeleteDialogOpen(true);
+                }}
+              >
+                <DeleteOutlinedIcon
+                  fontSize="inherit"
+                  sx={{
+                    color: "#f44336",
+                    borderBlockColor: "#f44336",
+                    "&:hover": { color: "red" },
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
           )}
         </Box>
       </CardContent>

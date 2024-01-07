@@ -14,7 +14,7 @@ export default function EventsPreview({ events }) {
     <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Box
         sx={{
-          margin: { xs: 0, sm: 7 },
+          margin: { xs: 0, sm: 10 },
         }}
       >
         {isLoading ? (
@@ -33,7 +33,7 @@ export default function EventsPreview({ events }) {
               ))}
           </Box>
         ) : (
-          <EventPreviewList events={events} justifyContent={"flex-start"} />
+          <EventPreviewList events={events} justifyContent={"center"} />
         )}
       </Box>
     </Fade>

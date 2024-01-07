@@ -69,7 +69,7 @@ export default function MainNavigation() {
   });
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "background.navBar" }}>
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <ExtensionIcon
