@@ -10,6 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import DeleteDialog from "../../UI/DeleteDialog";
+import CardActions from "@mui/material/CardActions";
 
 export default function EventPreviewItem(props) {
   const currentUser = useAuth();
@@ -29,10 +30,18 @@ export default function EventPreviewItem(props) {
         margin: 1.5,
         backgroundColor: "#FCFDFF",
         borderRadius: 2,
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <CardMedia sx={{ height: 190, width: 450 }} image={props.image} />
-      <CardContent>
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center", // Center vertically
+        }}
+      >
         <Typography color="text.secondary">
           {moment(props.date).format("DD/MM/YYYY")} at{" "}
           {moment(props.time, "HH:mm").format("HH:mm")}
@@ -41,37 +50,39 @@ export default function EventPreviewItem(props) {
           {props.title}
         </Typography>
         <Typography color="text.secondary">
-          {props.city}, {props.address}
+          {props.city}
         </Typography>
-        <Button
-          fullWidth
-          variant="outlined"
-          sx={{ marginTop: 2, textTransform: "none" }}
-          component={Link}
-          to={`/events/${props.id}`}
-        >
-          Explore event
-        </Button>
-        {props.creator === currentUser?.uid && (
+
           <Button
             fullWidth
             variant="outlined"
-            sx={{
-              marginTop: 2,
-              borderColor: "salmon",
-              color: "salmon",
-              "&:hover": {
-                backgroundColor: "#fff6f3",
-                borderColor: "salmon",
-              },
-            }}
-            onClick={() => {
-              setIsDeleteDialogOpen(true);
-            }}
+            sx={{ textTransform: "none", marginTop: 2 }}
+            component={Link}
+            to={`/events/${props.id}`}
           >
-            Delete Event
+            Explore event
           </Button>
-        )}
+          {props.creator === currentUser?.uid && (
+            <Button
+              fullWidth
+              variant="outlined"
+              sx={{
+                marginTop: 0.5,
+                marginBottom: -1,
+                borderColor: "salmon",
+                color: "salmon",
+                "&:hover": {
+                  backgroundColor: "#fff6f3",
+                  borderColor: "salmon",
+                },
+              }}
+              onClick={() => {
+                setIsDeleteDialogOpen(true);
+              }}
+            >
+              Delete Event
+            </Button>
+          )}
       </CardContent>
       <DeleteDialog
         isOpen={isDeleteDialogOpen}

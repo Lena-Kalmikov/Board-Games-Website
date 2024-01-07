@@ -38,7 +38,7 @@ export default function UserEvents({ events }) {
           margin={5}
           display={"flex"}
           flexDirection={"column"}
-          alignItems={"flex-start"}
+          sx={{alignItems:{md:"center", lg:"flex-start"} }}
         >
           <Divider fullWidth textAlign="left" sx={{ width: "100%" }}>
             Events created by me
@@ -54,7 +54,11 @@ export default function UserEvents({ events }) {
               {"."}
             </Typography>
           )}
-          <Divider fullWidth textAlign="left" sx={{ width: "100%", marginTop:4 }}>
+          <Divider
+            fullWidth
+            textAlign="left"
+            sx={{ width: "100%", marginTop: 4 }}
+          >
             Events I'm attending
           </Divider>
 

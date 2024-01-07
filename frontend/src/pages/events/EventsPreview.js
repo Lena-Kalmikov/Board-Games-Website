@@ -12,7 +12,11 @@ export default function EventsPreview({ events }) {
 
   return (
     <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
-      <Box sx={{ margin: { xs: 0, sm: 7 } }}>
+      <Box
+        sx={{
+          margin: { xs: 0, sm: 7 },
+        }}
+      >
         {isLoading ? (
           <Box
             sx={{
@@ -29,7 +33,16 @@ export default function EventsPreview({ events }) {
               ))}
           </Box>
         ) : (
-          <EventPreviewList events={events} />
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: { xs: "wrap" },
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <EventPreviewList events={events} />
+          </Box>
         )}
       </Box>
     </Fade>

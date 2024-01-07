@@ -58,11 +58,15 @@ export default function Event({ events, users, games, discussionBoards }) {
       return;
     }
 
+    const currentParticipants = Array.isArray(event.participants)
+      ? event.participants
+      : [];
+
     const updatedParticipants = isLoggedUserParticipantInEvent
-      ? event.participants.filter(
+      ? currentParticipants.filter(
           (participantId) => participantId !== currentUser.uid
         )
-      : [...event.participants, currentUser.uid];
+      : [...currentParticipants, currentUser.uid];
 
     setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
 
