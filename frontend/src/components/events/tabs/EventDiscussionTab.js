@@ -66,12 +66,12 @@ const EventDiscussionTab = React.memo(
     });
 
     const handleInputChange = () => {
-      const inputValue = inputRef.current.value.trim();
+      const inputValue = inputRef.current.value;
       setIsButtonDisabled(inputValue === "");
     };
 
     const handleEditedInputChange = () => {
-      const inputValue = editedInputRef.current.value.trim();
+      const inputValue = editedInputRef.current.value;
       setIsEditButtonDisabled(inputValue === "");
       setInputValue(inputValue);
     };
@@ -202,11 +202,12 @@ const EventDiscussionTab = React.memo(
                 backgroundColor: "background.lightPaper",
                 borderRadius: 4,
                 margin: 0.5,
+                marginRight: 2,
                 padding: 1,
                 overflowWrap: "break-word",
               }}
             >
-              <Typography marginBottom={-0.5} fontWeight={"bold"}>
+              <Typography marginBottom={-0.3} fontWeight={"bold"} fontSize={14}>
                 {data.userName}
               </Typography>
               {editingMessageId === data.messageId ? (
@@ -219,6 +220,7 @@ const EventDiscussionTab = React.memo(
                     onChange={handleEditedInputChange}
                     sx={{
                       margin: 0.5,
+                      fontSize: 14,
                     }}
                     endAdornment={
                       <InputAdornment position="end">
@@ -254,7 +256,7 @@ const EventDiscussionTab = React.memo(
                   </Button>
                 </Box>
               ) : (
-                <Typography>{data.message}</Typography>
+                <Typography fontSize={14}>{data.message}</Typography>
               )}
               <Typography
                 fontSize={"0.80rem"}
@@ -318,6 +320,7 @@ const EventDiscussionTab = React.memo(
               display: "flex",
               alignItems: "center",
               marginTop: 3,
+              marginRight: 2,
             }}
           >
             <Avatar src={currentUser.photoURL} />

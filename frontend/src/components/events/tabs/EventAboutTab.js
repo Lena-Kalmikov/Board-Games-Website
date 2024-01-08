@@ -54,12 +54,16 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
       <Typography gutterBottom fontSize={26}>
         {event.title}
       </Typography>
-      <Typography fontSize={15} marginBottom={2}>
+      <Typography color="text.secondary" fontSize={15} marginBottom={2}>
         {event.description}
       </Typography>
-      <Typography>
-        Event by: {eventCreator.firstName} {eventCreator.lastName}
-      </Typography>
+      <Box display={"flex"}>
+        <Typography>Event by:&nbsp;</Typography>
+        <Typography color="text.secondary">
+          {eventCreator.firstName} {eventCreator.lastName}
+        </Typography>
+      </Box>
+
       <Typography sx={{ display: "flex", flexWrap: "wrap" }}>
         Games:&nbsp;
         {eventGames?.map((game) => (

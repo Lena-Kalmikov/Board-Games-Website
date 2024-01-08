@@ -12,11 +12,9 @@ import EventsPreview from "./pages/events/EventsPreview";
 import UserEvents from "./pages/events/UserEvents";
 import CreateEvent from "./pages/events/CreateEvent";
 import ModeIconButton from "./components/UI/ModeIconButton";
-import MainNavigation from "./components/UI/MainNavigationBar";
+import MainNavigation from "./components/UI/navBar/MainNavigationBar";
 
 import { ThemeProvider } from "@mui/material";
-import { styled } from "@mui/system";
-
 import { lightTheme, darkTheme } from "./muiTheme";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
@@ -32,37 +30,37 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-        <Router>
-          <CssBaseline />
-          <MainNavigation />
-          <Routes>
-            <Route path="/" element={<Home events={events} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/games" element={<Games games={games} />} />
-            <Route path="/events" element={<EventsPreview events={events} />} />
-            <Route
-              path="/events/:eventId"
-              element={
-                <Event
-                  events={events}
-                  users={users}
-                  games={games}
-                  discussionBoards={discussionBoards}
-                />
-              }
-            />
-            <Route
-              path="/:userId/myEvents"
-              element={<UserEvents events={events} />}
-            />
-            <Route
-              path="/:userId/createEvent"
-              element={<CreateEvent games={games} />}
-            />
-          </Routes>
-        </Router>
-        <ModeIconButton darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Router>
+        <CssBaseline />
+        <MainNavigation />
+        <Routes>
+          <Route path="/" element={<Home events={events} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/games" element={<Games games={games} />} />
+          <Route path="/events" element={<EventsPreview events={events} />} />
+          <Route
+            path="/events/:eventId"
+            element={
+              <Event
+                events={events}
+                users={users}
+                games={games}
+                discussionBoards={discussionBoards}
+              />
+            }
+          />
+          <Route
+            path="/:userId/myEvents"
+            element={<UserEvents events={events} />}
+          />
+          <Route
+            path="/:userId/createEvent"
+            element={<CreateEvent games={games} />}
+          />
+        </Routes>
+      </Router>
+      <ModeIconButton darkMode={darkMode} setDarkMode={setDarkMode} />
     </ThemeProvider>
   );
 }

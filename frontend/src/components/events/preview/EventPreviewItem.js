@@ -30,8 +30,8 @@ export default function EventPreviewItem(props) {
   return (
     <Card
       sx={{
-        maxWidth: 300,
-        margin: 1,
+        maxWidth: 270,
+        margin: 0.5,
         marginTop: 2,
         backgroundColor: "paper",
         borderRadius: 2,
@@ -39,7 +39,7 @@ export default function EventPreviewItem(props) {
         flexDirection: "column",
       }}
     >
-      <CardMedia sx={{ height: 190, width: 290 }} image={props.image} />
+      <CardMedia sx={{ height: 150, width: 290 }} image={props.image} />
       <CardContent
         sx={{
           display: "flex",
@@ -72,7 +72,10 @@ export default function EventPreviewItem(props) {
                 sx={{
                   marginLeft: 0.5,
                   fontSize: 23,
-                  "&:hover": { color: "red" },
+                  "&:hover": {
+                    color: "error.main",
+                    backgroundColor: "background.deleteHover",
+                  },
                 }}
                 onClick={() => {
                   setIsDeleteDialogOpen(true);
@@ -81,9 +84,7 @@ export default function EventPreviewItem(props) {
                 <DeleteOutlinedIcon
                   fontSize="inherit"
                   sx={{
-                    color: "#f44336",
-                    borderBlockColor: "#f44336",
-                    "&:hover": { color: "red" },
+                    color: "error.main",
                   }}
                 />
               </IconButton>

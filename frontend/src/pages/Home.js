@@ -96,10 +96,11 @@ export default function Home({ events }) {
             flexDirection: { xs: "column", xl: "row" },
             alignItems: "center",
             justifyContent: "center",
-            margin: "auto",
-            maxWidth: { md: 900, xl: 1500 },
+            // margin: "auto",
+            // maxWidth: { md: 900, xl: 1500 },
             // backgroundColor: "rgb(242, 246, 250)",
             marginBottom: 10,
+            // backgroundColor: "white",
           }}
         >
           {isLoading ? (
@@ -118,24 +119,27 @@ export default function Home({ events }) {
                 ))}
             </Box>
           ) : (
-            <EventPreviewList
-              events={events.slice(0, 4)}
-              justifyContent={"center"}
-            />
+            <Box>
+              <EventPreviewList
+                events={events.slice(0, 4)}
+                justifyContent={"center"}
+              />
+              <Links
+                component={Link}
+                to="/events"
+                sx={{
+                  margin: 1,
+                  fontSize: 16,
+                  textTransform: "none",
+                  borderRadius: 2,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Go to events page for more events
+              </Links>
+            </Box>
           )}
-
-          <Links
-            component={Link}
-            to="/events"
-            sx={{
-              margin: 1,
-              fontSize: 16,
-              textTransform: "none",
-              borderRadius: 2,
-            }}
-          >
-            explore more
-          </Links>
         </Box>
       </Fade>
       <Fade in={isComponentLoaded} timeout={{ enter: 1500 }}>

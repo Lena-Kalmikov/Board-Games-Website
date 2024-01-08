@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Controller, set, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import db from "../../firebase";
 import { useAuth, uploadImage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import useImagePreview from "../../hooks/useImagePreview";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
-import dayjs from "dayjs";
 
 import "dayjs/locale/en-gb";
 
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -46,7 +45,7 @@ export default function CreateEvent({ games }) {
 
   const { preview, onSelectFile } = useImagePreview();
 
-  const { register, handleSubmit, formState, control, trigger } = useForm({
+  const { register, handleSubmit, formState, control } = useForm({
     mode: "all",
   });
 
@@ -118,7 +117,7 @@ export default function CreateEvent({ games }) {
               sx={{
                 margin: 1,
                 backgroundColor: "primary.main",
-                color: "text.primary",
+                color: "text.icon",
               }}
             >
               <EditCalendarOutlinedIcon />

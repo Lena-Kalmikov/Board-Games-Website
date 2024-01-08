@@ -174,7 +174,7 @@ export default function Event({ events, users, games, discussionBoards }) {
                     marginLeft: "auto",
                     alignSelf: "flex-end",
                     boxShadow: !isLoggedUserParticipantInEvent
-                      ? "0px 0px 3px 1px #F53B7F"
+                      ? "0px 0px 3px 1px #B63EFD"
                       : "none",
                   }}
                   variant={
