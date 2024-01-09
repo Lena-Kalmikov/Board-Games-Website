@@ -3,9 +3,9 @@ import db from "../firebase";
 import {
   collection,
   onSnapshot,
+  orderBy,
   query,
   where,
-  orderBy,
 } from "firebase/firestore";
 
 function useFetchSortedDataFromFirestore(collectionName) {

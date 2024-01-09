@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import db from "../../firebase";
 import moment from "moment";
+import db from "../../firebase";
 import { useAuth } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
+
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventAboutTab from "../../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
@@ -23,21 +24,19 @@ import CardContent from "@mui/material/CardContent";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
 export default function Event({ events, users, games, discussionBoards }) {
-
-  
-  const currentUser = useAuth();
   const navigate = useNavigate();
+  const currentUser = useAuth();
   const { eventId } = useParams();
-  const [event, setEvent] = useState(null);
   const isComponentLoaded = useFadeInEffect();
 
+  const [event, setEvent] = useState(null);
+  const [activeTab, setActiveTab] = useState("about");
   const [isLoggedUserParticipantInEvent, setIsLoggedUserParticipantInEvent] =
     useState(false);
 
   useEffect(() => {
     // Find the specific event using the eventId
     const currentEvent = events?.find((event) => event.id === eventId);
-
     if (currentEvent) {
       setEvent(currentEvent);
       if (currentUser) {
@@ -48,7 +47,6 @@ export default function Event({ events, users, games, discussionBoards }) {
     }
   }, [eventId, events, currentUser, navigate]);
 
-  const [activeTab, setActiveTab] = useState("about");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -168,10 +166,10 @@ export default function Event({ events, users, games, discussionBoards }) {
                   onClick={handleGoingToEvent}
                   disabled={currentUser?.uid === event.creator}
                   sx={{
-                    textTransform: "none",
                     margin: 1,
                     borderRadius: 5,
                     marginLeft: "auto",
+                    textTransform: "none",
                     alignSelf: "flex-end",
                     boxShadow: !isLoggedUserParticipantInEvent
                       ? "0px 0px 3px 1px #B63EFD"

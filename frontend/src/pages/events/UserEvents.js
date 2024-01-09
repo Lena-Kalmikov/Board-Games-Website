@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../../firebase";
 import { Link, useParams } from "react-router-dom";
+
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventPreviewList from "../../components/events/preview/EventPreviewList";
 import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsLoadingSkeleton";

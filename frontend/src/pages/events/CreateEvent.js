@@ -5,15 +5,15 @@ import db from "../../firebase";
 import { useAuth, uploadImage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+
 import useImagePreview from "../../hooks/useImagePreview";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
-
-import "dayjs/locale/en-gb";
 
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import "dayjs/locale/en-gb";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -33,17 +33,16 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 
 export default function CreateEvent({ games }) {
-  const [photo, setPhoto] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-
+  const navigate = useNavigate();
+  const isComponentLoaded = useFadeInEffect();
+  const { preview, onSelectFile } = useImagePreview();
   const currentUser = useAuth();
   const creator = currentUser?.uid;
 
-  const navigate = useNavigate();
-  const isComponentLoaded = useFadeInEffect();
-
-  const { preview, onSelectFile } = useImagePreview();
+  const [photo, setPhoto] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const { register, handleSubmit, formState, control } = useForm({
     mode: "all",
@@ -51,11 +50,13 @@ export default function CreateEvent({ games }) {
 
   const { errors } = formState;
 
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
-
   const handleImageChange = (e) => {
     onSelectFile(e);
     setPhoto(e.target.files[0]);
+  };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
   };
 
   const addEventToFirebase = async (eventData) => {
@@ -76,19 +77,18 @@ export default function CreateEvent({ games }) {
         imageUrl = await uploadImage(photo, setIsLoading);
       }
 
-      // Convert date and time to ISO strings
       const date = data.date.toISOString();
       const time = data.time.toISOString();
 
       const eventData = {
         ...data,
-        date, // Send date as ISO string
-        time, // Send time as ISO string
-        games: gameIds, // Send only game IDs
-        image: imageUrl, // Send image URL
+        date,
+        time,
         creator,
-        participants: [creator], // Add creator to participants
+        image: imageUrl,
         isDeleted: false,
+        games: gameIds,
+        participants: [creator],
       };
       addEventToFirebase(eventData);
       navigate("/events");
@@ -99,25 +99,21 @@ export default function CreateEvent({ games }) {
     setIsLoading(false);
   };
 
-  const handleAlertClose = () => {
-    setIsAlertOpen(false);
-  };
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
       <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
         <Container maxWidth="xs">
           <Box
+            marginTop={2}
             display={"flex"}
             flexDirection={"column"}
             alignItems={"center"}
-            marginTop={2}
           >
             <Avatar
               sx={{
                 margin: 1,
-                backgroundColor: "primary.main",
                 color: "text.icon",
+                backgroundColor: "primary.main",
               }}
             >
               <EditCalendarOutlinedIcon />
@@ -134,7 +130,6 @@ export default function CreateEvent({ games }) {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
-                    id="title"
                     name="title"
                     label="Title"
                     required
@@ -148,32 +143,6 @@ export default function CreateEvent({ games }) {
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  {/* <TextField
-                  id="date"
-                  name="date"
-                  label="Date"
-                  type="date"
-                  required
-                  fullWidth
-                  size="small"
-                  error={formState.isSubmitted && !!errors.date}
-                  helperText={formState.isSubmitted && errors.date?.message}
-                  onBlur={() => {
-                    trigger("date");
-                  }}
-                  {...register("date", {
-                    required: "date is required",
-                    validate: (value) => {
-                      const selectedDate = new Date(value);
-                      const currentDate = new Date();
-                      currentDate.setHours(0, 0, 0, 0);
-                      return (
-                        selectedDate >= currentDate ||
-                        "date must be in the future"
-                      );
-                    },
-                  })}
-                /> */}
                   <Controller
                     name="date"
                     control={control}
@@ -208,20 +177,6 @@ export default function CreateEvent({ games }) {
                   />
                 </Grid>
                 <Grid item xs={6}>
-                  {/* <TextField
-                  id="time"
-                  name="time"
-                  label="Time"
-                  type="time"
-                  required
-                  fullWidth
-                  size="small"
-                  error={formState.isSubmitted && !!errors.time}
-                  helperText={formState.isSubmitted && errors.time?.message}
-                  {...register("time", {
-                    required: "time is required",
-                  })}
-                /> */}
                   <Controller
                     name="time"
                     control={control}
@@ -247,7 +202,6 @@ export default function CreateEvent({ games }) {
                 </Grid>
                 <Grid item xs={4}>
                   <TextField
-                    id="city"
                     name="city"
                     label="City"
                     required
@@ -328,7 +282,6 @@ export default function CreateEvent({ games }) {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    id="description"
                     name="description"
                     label="Description"
                     required
@@ -387,7 +340,7 @@ export default function CreateEvent({ games }) {
               <Collapse in={isAlertOpen}>
                 <Alert
                   severity="error"
-                  sx={{ marginTop: 2 }}
+                  variant="filled"
                   action={
                     <IconButton
                       aria-label="close"
@@ -397,6 +350,11 @@ export default function CreateEvent({ games }) {
                       <CloseIcon fontSize="inherit" />
                     </IconButton>
                   }
+                  sx={{
+                    marginTop: 2,
+                    color: "white",
+                    backgroundColor: "error.main",
+                  }}
                 >
                   {alertMessage}
                 </Alert>

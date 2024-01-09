@@ -1,6 +1,6 @@
-// import { useAuth } from "../context/auth-context";
 import { useAuth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
+
 import useFadeInEffect from "../hooks/useFadeInEffect";
 import EventPreviewList from "../components/events/preview/EventPreviewList";
 import EventPreviewLoadingSkeleton from "../components/UI/skeletons/EventPreviewLoadingSkeleton";
@@ -12,12 +12,12 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function Home({ events }) {
+  const navigate = useNavigate();
   const currentUser = useAuth();
-  const isLoading = events.length === 0;
-
   const isComponentLoaded = useFadeInEffect();
 
-  const navigate = useNavigate();
+  const skeletonNumber = 4;
+  const isLoading = events.length === 0;
 
   const redirectToCreateNewEvent = () => {
     if (!currentUser) {
@@ -26,8 +26,6 @@ export default function Home({ events }) {
     }
     navigate(`/${currentUser.uid}/createEvent`);
   };
-
-  const skeletonNumber = 4;
 
   return (
     <Box sx={{ margin: 2, marginBottom: 10 }}>
@@ -96,11 +94,7 @@ export default function Home({ events }) {
             flexDirection: { xs: "column", xl: "row" },
             alignItems: "center",
             justifyContent: "center",
-            // margin: "auto",
-            // maxWidth: { md: 900, xl: 1500 },
-            // backgroundColor: "rgb(242, 246, 250)",
             marginBottom: 10,
-            // backgroundColor: "white",
           }}
         >
           {isLoading ? (

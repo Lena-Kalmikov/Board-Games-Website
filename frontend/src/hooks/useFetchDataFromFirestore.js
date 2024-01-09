@@ -15,6 +15,7 @@ export default function useFetchDataFromFirestore(collectionName) {
           setData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         }
       );
+      
       // Cleanup the listener when the component unmounts
       return () => {
         unsubscribe();

@@ -53,7 +53,7 @@ export default function Login() {
         setAlertMessage("email or password is incorrect, try again");
         setIsAlertOpen(true);
       }
-      setAlertMessage(error.code);
+      // setAlertMessage(error.code);
     }
     setIsLoading(false);
   };
@@ -89,7 +89,6 @@ export default function Login() {
             marginTop={3}
           >
             <TextField
-              id="email"
               name="email"
               label="Email Address"
               type="email"
@@ -114,7 +113,6 @@ export default function Login() {
             />
             <TextField
               margin="normal"
-              id="password"
               name="password"
               label="Password"
               type="password"
@@ -135,6 +133,7 @@ export default function Login() {
             <Collapse in={isAlertOpen}>
               <Alert
                 severity="error"
+                variant="filled"
                 action={
                   <IconButton
                     aria-label="close"
@@ -144,7 +143,11 @@ export default function Login() {
                     <CloseIcon fontSize="inherit" />
                   </IconButton>
                 }
-                sx={{ marginTop: 2 }}
+                sx={{
+                  marginTop: 2,
+                  color: "white",
+                  backgroundColor: "error.main",
+                }}
               >
                 {alertMessage}
               </Alert>

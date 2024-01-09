@@ -9,7 +9,6 @@ import Fade from "@mui/material/Fade";
 import Stack from "@mui/material/Stack";
 
 export default function Games({ games}) {
-
   const isComponentLoaded = useFadeInEffect();
   const isLoading = games.length === 0;
   const { filteredData, filterData } = useInputSearch(games, "title");
