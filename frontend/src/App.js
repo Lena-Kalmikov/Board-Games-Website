@@ -12,7 +12,7 @@ import EventsPreview from "./pages/events/EventsPreview";
 import UserEvents from "./pages/events/UserEvents";
 import CreateEvent from "./pages/events/CreateEvent";
 import ModeIconButton from "./components/UI/ModeIconButton";
-import MainNavigation from "./components/UI/navBar/MainNavigationBar";
+import NavigationBar from "./components/UI/navBar/NavigationBar";
 
 import { ThemeProvider } from "@mui/material";
 import { lightTheme, darkTheme } from "./muiTheme";
@@ -32,7 +32,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <CssBaseline />
-        <MainNavigation />
+        <NavigationBar />
         <Routes>
           <Route path="/" element={<Home events={events} />} />
           <Route path="/login" element={<Login />} />

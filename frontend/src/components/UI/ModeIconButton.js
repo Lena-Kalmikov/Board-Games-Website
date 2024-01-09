@@ -1,8 +1,7 @@
-import React from "react";
+import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Box from "@mui/material/Box";
 
 export default function ModeIconButton({ darkMode, setDarkMode }) {
   return (
@@ -18,7 +17,7 @@ export default function ModeIconButton({ darkMode, setDarkMode }) {
         onClick={() => setDarkMode(!darkMode)}
         color="inherit"
       >
-        {darkMode ? <Brightness7Icon />:<Brightness4Icon />}
+        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </Box>
   );

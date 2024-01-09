@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 
-import Typography from "@mui/material/Typography";
 import styled from "@mui/system/styled";
+import Typography from "@mui/material/Typography";
 
-export function SiteName({ display, fontSize, hoverFontSize }) {
+export function SiteName() {
   const StyledSiteNameTypography = styled(Typography)({
     marginRight: 2,
     fontFamily: "monospace",
     fontWeight: 700,
     letterSpacing: "0.3rem",
     textDecoration: "none",
-    fontSize: fontSize,
+    fontSize: 26,
     "&:hover": {
-      fontSize: hoverFontSize,
+      fontSize: 28,
     },
   });
 
@@ -23,7 +23,12 @@ export function SiteName({ display, fontSize, hoverFontSize }) {
       to="/"
       color="background.siteName"
       sx={{
-        display: display,
+        flexGrow: { xs: 1, sm: 0 },
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        
       }}
     >
       PlayDate
