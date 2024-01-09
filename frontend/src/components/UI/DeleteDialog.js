@@ -8,7 +8,7 @@ export default function DeleteDialog({ isOpen, onClose, onDelete, item }) {
   return (
     <Dialog open={isOpen} keepMounted onClose={onClose}>
       <DialogContent>
-        <DialogContentText color="text.primary" mt={2} mb={-1}>
+        <DialogContentText color="text.primary" marginTop={2} marginBottom={-1}>
           Are you sure you want to delete this {item}?
         </DialogContentText>
       </DialogContent>

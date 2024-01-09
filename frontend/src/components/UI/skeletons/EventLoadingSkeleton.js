@@ -24,11 +24,11 @@ export default function EventLoadingSkeleton() {
       <CardContent>
         <Box
           sx={{
+            marginTop: -2,
+            marginBottom: 2,
             display: "flex",
             flexDirection: "row",
             width: "95%",
-            marginTop: -2,
-            marginBottom: 2,
           }}
         >
           <Skeleton width="45%" style={{ marginLeft: 3 }} />
@@ -55,12 +55,12 @@ export default function EventLoadingSkeleton() {
         <Skeleton height={12} width="50%" style={{ marginTop: 10 }} />
         <Box
           sx={{
+            width: "95%",
+            marginTop: 2,
+            marginBottom: 2,
             display: "flex",
             flexDirection: "row",
-            width: "95%",
-            marginBottom: 2,
             alignItems: "center",
-            marginTop: 2,
           }}
         >
           <Skeleton

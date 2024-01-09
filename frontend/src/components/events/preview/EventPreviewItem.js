@@ -6,10 +6,10 @@ import { doc, updateDoc } from "firebase/firestore";
 import DeleteDialog from "../../UI/DeleteDialog";
 import moment from "moment";
 
-import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
@@ -21,10 +21,14 @@ export default function EventPreviewItem(props) {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const handleDeleteEvent = async (id) => {
-    const eventRef = doc(db, "events", id);
-    await updateDoc(eventRef, {
-      isDeleted: true,
-    });
+    try {
+      const eventRef = doc(db, "events", id);
+      await updateDoc(eventRef, {
+        isDeleted: true,
+      });
+    } catch (error) {
+      alert("Error deleting event:", error.message);
+    }
   };
 
   return (
@@ -33,10 +37,10 @@ export default function EventPreviewItem(props) {
         maxWidth: 270,
         margin: 0.5,
         marginTop: 2,
-        backgroundColor: "paper",
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "paper",
       }}
     >
       <CardMedia sx={{ height: 150, width: 290 }} image={props.image} />

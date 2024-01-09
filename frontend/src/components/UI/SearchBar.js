@@ -27,8 +27,8 @@ export default function SearchBar({ onSearch }) {
           ),
           sx: {
             fontSize: "1.1rem",
-            borderRadius: 5,
             backgroundColor: "default",
+            borderRadius: 5,
             boxShadow: 1,
             width: 350,
           },

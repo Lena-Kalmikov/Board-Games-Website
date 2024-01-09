@@ -17,17 +17,17 @@ export default function EventPreviewList({ events, justifyContent }) {
           <EventPreviewItem
             key={event.id}
             id={event.id}
-            title={event.title}
-            image={event.image}
             date={event.date}
             time={event.time}
             city={event.city}
+            title={event.title}
+            image={event.image}
             creator={event.creator}
             address={event.address}
           />
         ))
       ) : (
-        <div>No events</div>
+        <div>No events were found</div>
       )}
     </Stack>
   );

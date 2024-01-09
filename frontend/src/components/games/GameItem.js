@@ -7,8 +7,8 @@ export default function GameItem(props) {
   return (
     <Card
       sx={{
-        maxWidth: 350,
         margin: 1,
+        maxWidth: 350,
         backgroundColor: "paper",
       }}
     >

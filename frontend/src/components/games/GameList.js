@@ -6,13 +6,12 @@ export default function GameList({ games }) {
       {games.map((game) => (
         <GameItem
           key={game.id}
-          id={game.id}
           title={game.title}
+          image={game.image}
+          description={game.description}
           minAgeLimit={game.minAgeLimit}
           minParticipantsLimit={game.minParticipantsLimit}
           maxParticipantsLimit={game.maxParticipantsLimit}
-          description={game.description}
-          image={game.image}
         />
       ))}
     </>

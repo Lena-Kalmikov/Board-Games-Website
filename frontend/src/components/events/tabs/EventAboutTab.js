@@ -12,9 +12,9 @@ import AvatarGroup from "@mui/material/AvatarGroup";
 const EventAboutTab = React.memo(({ event, users, games }) => {
   const [gameInDialog, setGameInDialog] = useState(null);
   const [isGameDialogOpen, setIsGameDialogOpen] = useState(false);
-  const [isParticipantDialogOpen, setParticipantDialogOpen] = useState(false);
+  const [isParticipantDialogOpen, setIsParticipantDialogOpen] = useState(false);
 
-  const handleGameLinkClick = (game) => {
+  const handleGameDialogOpen = (game) => {
     setGameInDialog(game);
     setIsGameDialogOpen(true);
   };
@@ -24,11 +24,11 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
   };
 
   const handleParticipantDialogOpen = () => {
-    setParticipantDialogOpen(true);
+    setIsParticipantDialogOpen(true);
   };
 
   const handleParticipantDialogClose = () => {
-    setParticipantDialogOpen(false);
+    setIsParticipantDialogOpen(false);
   };
 
   // comparing eventParticipants ids to the ids in users array and getting their info from it
@@ -71,7 +71,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
             color="secondary"
             style={{ cursor: "pointer" }}
             key={game.id}
-            onClick={() => handleGameLinkClick(game)}
+            onClick={() => handleGameDialogOpen(game)}
             marginRight={1}
           >
             {game.title},
@@ -83,8 +83,8 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
           display: "flex",
           alignItems: { xs: "start", sm: "center" },
           flexDirection: { xs: "column", sm: "row" },
-          marginTop: 1,
           marginBottom: 2,
+          marginTop: 1,
         }}
       >
         <Typography marginRight={1}>Participants:</Typography>
@@ -103,18 +103,18 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
       </Box>
       {eventParticipants && (
         <EventParticipantsDialog
-          isOpen={isParticipantDialogOpen}
-          onClose={handleParticipantDialogClose}
-          participants={eventParticipants}
-          avatarHeight={avatarHeight}
           avatarWidth={avatarWidth}
+          avatarHeight={avatarHeight}
+          isOpen={isParticipantDialogOpen}
+          participants={eventParticipants}
+          onClose={handleParticipantDialogClose}
         />
       )}
       {gameInDialog && (
         <EventGameDialog
+          game={gameInDialog}
           isOpen={isGameDialogOpen}
           onClose={handleGameDialogClose}
-          game={gameInDialog}
         />
       )}
     </Box>
