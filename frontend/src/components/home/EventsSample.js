@@ -6,7 +6,7 @@ import EventPreviewLoadingSkeleton from "../UI/skeletons/EventPreviewLoadingSkel
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
-import Links from "@mui/material/Link";
+import MuiLink from "@mui/material/Link";
 
 export default function EventsSample({ events, isEventsLoading }) {
   const isComponentLoaded = useFadeInEffect();
@@ -62,7 +62,7 @@ export default function EventsSample({ events, isEventsLoading }) {
               events={events?.slice(0, 4)}
               justifyContent={"center"}
             />
-            <Links
+            <MuiLink
               component={Link}
               to="/events"
               sx={{
@@ -75,7 +75,7 @@ export default function EventsSample({ events, isEventsLoading }) {
               }}
             >
               Go to events page for more events
-            </Links>
+            </MuiLink>
           </Box>
         )}
       </Box>

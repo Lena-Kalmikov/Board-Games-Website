@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
-import db from "../../../firebase";
-import { useAuth } from "../../../firebase";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
-import DeleteDialog from "../../UI/DeleteDialog";
+import db from "../../../firebase";
+import { useAuth } from "../../../firebase";
 import {
   collection,
   query,
@@ -17,6 +17,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
+import DeleteDialog from "../../UI/DeleteDialog";
 
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -41,6 +42,13 @@ const EventDiscussionTab = React.memo(
     const [editingMessageId, setEditingMessageId] = useState(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(true);
+
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    const handleRedirectToLogin = () => {
+      navigate("/login", { state: { from: location } });
+    };
 
     const getUserInfo = (userId) => {
       return users?.find((user) => user.id === userId);
@@ -159,8 +167,6 @@ const EventDiscussionTab = React.memo(
             await updateDoc(docRef, {
               content: contentArray,
             });
-
-            // Clear the editing state
             setEditingMessageId(null);
             setIsEditButtonDisabled(true);
           }
@@ -199,17 +205,18 @@ const EventDiscussionTab = React.memo(
               sx={{
                 display: "flex",
                 flexDirection: "column",
+                overflowWrap: "break-word",
                 backgroundColor: "background.lightPaper",
                 borderRadius: 4,
                 margin: 0.5,
                 marginRight: 2,
                 padding: 1,
-                overflowWrap: "break-word",
               }}
             >
               <Typography marginBottom={-0.3} fontWeight={"bold"} fontSize={14}>
                 {data.userName}
               </Typography>
+
               {editingMessageId === data.messageId ? (
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <OutlinedInput
@@ -258,6 +265,7 @@ const EventDiscussionTab = React.memo(
               ) : (
                 <Typography fontSize={14}>{data.message}</Typography>
               )}
+
               <Typography
                 fontSize={"0.80rem"}
                 color={"text.footer"}
@@ -268,6 +276,7 @@ const EventDiscussionTab = React.memo(
                   moment(data.creationTime.toDate()).format("HH:mm DD/MM/YY")}
               </Typography>
             </Box>
+
             {currentUser?.uid === data.userId && (
               <Box
                 sx={{
@@ -276,15 +285,17 @@ const EventDiscussionTab = React.memo(
                   justifyContent: "center",
                 }}
               >
-                <IconButton size="small">
+                <IconButton
+                  size="small"
+                  onClick={() =>
+                    handleSetMessageForEditing(data.messageId, data.message)
+                  }
+                >
                   <ModeEditOutlinedIcon
                     fontSize="inherit"
                     sx={{
                       "&:hover": { color: "rgba(236, 209, 65, 1)" },
                     }}
-                    onClick={() =>
-                      handleSetMessageForEditing(data.messageId, data.message)
-                    }
                   />
                 </IconButton>
                 <IconButton
@@ -305,6 +316,10 @@ const EventDiscussionTab = React.memo(
             )}
           </Box>
         ))}
+
+        {contentData?.length === 0 && <Box>No comments yet.</Box>}
+        {!contentData && <Box>Something went wrong...</Box>}
+        
         <DeleteDialog
           isOpen={isDeleteDialogOpen}
           onClose={() => setIsDeleteDialogOpen(false)}
@@ -314,6 +329,7 @@ const EventDiscussionTab = React.memo(
           }}
           item="message"
         />
+
         {currentUser ? (
           <Box
             sx={{
@@ -365,8 +381,7 @@ const EventDiscussionTab = React.memo(
           >
             <Button
               variant="outlined"
-              component={Link}
-              to="/login"
+              onClick={handleRedirectToLogin}
               sx={{
                 textTransform: "none",
               }}

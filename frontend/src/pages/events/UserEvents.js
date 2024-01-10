@@ -8,7 +8,7 @@ import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsL
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
-import Links from "@mui/material/Link";
+import MuiLink from "@mui/material/Link";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
@@ -46,9 +46,9 @@ export default function UserEvents({ events, isEventsLoading }) {
           ) : (
             <Typography marginTop={3}>
               No events found.{" "}
-              <Links component={Link} to={`/${currentUser.uid}/createEvent`}>
+              <MuiLink component={Link} to={`/${currentUser.uid}/createEvent`}>
                 Create new event
-              </Links>
+              </MuiLink>
               {"."}
             </Typography>
           )}
@@ -64,9 +64,9 @@ export default function UserEvents({ events, isEventsLoading }) {
           ) : (
             <Typography marginTop={3}>
               No events found. Check upcoming{" "}
-              <Links component={Link} to="/events">
+              <MuiLink component={Link} to="/events">
                 events
-              </Links>{" "}
+              </MuiLink>{" "}
               to find one that you like.
             </Typography>
           )}
@@ -83,7 +83,7 @@ export default function UserEvents({ events, isEventsLoading }) {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Links
+        <MuiLink
           component={Link}
           to="/login"
           variant="text"
@@ -93,7 +93,7 @@ export default function UserEvents({ events, isEventsLoading }) {
           }}
         >
           Login
-        </Links>
+        </MuiLink>
         &nbsp;to see your events
       </Box>
     </Fade>

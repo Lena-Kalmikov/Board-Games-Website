@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../firebase";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import useFadeInEffect from "../hooks/useFadeInEffect";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
-import Links from "@mui/material/Link";
+import MuiLink from "@mui/material/Link";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
@@ -34,12 +34,14 @@ export default function Login() {
 
   const { errors } = formState;
 
+  let location = useLocation();
+  let from = location.state?.from || "/";
+
   const handleFormSubmit = async (data) => {
     setIsLoading(true);
     try {
       await login(data.email, data.password);
-      //to-do: change this to navigate to the previous page the user was on
-      navigate("/");
+      navigate(from);
     } catch (error) {
       if (error.code === "auth/wrong-password") {
         setAlertMessage("password is incorrect, try again");
@@ -167,9 +169,9 @@ export default function Login() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/signup" variant="body2">
-                  <Links>Don't have an account? Sign up</Links>
-                </Link>
+                  <MuiLink component={Link} to="/signup" variant="body2">
+                    Don't have an account? Sign up
+                  </MuiLink>
               </Grid>
             </Grid>
           </Box>

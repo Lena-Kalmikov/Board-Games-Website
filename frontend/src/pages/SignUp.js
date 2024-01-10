@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
-import Links from "@mui/material/Link";
+import MuiLink from "@mui/material/Link";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Collapse from "@mui/material/Collapse";
@@ -207,8 +207,8 @@ export default function SignUp() {
                   startIcon={<CloudUploadIcon />}
                   sx={{
                     textTransform: "none",
-                    marginTop: 6.6,
-                    marginBottom: 6.6,
+                    marginTop: 5,
+                    marginBottom: 5,
                   }}
                 >
                   Upload Profile Picture
@@ -225,8 +225,8 @@ export default function SignUp() {
                 </Button>
                 <Avatar
                   sx={{
-                    width: 140,
-                    height: 140,
+                    width: 120,
+                    height: 120,
                     bgcolor: "text.secondary",
                   }}
                   src={preview}
@@ -266,9 +266,9 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/login" variant="body2">
-                  <Links>Already have an account? Log in</Links>
-                </Link>
+                <MuiLink component={Link} to="/login" variant="body2">
+                  Already have an account? Log in
+                </MuiLink>
               </Grid>
             </Grid>
           </Box>

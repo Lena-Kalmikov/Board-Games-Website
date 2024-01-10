@@ -20,14 +20,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 
 export default function App() {
+  const { data: users } = useFetchDataFromFirestore("users");
   const { data: games, isFetchingData: gamesLoading } =
     useFetchDataFromFirestore("games");
-  const { data: users, isFetchingData: usersLoading } =
-    useFetchDataFromFirestore("users");
-  const { data: discussionBoards, isFetchingData: discussionBoardsLoading } =
-    useFetchDataFromFirestore("discussion_boards");
   const { data: events, isFetchingData: eventsLoading } =
     useFetchSortedDataFromFirestore("events");
+  const { data: discussionBoards } =
+    useFetchDataFromFirestore("discussion_boards");
 
   const [darkMode, setDarkMode] = useState(true);
   const theme = darkMode ? darkTheme : lightTheme;

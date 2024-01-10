@@ -12,9 +12,11 @@ export default function CallToAction() {
   const navigate = useNavigate();
   const isComponentLoaded = useFadeInEffect();
 
-  const redirectToCreateNewEvent = () => {
+  const handleRedirectToCreateNewEvent = () => {
     if (!currentUser) {
-      navigate("/login");
+      navigate("/login", {
+        state: { from: `/${currentUser?.uid}/createEvent` },
+      });
       return;
     }
     navigate(`/${currentUser.uid}/createEvent`);
@@ -53,7 +55,7 @@ export default function CallToAction() {
         </Box>
         <Box>
           <Button
-            onClick={redirectToCreateNewEvent}
+            onClick={handleRedirectToCreateNewEvent}
             variant="outlined"
             sx={{ padding: 2, margin: 2, width: 200, borderRadius: 50 }}
           >
