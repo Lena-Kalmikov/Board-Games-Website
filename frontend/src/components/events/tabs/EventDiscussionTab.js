@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
-import db from "../../../firebase";
-import { useAuth } from "../../../firebase";
+import db from "../../../utils/firebase";
+import { useAuth } from "../../../utils/firebase";
 import {
   collection,
   query,

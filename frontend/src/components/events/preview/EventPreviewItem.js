@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import db from "../../../firebase";
-import { useAuth } from "../../../firebase";
+import db from "../../../utils/firebase";
+import { useAuth } from "../../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import DeleteDialog from "../../UI/DeleteDialog";
 import moment from "moment";

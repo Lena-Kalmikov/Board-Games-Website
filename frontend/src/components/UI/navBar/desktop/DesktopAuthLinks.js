@@ -1,7 +1,7 @@
-import { StyledNavLink } from "../Typography/StyledNavLink";
+import StyledNavLink  from "../Typography/StyledNavLink";
 import Box from "@mui/material/Box";
 
-export function DesktopAuthLinks({ handleCloseNavMenu }) {
+export default function DesktopAuthLinks({ handleCloseNavMenu }) {
   return (
     <Box sx={{ display: { xs: "none", sm: "flex" } }}>
       <StyledNavLink onClick={handleCloseNavMenu} to="/login">

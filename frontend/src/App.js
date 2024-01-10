@@ -14,10 +14,10 @@ import CreateEvent from "./pages/events/CreateEvent";
 import ModeIconButton from "./components/UI/ModeIconButton";
 import NavigationBar from "./components/UI/navBar/NavigationBar";
 
-import { ThemeProvider } from "@mui/material";
-import { lightTheme, darkTheme } from "./muiTheme";
-import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
+import { ThemeProvider } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { lightTheme, darkTheme } from "./utils/muiTheme";
 
 export default function App() {
   const { data: users } = useFetchDataFromFirestore("users");

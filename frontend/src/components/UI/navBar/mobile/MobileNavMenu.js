@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 
-export function MobileNavMenu({ currentUser }) {
+export default function MobileNavMenu({ currentUser }) {
   const [anchorElementNav, setAnchorElementNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -22,7 +22,12 @@ export function MobileNavMenu({ currentUser }) {
   return (
     <Box sx={{ display: { xs: "flex", sm: "none" } }}>
       <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
-        <MenuIcon />
+        <MenuIcon
+          sx={{
+            width: 30,
+            height: 30,
+          }}
+        />
       </IconButton>
       <Menu
         anchorEl={anchorElementNav}

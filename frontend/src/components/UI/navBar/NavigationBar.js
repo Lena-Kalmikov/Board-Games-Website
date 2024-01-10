@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../firebase";
+import { useAuth } from "../../../utils/firebase";
 
-import { SiteName } from "./Typography/SiteName";
-import { MobileNavMenu } from "./mobile/MobileNavMenu";
-import { MobileUserMenu } from "./mobile/MobileUserMenu";
-import { DesktopNavLinks } from "./desktop/DesktopNavLinks";
-import { DesktopAuthLinks } from "./desktop/DesktopAuthLinks";
+import MobileNavMenu from "./mobile/MobileNavMenu";
+import DesktopAuthLinks from "./desktop/DesktopAuthLinks";
+import DesktopNavLinks from "./desktop/DesktopNavLinks"
+import SiteName from "./Typography/SiteName"
+import UserAvatarMenu from "./UserAvatarMenu"
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 
-export default function MainNavigation() {
+export default function NavigationBar() {
   const currentUser = useAuth();
 
   const [anchorElementNav, setAnchorElementNav] = useState(null);
@@ -40,7 +40,7 @@ export default function MainNavigation() {
             <DesktopAuthLinks handleCloseNavMenu={handleCloseNavMenu} />
           )}
           {currentUser && (
-            <MobileUserMenu
+            <UserAvatarMenu
               handleOpenUserMenu={handleOpenUserMenu}
               currentUser={currentUser}
             />

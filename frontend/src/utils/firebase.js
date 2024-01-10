@@ -60,20 +60,47 @@ export function useAuth() {
 }
 
 // storage related functions
+// export async function upload(file, currentUser, setLoading) {
+//   const fileRef = ref(storage, currentUser.uid + ".png");
+
+//   setLoading(true);
+
+//   // const snapshot = await uploadBytes(fileRef, file);
+//   const photoURL = await getDownloadURL(fileRef);
+
+//   //updateProfile(currentUser, { photoURL });
+
+//   setLoading(false);
+//   //alert("Uploaded file!");
+
+//   return photoURL;
+// }
+
 export async function upload(file, currentUser, setLoading) {
-  const fileRef = ref(storage, currentUser.uid + ".png");
+  try {
+    setLoading(true);
 
-  setLoading(true);
+    // Create a reference to the file in Firebase Storage
+    const storageRef = ref(storage, currentUser.uid + ".png");
 
-  // const snapshot = await uploadBytes(fileRef, file);
-  const photoURL = await getDownloadURL(fileRef);
+    // Upload the file
+    await uploadBytes(storageRef, file);
 
-  //updateProfile(currentUser, { photoURL });
+    // Get the download URL
+    const photoURL = await getDownloadURL(storageRef);
 
-  setLoading(false);
-  //alert("Uploaded file!");
+    // Set the photoURL in the user's profile (optional, uncomment if needed)
+    // await updateProfile(currentUser, { photoURL });
 
-  return photoURL;
+    setLoading(false);
+
+    // Return the download URL
+    return photoURL;
+  } catch (error) {
+    console.error("Error uploading file:", error.message);
+    setLoading(false);
+    throw error; // Re-throw the error to be caught in the calling function
+  }
 }
 
 //upload image to storage

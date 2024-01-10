@@ -1,7 +1,7 @@
-import { StyledNavLink } from "../Typography/StyledNavLink";
+import StyledNavLink from "../Typography/StyledNavLink";
 import Box from "@mui/material/Box";
 
-export function DesktopNavLinks({ handleCloseNavMenu }) {
+export default function DesktopNavLinks({ handleCloseNavMenu }) {
   return (
     <Box
       sx={{

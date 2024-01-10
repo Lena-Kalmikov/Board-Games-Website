@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
-import db from "../../firebase";
-import { useAuth, uploadImage } from "../../firebase";
+import db from "../../utils/firebase";
+import { useAuth, uploadImage } from "../../utils/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
@@ -98,6 +98,10 @@ export default function CreateEvent({ games }) {
     }
     setIsLoading(false);
   };
+
+  if(!currentUser) {
+    navigate("/login");
+  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">

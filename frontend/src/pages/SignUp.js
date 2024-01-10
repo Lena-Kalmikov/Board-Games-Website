@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import db from "../firebase";
+import db from "../utils/firebase";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { signup, useAuth, upload } from "../firebase";
+import { signup, useAuth, upload } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import useImagePreview from "../hooks/useImagePreview";
 import useFadeInEffect from "../hooks/useFadeInEffect";
@@ -91,7 +91,8 @@ export default function SignUp() {
 
   const handleImageChange = (e) => {
     onSelectFile(e);
-    setPhoto(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setPhoto(selectedFile);
   };
 
   return (

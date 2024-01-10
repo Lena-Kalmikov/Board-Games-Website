@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "@mui/system/styled";
 import Typography from "@mui/material/Typography";
 
-export function SiteName() {
+export default function SiteName() {
   const StyledSiteNameTypography = styled(Typography)({
     marginRight: 2,
     fontFamily: "monospace",

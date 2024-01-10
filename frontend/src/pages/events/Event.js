@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 
-import db from "../../firebase";
-import { useAuth } from "../../firebase";
+import db from "../../utils/firebase";
+import { useAuth } from "../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
 import useFadeInEffect from "../../hooks/useFadeInEffect";

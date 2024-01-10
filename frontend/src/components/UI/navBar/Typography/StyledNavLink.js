@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "@mui/system/styled";
 import Typography from "@mui/material/Typography";
 
-export function StyledNavLink({ children, to, onClick }) {
+export default function StyledNavLink({ children, to, onClick }) {
   const StyledTypography = styled(Typography)({
     color: "inherit",
     fontSize: 17,

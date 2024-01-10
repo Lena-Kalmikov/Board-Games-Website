@@ -1,6 +1,6 @@
-import React from "react";
-import { useAuth } from "../../firebase";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useAuth } from "../../utils/firebase";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventPreviewList from "../../components/events/preview/EventPreviewList";
@@ -14,8 +14,15 @@ import Typography from "@mui/material/Typography";
 
 export default function UserEvents({ events, isEventsLoading }) {
   const currentUser = useAuth();
+  const navigate = useNavigate();
   const { userId } = useParams();
   const isComponentLoaded = useFadeInEffect();
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+  }, [currentUser, navigate]);
 
   if (isEventsLoading) {
     return <UserEventsLoadingSkeleton />;

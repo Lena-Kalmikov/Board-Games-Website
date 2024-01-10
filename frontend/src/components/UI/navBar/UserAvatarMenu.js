@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../../../firebase";
+import { logout } from "../../../utils/firebase";
 
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 
-export function MobileUserMenu({ currentUser }) {
+export default function UserAvatarMenu({ currentUser }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
@@ -35,8 +35,15 @@ export function MobileUserMenu({ currentUser }) {
   return (
     currentUser && (
       <Box>
-        <IconButton onClick={handleMenu}>
-          <Avatar alt={currentUser?.firstName} src={currentUser?.photoURL} />
+        <IconButton onClick={handleMenu} sx={{ marginRight: -2 }}>
+          <Avatar
+            alt={currentUser?.firstName}
+            src={currentUser?.photoURL}
+            sx={{
+              width: 50,
+              height: 50,
+            }}
+          />
         </IconButton>
         <Menu
           anchorEl={anchorEl}
