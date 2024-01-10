@@ -12,13 +12,12 @@ import Links from "@mui/material/Link";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
-export default function UserEvents({ events }) {
+export default function UserEvents({ events, isEventsLoading }) {
   const currentUser = useAuth();
   const { userId } = useParams();
   const isComponentLoaded = useFadeInEffect();
-  const isLoading = events.length === 0;
 
-  if (isLoading) {
+  if (isEventsLoading) {
     return <UserEventsLoadingSkeleton />;
   }
 
@@ -36,7 +35,7 @@ export default function UserEvents({ events }) {
     return (
       <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
         <Box margin={5}>
-          <Divider fullWidth textAlign="left" sx={{ width: "100%" }}>
+          <Divider textAlign="left" sx={{ width: "100%" }}>
             Events created by me
           </Divider>
           {eventsCreatedByUserLength ? (
@@ -53,11 +52,7 @@ export default function UserEvents({ events }) {
               {"."}
             </Typography>
           )}
-          <Divider
-            fullWidth
-            textAlign="left"
-            sx={{ width: "100%", marginTop: 4 }}
-          >
+          <Divider textAlign="left" sx={{ width: "100%", marginTop: 4 }}>
             Events I'm attending
           </Divider>
 

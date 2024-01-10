@@ -5,9 +5,10 @@ import EventPreviewLoadingSkeleton from "../../components/UI/skeletons/EventPrev
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
-export default function EventsPreview({ events }) {
+export default function EventsPreview({ events, isEventsLoading }) {
   const isComponentLoaded = useFadeInEffect();
-  const isLoading = events.length === 0;
+
+  const noData = events.length === 0;
   const skeletonNumber = 4;
 
   return (
@@ -17,23 +18,33 @@ export default function EventsPreview({ events }) {
           margin: { xs: 0, sm: 10 },
         }}
       >
-        {isLoading ? (
+        {isEventsLoading ? (
           <Box
             sx={{
               display: "flex",
               flexWrap: { xs: "wrap" },
               flexDirection: "row",
-              justifyContent: "flex-start",
+              justifyContent: "center",
             }}
           >
             {Array(skeletonNumber)
               .fill()
-              .map((index) => (
-                <EventPreviewLoadingSkeleton key={index} />
+              .map((item, index) => (
+                <EventPreviewLoadingSkeleton key={index} {...item} />
               ))}
           </Box>
         ) : (
           <EventPreviewList events={events} justifyContent={"center"} />
+        )}
+        {!isEventsLoading && noData && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            No events found.
+          </Box>
         )}
       </Box>
     </Fade>

@@ -9,26 +9,22 @@ export default function EventPreviewList({ events, justifyContent }) {
         display: "flex",
         flexWrap: { xs: "wrap" },
         flexDirection: "row",
-        justifyContent: {justifyContent},
+        justifyContent: { justifyContent },
       }}
     >
-      {events ? (
-        events.map((event) => (
-          <EventPreviewItem
-            key={event.id}
-            id={event.id}
-            date={event.date}
-            time={event.time}
-            city={event.city}
-            title={event.title}
-            image={event.image}
-            creator={event.creator}
-            address={event.address}
-          />
-        ))
-      ) : (
-        <div>No events were found</div>
-      )}
+      {events?.map((event) => (
+        <EventPreviewItem
+          key={event.id}
+          id={event.id}
+          date={event.date}
+          time={event.time}
+          city={event.city}
+          title={event.title}
+          image={event.image}
+          creator={event.creator}
+          address={event.address}
+        />
+      ))}
     </Stack>
   );
 }

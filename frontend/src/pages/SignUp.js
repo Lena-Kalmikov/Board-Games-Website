@@ -104,10 +104,15 @@ export default function SignUp() {
             flexDirection: "column",
             alignItems: "center",
             marginTop: 4,
+            marginBottom: 4,
           }}
         >
           <Avatar
-            sx={{ margin: 1, bgcolor: "primary.main", color: "text.primary" }}
+            sx={{
+              margin: 1,
+              color: "text.icon",
+              backgroundColor: "primary.main",
+            }}
           >
             <LockOpenIcon />
           </Avatar>

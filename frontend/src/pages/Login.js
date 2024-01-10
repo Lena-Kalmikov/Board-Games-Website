@@ -75,7 +75,11 @@ export default function Login() {
           }}
         >
           <Avatar
-            sx={{ margin: 1, bgcolor: "primary.main", color: "text.primary" }}
+            sx={{
+              margin: 1,
+              color: "text.icon",
+              backgroundColor: "primary.main",
+            }}
           >
             <LockOpenIcon />
           </Avatar>

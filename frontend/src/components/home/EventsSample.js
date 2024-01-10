@@ -8,11 +8,27 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Links from "@mui/material/Link";
 
-export default function EventsSample({ events }) {
+export default function EventsSample({ events, isEventsLoading }) {
   const isComponentLoaded = useFadeInEffect();
 
   const skeletonNumber = 4;
-  const isLoading = events.length === 0;
+  const noData = events.length === 0;
+
+  if (!isEventsLoading && noData) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", xl: "row" },
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 10,
+        }}
+      >
+        No events found.
+      </Box>
+    );
+  }
 
   return (
     <Fade in={isComponentLoaded} timeout={{ enter: 1000 }}>
@@ -25,7 +41,7 @@ export default function EventsSample({ events }) {
           marginBottom: 10,
         }}
       >
-        {isLoading ? (
+        {isEventsLoading ? (
           <Box
             sx={{
               display: "flex",
@@ -36,14 +52,14 @@ export default function EventsSample({ events }) {
           >
             {Array(skeletonNumber)
               .fill()
-              .map((index) => (
-                <EventPreviewLoadingSkeleton key={index} />
+              .map((item, index) => (
+                <EventPreviewLoadingSkeleton key={index} {...item} />
               ))}
           </Box>
         ) : (
           <Box>
             <EventPreviewList
-              events={events.slice(0, 4)}
+              events={events?.slice(0, 4)}
               justifyContent={"center"}
             />
             <Links

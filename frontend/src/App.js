@@ -20,10 +20,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 
 export default function App() {
-  const games = useFetchDataFromFirestore("games");
-  const users = useFetchDataFromFirestore("users");
-  const discussionBoards = useFetchDataFromFirestore("discussion_boards");
-  const events = useFetchSortedDataFromFirestore("events");
+  const { data: games, isFetchingData: gamesLoading } =
+    useFetchDataFromFirestore("games");
+  const { data: users, isFetchingData: usersLoading } =
+    useFetchDataFromFirestore("users");
+  const { data: discussionBoards, isFetchingData: discussionBoardsLoading } =
+    useFetchDataFromFirestore("discussion_boards");
+  const { data: events, isFetchingData: eventsLoading } =
+    useFetchSortedDataFromFirestore("events");
 
   const [darkMode, setDarkMode] = useState(true);
   const theme = darkMode ? darkTheme : lightTheme;
@@ -34,11 +38,22 @@ export default function App() {
         <CssBaseline />
         <NavigationBar />
         <Routes>
-          <Route path="/" element={<Home events={events} />} />
+          <Route
+            path="/"
+            element={<Home events={events} isEventsLoading={eventsLoading} />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/games" element={<Games games={games} />} />
-          <Route path="/events" element={<EventsPreview events={events} />} />
+          <Route
+            path="/games"
+            element={<Games games={games} isGamesLoading={gamesLoading} />}
+          />
+          <Route
+            path="/events"
+            element={
+              <EventsPreview events={events} isEventsLoading={eventsLoading} />
+            }
+          />
           <Route
             path="/events/:eventId"
             element={
@@ -47,16 +62,21 @@ export default function App() {
                 users={users}
                 games={games}
                 discussionBoards={discussionBoards}
+                isEventsLoading={eventsLoading}
               />
             }
           />
           <Route
             path="/:userId/myEvents"
-            element={<UserEvents events={events} />}
+            element={
+              <UserEvents events={events} isEventsLoading={eventsLoading} />
+            }
           />
           <Route
             path="/:userId/createEvent"
-            element={<CreateEvent games={games} />}
+            element={
+              <CreateEvent games={games} isGamesLoading={gamesLoading} />
+            }
           />
         </Routes>
       </Router>

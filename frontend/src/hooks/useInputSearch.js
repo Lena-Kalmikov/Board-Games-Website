@@ -9,7 +9,9 @@ export default function useInputSearch(data, key) {
       setInputData(input);
       if (data) {
         const result = data.filter((item) =>
-          item[key].toLowerCase().includes(input.toLowerCase())
+          item && item[key]
+            ? item[key].toLowerCase().includes(input.toLowerCase())
+            : false
         );
         setFilteredData(result);
       }

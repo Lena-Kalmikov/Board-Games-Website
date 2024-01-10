@@ -8,10 +8,10 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Stack from "@mui/material/Stack";
 
-export default function Games({ games}) {
+export default function Games({ games, isGamesLoading }) {
   const isComponentLoaded = useFadeInEffect();
-  const isLoading = games.length === 0;
   const { filteredData, filterData } = useInputSearch(games, "title");
+
   const skeletonNumber = 4;
 
   return (
@@ -36,7 +36,7 @@ export default function Games({ games}) {
             justifyContent: "center",
           }}
         >
-          {isLoading ? (
+          {isGamesLoading ? (
             <Box
               sx={{
                 display: "flex",
@@ -47,16 +47,18 @@ export default function Games({ games}) {
             >
               {Array(skeletonNumber)
                 .fill()
-                .map((index) => (
-                  <GameLoadingSkeleton key={index} />
+                .map((item, index) => (
+                  <GameLoadingSkeleton key={index} {...item} />
                 ))}
             </Box>
           ) : (
-            <GameList games={filteredData} />
+            <>
+              <GameList games={filteredData} />
+              {filteredData.length === 0 && <Box>No games found.</Box>}
+            </>
           )}
         </Stack>
       </Fade>
     </Box>
   );
 }
-

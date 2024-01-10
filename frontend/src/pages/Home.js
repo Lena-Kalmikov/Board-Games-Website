@@ -4,7 +4,7 @@ import CallToAction from "../components/home/CallToAction";
 
 import Box from "@mui/material/Box";
 
-export default function Home({ events }) {
+export default function Home({ events, isEventsLoading }) {
   return (
     <Box
       sx={{
@@ -13,7 +13,7 @@ export default function Home({ events }) {
       }}
     >
       <HeroSection />
-      <EventsSample events={events} />
+      <EventsSample events={events} isEventsLoading={isEventsLoading} />
       <CallToAction />
     </Box>
   );
