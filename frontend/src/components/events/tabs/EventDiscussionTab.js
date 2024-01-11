@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 
+import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import db from "../../../utils/firebase";
@@ -32,6 +32,8 @@ import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 
 const EventDiscussionTab = React.memo(
   ({ users, discussionBoards, eventId }) => {
+    const navigate = useNavigate();
+    const location = useLocation();
     const currentUser = useAuth();
     const inputRef = useRef(null);
     const editedInputRef = useRef(null);
@@ -42,9 +44,6 @@ const EventDiscussionTab = React.memo(
     const [editingMessageId, setEditingMessageId] = useState(null);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(true);
-
-    let navigate = useNavigate();
-    let location = useLocation();
 
     const handleRedirectToLogin = () => {
       navigate("/login", { state: { from: location } });
@@ -117,7 +116,6 @@ const EventDiscussionTab = React.memo(
             }),
           });
         } else {
-          // Create a new discussion board if it doesn't exist
           await addDoc(discussionBoardsRef, {
             eventId: eventId,
             content: [
@@ -130,7 +128,6 @@ const EventDiscussionTab = React.memo(
             ],
           });
         }
-
         inputRef.current.value = "";
         setIsButtonDisabled(true);
       }
@@ -150,20 +147,15 @@ const EventDiscussionTab = React.memo(
         if (!querySnapshot.empty) {
           const docRef = doc(db, "discussion_boards", querySnapshot.docs[0].id);
 
-          // Get the current content from the document
           const eventDiscussionBoard = await getDoc(docRef);
           const contentArray = eventDiscussionBoard.data().content;
 
-          // Find the index of the message to be updated
           const messageIndex = contentArray.findIndex(
             (content) => content.messageId === editingMessageId
           );
 
           if (messageIndex !== -1) {
-            // Update the message content in the array
             contentArray[messageIndex].message = inputValue;
-
-            // Update the document with the modified content
             await updateDoc(docRef, {
               content: contentArray,
             });
@@ -317,7 +309,6 @@ const EventDiscussionTab = React.memo(
           </Box>
         ))}
 
-        {/* {contentData?.length === 0 && <Box>No comments yet.</Box>} */}
         {!contentData && <Box>No comments yet.</Box>}
 
         <DeleteDialog

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../utils/firebase";
 
+import SiteName from "./Typography/SiteName"
+import UserAvatarMenu from "./UserAvatarMenu"
 import MobileNavMenu from "./mobile/MobileNavMenu";
 import DesktopAuthLinks from "./desktop/DesktopAuthLinks";
 import DesktopNavLinks from "./desktop/DesktopNavLinks"
-import SiteName from "./Typography/SiteName"
-import UserAvatarMenu from "./UserAvatarMenu"
 
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useAuth } from "../../utils/firebase";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -18,10 +17,9 @@ export default function UserEvents({ events, isEventsLoading }) {
   const { userId } = useParams();
   const isComponentLoaded = useFadeInEffect();
 
-    if (!currentUser) {
-      navigate("/login");
-    }
-
+  if (!currentUser) {
+    navigate("/login");
+  }
 
   if (isEventsLoading) {
     return <UserEventsLoadingSkeleton />;

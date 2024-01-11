@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import db from "../../../utils/firebase";
 import { useAuth } from "../../../utils/firebase";
@@ -34,7 +35,7 @@ export default function EventPreviewItem(props) {
   return (
     <Card
       sx={{
-        maxWidth: 270,
+        maxWidth: 280,
         margin: 0.5,
         marginTop: 2,
         borderRadius: 2,
@@ -55,10 +56,10 @@ export default function EventPreviewItem(props) {
           {moment(props.date).format("DD/MM/YYYY")} at{" "}
           {moment(props.time, "HH:mm").format("HH:mm")}
         </Typography>
-        <Typography fontSize={22} fontWeight={550}>
+        <Typography fontSize={20} fontWeight={550}>
           {props.title}
         </Typography>
-        <Typography color="text.secondary">{props.city}</Typography>
+        <Typography color="text.secondary">City: {props.city}</Typography>
 
         <Box display={"flex"} flexDirection={"row"} marginTop={2}>
           <Button

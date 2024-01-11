@@ -1,4 +1,3 @@
-import React from "react";
 import EventPreviewLoadingSkeleton from "./EventPreviewLoadingSkeleton";
 
 import Box from "@mui/material/Box";

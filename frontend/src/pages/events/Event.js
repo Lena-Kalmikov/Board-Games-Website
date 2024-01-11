@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
-
 import db from "../../utils/firebase";
 import { useAuth } from "../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
@@ -43,11 +43,9 @@ export default function Event({
     useState(false);
 
   useEffect(() => {
-    // Check if events data is loaded
     if (isEventsLoading) {
       setIsEventDataLoading(true);
     } else {
-      // Find the specific event using the eventId
       const currentEvent = events?.find((event) => event.id === eventId);
       if (currentEvent) {
         setEvent(currentEvent);

@@ -51,7 +51,7 @@ export default function HeroSection() {
         >
           <img
             alt=""
-            src="https://images.pexels.com/photos/4691567/pexels-photo-4691567.jpeg?auto=compress&cs=tinysrgb&w=800"
+            src="https://firebasestorage.googleapis.com/v0/b/play-date-board-games-website.appspot.com/o/images%2Fec56be4b-f13d-444b-8fd6-018234fc84ef.png?alt=media&token=a6a87085-8b0e-4b33-85fe-f1dfd752ecb6"
             style={{
               maxWidth: "100%",
               borderRadius: 50,

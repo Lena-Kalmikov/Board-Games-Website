@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+
 import { useForm } from "react-hook-form";
 import db from "../utils/firebase";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { signup, useAuth, upload } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
+
 import useImagePreview from "../hooks/useImagePreview";
 import useFadeInEffect from "../hooks/useFadeInEffect";
 
@@ -46,14 +48,11 @@ export default function SignUp() {
     try {
       const userInfo = await signup(data.email, data.password);
       const { uid } = userInfo.user;
-
       let imageUrl = "";
-      // Upload the profile picture
       if (photo) {
         imageUrl = await upload(photo, userInfo.user, setIsLoading);
       }
 
-      // Update user data in Firestore
       const userDocRef = doc(db, "users", uid);
       await setDoc(
         userDocRef,
@@ -65,29 +64,22 @@ export default function SignUp() {
         { merge: true }
       );
 
-      // Update user profile
       await updateProfile(userInfo.user, {
         displayName: `${data.firstName} ${data.lastName}`,
         photoURL: imageUrl,
       });
-
-      console.log("User signed up successfully!");
       navigate("/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setAlertMessage("email is already in use, try to log-in instead");
         setIsAlertOpen(true);
       }
-      console.log("Error during signup:", error.message);
     }
   };
 
   const handleAlertClose = () => {
     setIsAlertOpen(false);
   };
-
-  console.log("current user:", currentUser?.email);
-  console.log("current image:", currentUser?.photoURL);
 
   const handleImageChange = (e) => {
     onSelectFile(e);

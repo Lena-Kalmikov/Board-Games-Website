@@ -1,4 +1,5 @@
 import StyledNavLink from "../Typography/StyledNavLink";
+
 import Box from "@mui/material/Box";
 
 export default function DesktopNavLinks({ handleCloseNavMenu }) {

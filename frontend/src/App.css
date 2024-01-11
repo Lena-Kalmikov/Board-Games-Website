@@ -20,20 +20,19 @@ iframe#webpack-dev-server-client-overlay {
   display: none !important;
 }
 
-/* Remove these styles */
 ::-webkit-scrollbar {
-  width: 10px; /* width of the entire scrollbar */
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #555; /* color of the tracking area */
+  background: #7c8181;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1cb59c; /* color of the scroll thumb */
-  border-radius: 10px; /* make the tracking area rounder */
+  background: #373f3e;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #15e9c5; /* color of the scroll thumb on hover */
+  background: #4d5150;
 }

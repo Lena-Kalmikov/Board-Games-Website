@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { useForm } from "react-hook-form";
 import { login } from "../utils/firebase";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -22,6 +23,8 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || "/";
   const isComponentLoaded = useFadeInEffect();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -33,9 +36,6 @@ export default function Login() {
   });
 
   const { errors } = formState;
-
-  let location = useLocation();
-  let from = location.state?.from || "/";
 
   const handleFormSubmit = async (data) => {
     setIsLoading(true);
@@ -55,7 +55,6 @@ export default function Login() {
         setAlertMessage("email or password is incorrect, try again");
         setIsAlertOpen(true);
       }
-      // setAlertMessage(error.code);
     }
     setIsLoading(false);
   };
@@ -169,9 +168,9 @@ export default function Login() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                  <MuiLink component={Link} to="/signup" variant="body2">
-                    Don't have an account? Sign up
-                  </MuiLink>
+                <MuiLink component={Link} to="/signup" variant="body2">
+                  Don't have an account? Sign up
+                </MuiLink>
               </Grid>
             </Grid>
           </Box>
