@@ -18,11 +18,10 @@ export default function UserEvents({ events, isEventsLoading }) {
   const { userId } = useParams();
   const isComponentLoaded = useFadeInEffect();
 
-  useEffect(() => {
     if (!currentUser) {
       navigate("/login");
     }
-  }, [currentUser, navigate]);
+
 
   if (isEventsLoading) {
     return <UserEventsLoadingSkeleton />;

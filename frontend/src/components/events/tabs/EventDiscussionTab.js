@@ -317,9 +317,9 @@ const EventDiscussionTab = React.memo(
           </Box>
         ))}
 
-        {contentData?.length === 0 && <Box>No comments yet.</Box>}
-        {!contentData && <Box>Something went wrong...</Box>}
-        
+        {/* {contentData?.length === 0 && <Box>No comments yet.</Box>} */}
+        {!contentData && <Box>No comments yet.</Box>}
+
         <DeleteDialog
           isOpen={isDeleteDialogOpen}
           onClose={() => setIsDeleteDialogOpen(false)}

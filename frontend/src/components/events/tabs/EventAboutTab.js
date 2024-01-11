@@ -95,7 +95,10 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
                 key={participant.id}
                 src={participant.profilePicture}
                 alt={participant.firstName}
-                sx={{ width: avatarWidth, height: avatarHeight }}
+                sx={{
+                  width: avatarWidth,
+                  height: avatarHeight,
+                }}
               />
             ))}
           </AvatarGroup>
