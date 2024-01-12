@@ -15,7 +15,7 @@ export default function EventsPreview({ events, isEventsLoading }) {
     <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Box
         sx={{
-          margin: { xs: 0, sm: 10 },
+          margin: { xs: "0", sm: 10 },
         }}
       >
         {isEventsLoading ? (

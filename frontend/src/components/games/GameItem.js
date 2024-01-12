@@ -12,7 +12,7 @@ export default function GameItem(props) {
         backgroundColor: "paper",
       }}
     >
-      <CardMedia sx={{ height: 145 }} image={props.image} />
+      <CardMedia sx={{ height: 150 }} image={props.image} />
       <CardContent>
         <Typography gutterBottom fontSize={24}>
           {props.title}

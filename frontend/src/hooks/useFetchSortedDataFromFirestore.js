@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import db from "../utils/firebase";
 import {
   collection,
@@ -8,17 +9,27 @@ import {
   where,
 } from "firebase/firestore";
 
-function useFetchSortedDataFromFirestore(collectionName) {
+function useFetchSortedDataFromFirestore(
+  collectionName,
+  whereField,
+  whereCondition,
+  whereValue,
+  orderByField
+) {
   const [data, setData] = useState([]);
   const [isFetchingData, setIsFetchingData] = useState(false);
 
   useEffect(() => {
     setIsFetchingData(true);
-    const q = query(
-      collection(db, collectionName),
-      where("isDeleted", "==", false),
-      orderBy("date")
-    );
+    let q = collection(db, collectionName);
+
+    if (whereField && whereCondition && whereValue) {
+      q = query(q, where(whereField, whereCondition, whereValue));
+    }
+
+    if (orderByField) {
+      q = query(q, orderBy(orderByField));
+    }
 
     const unsubscribe = onSnapshot(
       q,
@@ -35,7 +46,7 @@ function useFetchSortedDataFromFirestore(collectionName) {
     return () => {
       unsubscribe();
     };
-  }, [collectionName]);
+  }, [collectionName, whereField, whereCondition, whereValue, orderByField]);
 
   return { data, isFetchingData };
 }

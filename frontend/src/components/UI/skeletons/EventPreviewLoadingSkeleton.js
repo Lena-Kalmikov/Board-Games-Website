@@ -4,7 +4,7 @@ import Skeleton from "@mui/material/Skeleton";
 
 export default function EventPreviewLoadingSkeleton() {
   return (
-    <Stack spacing={0.5} sx={{ width: 280, margin: 1.5 }}>
+    <Stack spacing={0.5} sx={{ width: 310, margin: 1.5 }}>
       <Skeleton variant="rounded" height={190} />
       <Skeleton variant="text" width="60%" />
       <Skeleton variant="text" width="80%" />

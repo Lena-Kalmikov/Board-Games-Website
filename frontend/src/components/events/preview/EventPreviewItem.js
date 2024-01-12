@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
+import moment from "moment";
 import { Link } from "react-router-dom";
 import db from "../../../utils/firebase";
 import { useAuth } from "../../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import DeleteDialog from "../../UI/DeleteDialog";
-import moment from "moment";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -19,6 +19,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 export default function EventPreviewItem(props) {
   const currentUser = useAuth();
+
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const handleDeleteEvent = async (id) => {
@@ -35,8 +36,8 @@ export default function EventPreviewItem(props) {
   return (
     <Card
       sx={{
-        maxWidth: 280,
-        margin: 0.5,
+        maxWidth: 320,
+        margin: 1,
         marginTop: 2,
         borderRadius: 2,
         display: "flex",
@@ -44,12 +45,13 @@ export default function EventPreviewItem(props) {
         backgroundColor: "paper",
       }}
     >
-      <CardMedia sx={{ height: 150, width: 290 }} image={props.image} />
+      <CardMedia sx={{ height: 150, width: 320 }} image={props.image} />
       <CardContent
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          height: "60%", 
         }}
       >
         <Typography color="text.secondary">

@@ -90,16 +90,21 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
       >
         <Typography marginRight={1}>Participants:</Typography>
         <Tooltip title="See participants">
-          <AvatarGroup max={5} onClick={handleParticipantDialogOpen}>
+          <AvatarGroup
+            max={5}
+            onClick={handleParticipantDialogOpen}
+            sx={{
+              "& .MuiAvatarGroup-avatar": {
+                width: avatarWidth,
+                height: avatarHeight,
+              },
+            }}
+          >
             {eventParticipants?.map((participant) => (
               <Avatar
                 key={participant.id}
                 src={participant.profilePicture}
                 alt={participant.firstName}
-                sx={{
-                  width: avatarWidth,
-                  height: avatarHeight,
-                }}
               />
             ))}
           </AvatarGroup>

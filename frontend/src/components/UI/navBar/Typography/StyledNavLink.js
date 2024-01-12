@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom";
 
-import styled from "@mui/system/styled";
 import Typography from "@mui/material/Typography";
 
 export default function StyledNavLink({ children, to, onClick }) {
-  const StyledTypography = styled(Typography)({
-    color: "inherit",
-    fontSize: 17,
-    textDecoration: "none",
-    margin: 7,
-    "&:hover": {
-      fontSize: 18,
-    },
-  });
-
   return (
-      <StyledTypography component={Link} to={to} onClick={onClick}>
-        {children}
-      </StyledTypography>
+    <Typography
+      component={Link}
+      to={to}
+      margin={1}
+      fontSize={17}
+      onClick={onClick}
+      height={20}
+      sx={{
+        color: "inherit",
+        textDecoration: "none",
+        "&:hover": {
+          fontSize: 18,
+        },
+      }}
+    >
+      {children}
+    </Typography>
   );
 }

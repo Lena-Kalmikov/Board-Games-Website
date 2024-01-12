@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import db from "../utils/firebase";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { signup, useAuth, upload } from "../utils/firebase";
+import { signup, upload } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 
 import useImagePreview from "../hooks/useImagePreview";
@@ -28,7 +28,6 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function SignUp() {
-  const currentUser = useAuth();
   const navigate = useNavigate();
   const isComponentLoaded = useFadeInEffect();
   const { preview, onSelectFile } = useImagePreview();

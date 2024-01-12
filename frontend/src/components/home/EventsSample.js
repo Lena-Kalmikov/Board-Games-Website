@@ -66,7 +66,7 @@ export default function EventsSample({ events, isEventsLoading }) {
               component={Link}
               to="/events"
               sx={{
-                margin: 1,
+                marginTop: 3,
                 fontSize: 16,
                 borderRadius: 2,
                 display: "flex",

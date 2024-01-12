@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
 
-import { useNavigate, useLocation } from "react-router-dom";
+import DeleteDialog from "../../UI/DeleteDialog";
+
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate, useLocation } from "react-router-dom";
 import db from "../../../utils/firebase";
 import { useAuth } from "../../../utils/firebase";
 import {
@@ -17,7 +19,6 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-import DeleteDialog from "../../UI/DeleteDialog";
 
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";

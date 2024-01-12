@@ -44,7 +44,9 @@ export default function EventLoadingSkeleton() {
           />
         </Box>
         <Stack spacing={1}>
-          <Skeleton height={25} width="50%" style={{ marginBottom: 6 }} />
+          <Skeleton height={25} width="70%" style={{ marginBottom: 6 }} />
+          <Skeleton height={10} width="95%" />
+          <Skeleton height={10} width="95%" />
           <Skeleton height={10} width="95%" />
           <Skeleton height={10} width="95%" />
           <Skeleton height={10} width="95%" />
@@ -69,6 +71,12 @@ export default function EventLoadingSkeleton() {
             style={{ marginLeft: 3, marginRight: 5 }}
           />
           <Skeleton variant="circular" width={45} height={45} />
+          <Skeleton
+            variant="circular"
+            width={45}
+            height={45}
+            style={{ marginLeft: -5 }}
+          />
           <Skeleton
             variant="circular"
             width={45}
