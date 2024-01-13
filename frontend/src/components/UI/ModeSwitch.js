@@ -1,10 +1,5 @@
-import * as React from "react";
-
-import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
 export default function ModeSwitch({ darkMode, setDarkMode }) {
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
