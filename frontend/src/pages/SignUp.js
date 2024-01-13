@@ -91,13 +91,11 @@ export default function SignUp() {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: 4,
-            marginBottom: 4,
-          }}
+          marginTop={4}
+          marginBottom={4}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
         >
           <Avatar
             sx={{

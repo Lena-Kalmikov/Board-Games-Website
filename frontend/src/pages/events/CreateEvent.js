@@ -107,6 +107,7 @@ export default function CreateEvent({ games }) {
         <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
           <Container maxWidth="xs">
             <Box
+              marginBottom={4}
               marginTop={2}
               display={"flex"}
               flexDirection={"column"}

@@ -34,7 +34,9 @@ export default function EventsPreview({ events, isEventsLoading }) {
               ))}
           </Box>
         ) : (
-          <EventPreviewList events={events} justifyContent={"center"} />
+          <Box marginBottom={4}>
+            <EventPreviewList events={events} justifyContent={"center"} />
+          </Box>
         )}
         {!isEventsLoading && noData && (
           <Box

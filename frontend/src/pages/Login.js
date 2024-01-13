@@ -69,12 +69,11 @@ export default function Login() {
       <Container maxWidth="xs">
         <CssBaseline />
         <Box
-          sx={{
-            marginTop: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+        marginTop={4}
+        marginBottom={4}
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={"center"}
         >
           <Avatar
             sx={{

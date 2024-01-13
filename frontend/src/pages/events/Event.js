@@ -127,6 +127,7 @@ export default function Event({
         <Card
           sx={{
             backgroundColor: "paper",
+            marginBottom: 4,
           }}
         >
           <CardMedia

@@ -15,7 +15,7 @@ export default function Games({ games, isGamesLoading }) {
   const skeletonNumber = 4;
 
   return (
-    <Box mb={4}>
+    <Box marginBottom={4}>
       <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
         <Box
           sx={{
