@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import ModeSwitch from "../../ModeSwitch";
+
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,7 +10,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 
-export default function MobileNavMenu({ currentUser }) {
+export default function MobileNavMenu({
+  currentUser,
+  darkMode,
+  setDarkMode,
+  theme,
+}) {
   const [anchorElementNav, setAnchorElementNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -20,7 +27,11 @@ export default function MobileNavMenu({ currentUser }) {
   };
 
   return (
-    <Box sx={{ display: { xs: "flex", sm: "none" } }}>
+    <Box
+      sx={{
+        display: { xs: "flex", sm: "none" },
+      }}
+    >
       <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
         <MenuIcon
           sx={{
@@ -30,12 +41,12 @@ export default function MobileNavMenu({ currentUser }) {
         />
       </IconButton>
       <Menu
+        keepMounted
         anchorEl={anchorElementNav}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "left",
         }}
-        keepMounted
         transformOrigin={{
           vertical: "top",
           horizontal: "left",
@@ -44,12 +55,11 @@ export default function MobileNavMenu({ currentUser }) {
         onClose={handleCloseNavMenu}
       >
         <MenuItem component={Link} to="/games" onClick={handleCloseNavMenu}>
-          <Typography textAlign="center">Games</Typography>
+          <Typography>Games</Typography>
         </MenuItem>
         <MenuItem component={Link} to="/events" onClick={handleCloseNavMenu}>
-          <Typography textAlign="center">Events</Typography>
+          <Typography>Events</Typography>
         </MenuItem>
-
         {!currentUser && (
           <div>
             <MenuItem component={Link} to="/login" onClick={handleCloseNavMenu}>
@@ -60,10 +70,17 @@ export default function MobileNavMenu({ currentUser }) {
               to="/signup"
               onClick={handleCloseNavMenu}
             >
-              <Typography textAlign="center">Join us</Typography>
+              <Typography>Join us</Typography>
             </MenuItem>
           </div>
         )}
+        <MenuItem >
+          <ModeSwitch
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            theme={theme}
+          />
+        </MenuItem>
       </Menu>
     </Box>
   );

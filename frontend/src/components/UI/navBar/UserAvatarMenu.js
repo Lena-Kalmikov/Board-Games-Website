@@ -36,7 +36,7 @@ export default function UserAvatarMenu({ currentUser }) {
   return (
     currentUser && (
       <Box>
-        <IconButton onClick={handleMenu} sx={{ marginRight: -2 }}>
+        <IconButton onClick={handleMenu} sx={{ marginRight: -2, marginLeft:3 }}>
           <Avatar
             alt={currentUser?.firstName}
             src={currentUser?.photoURL}

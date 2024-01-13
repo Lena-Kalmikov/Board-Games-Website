@@ -35,6 +35,8 @@ export default function EventPreviewItem(props) {
 
   return (
     <Card
+      component={Link}
+      to={`/events/${props.id}`}
       sx={{
         maxWidth: 320,
         margin: 1,
@@ -43,6 +45,7 @@ export default function EventPreviewItem(props) {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "paper",
+        textDecoration: "none",
       }}
     >
       <CardMedia sx={{ height: 150, width: 320 }} image={props.image} />
@@ -51,7 +54,7 @@ export default function EventPreviewItem(props) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          height: "60%", 
+          height: "60%",
         }}
       >
         <Typography color="text.secondary">

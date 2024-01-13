@@ -11,7 +11,6 @@ import Event from "./pages/events/Event";
 import EventsPreview from "./pages/events/EventsPreview";
 import UserEvents from "./pages/events/UserEvents";
 import CreateEvent from "./pages/events/CreateEvent";
-import ModeIconButton from "./components/UI/ModeIconButton";
 import NavigationBar from "./components/UI/navBar/NavigationBar";
 import useFetchDataFromFirestore from "./hooks/useFetchDataFromFirestore";
 import useFetchSortedDataFromFirestore from "./hooks/useFetchSortedDataFromFirestore";
@@ -36,7 +35,11 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <CssBaseline />
-        <NavigationBar />
+        <NavigationBar
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          theme={theme}
+        />
         <Routes>
           <Route
             path="/"
@@ -80,7 +83,6 @@ export default function App() {
           />
         </Routes>
       </Router>
-      <ModeIconButton darkMode={darkMode} setDarkMode={setDarkMode} />
     </ThemeProvider>
   );
 }
