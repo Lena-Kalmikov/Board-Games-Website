@@ -62,3 +62,34 @@ There was a lot of attention to detail invested here.
    </td>
   </tr>
 </table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
+        Sign up empty:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/1.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+        Sign up filled:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/2.PNG"   alt="2" width = 300px  >
+   </td>
+   <td>
+           <div align="center">
+        Register required:
+       </div>
+    <br>
+    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/3.PNG" alt="3" width = 300px >
+    <div align="center">
+        Register required:
+       </div>
+    <br>
+    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/4.PNG" alt="3" width = 300px >
+   </td>
+  </tr>
+</table>
