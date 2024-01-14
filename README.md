@@ -183,6 +183,25 @@ There was a lot of attention to detail invested here.
   <tr>
    <td> 
        <div align="center">
+        Games page:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/games/1.PNG"   alt="1" width = 800px  >
+   </td>
+   <td>
+       <div align="center">
+       Search games:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/games/2.PNG"   alt="2" width = 300px  >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
         Light mode home:
        </div>
     <br>
