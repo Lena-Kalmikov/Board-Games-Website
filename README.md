@@ -183,6 +183,32 @@ There was a lot of attention to detail invested here.
   <tr>
    <td> 
        <div align="center">
+        Mobile navbar:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/1.PNG"   alt="1" width = 300px  >
+   </td>
+    <td> 
+       <div align="center">
+        navbar open:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/2.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+       Widescreen navbar:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/4.PNG"   alt="2" width = 600px  >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
         Light mode home:
        </div>
     <br>
