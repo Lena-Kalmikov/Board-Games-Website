@@ -114,3 +114,94 @@ There was a lot of attention to detail invested here.
    </td>
   </tr>
 </table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
+        Event About tab:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/events/2.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+       Event Discussion tab:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/events/5.PNG"   alt="2" width = 300px  >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
+        Event Game dialog:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/events/3.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+       Event Participants dialog:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/events/4.PNG"   alt="2" width = 300px  >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
+        Mobile navbar:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/1.PNG"   alt="1" width = 300px  >
+   </td>
+    <td> 
+       <div align="center">
+        navbar open:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/2.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+       Widescreen navbar:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/4.PNG"   alt="2" width = 600px  >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
+        Light mode home:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/lightmode/1.PNG"   alt="1" width = 300px  >
+   </td>
+    <td> 
+       <div align="center">
+        Light mode create event:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/lightmode/2.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+       Light mode event page
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/lightmode/3.PNG"   alt="2" width = 300px  >
+   </td>
+  </tr>
+</table>
+
