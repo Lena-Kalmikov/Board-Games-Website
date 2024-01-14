@@ -39,6 +39,18 @@ There was a lot of attention to detail invested here.
 ## Screenshots
 <table style="padding:10px">
   <tr>
+       <td>
+           <div align="center">
+        Home page:
+       </div>
+    <br>
+    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/home.PNG" alt="home page" >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
    <td> 
        <div align="center">
         Login:
