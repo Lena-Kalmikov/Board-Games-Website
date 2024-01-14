@@ -183,24 +183,17 @@ There was a lot of attention to detail invested here.
   <tr>
    <td> 
        <div align="center">
-        Mobile navbar:
+        Games page:
        </div>
     <br>
-       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/1.PNG"   alt="1" width = 300px  >
-   </td>
-    <td> 
-       <div align="center">
-        navbar open:
-       </div>
-    <br>
-       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/2.PNG"   alt="1" width = 300px  >
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/games/1.PNG"   alt="1" width = 800px  >
    </td>
    <td>
        <div align="center">
-       Widescreen navbar:
+       Search games:
        </div>
     <br>
-       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/navbar/4.PNG"   alt="2" width = 600px  >
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/games/2.PNG"   alt="2" width = 300px  >
    </td>
   </tr>
 </table>
