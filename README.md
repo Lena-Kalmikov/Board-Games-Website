@@ -67,14 +67,14 @@ There was a lot of attention to detail invested here.
   <tr>
    <td> 
        <div align="center">
-        Sign up empty:
+        Sign-up empty:
        </div>
     <br>
        <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/1.PNG"   alt="1" width = 300px  >
    </td>
    <td>
        <div align="center">
-        Sign up filled:
+        Sign-up filled:
        </div>
     <br>
        <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/2.PNG"   alt="2" width = 300px  >
@@ -85,6 +85,32 @@ There was a lot of attention to detail invested here.
        </div>
     <br>
     <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/3.PNG" alt="3" width = 300px >
+   </td>
+  </tr>
+</table>
+
+<table style="padding:10px">
+  <tr>
+   <td> 
+       <div align="center">
+        Create event empty:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/createNewEvent/1.PNG"   alt="1" width = 300px  >
+   </td>
+   <td>
+       <div align="center">
+        Create event filled:
+       </div>
+    <br>
+       <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/createNewEvent/2.PNG"   alt="2" width = 300px  >
+   </td>
+   <td>
+           <div align="center">
+        Create event required:
+       </div>
+    <br>
+    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/createNewEvent/3.PNG" alt="3" width = 300px >
    </td>
   </tr>
 </table>
