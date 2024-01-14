@@ -85,11 +85,6 @@ There was a lot of attention to detail invested here.
        </div>
     <br>
     <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/3.PNG" alt="3" width = 300px >
-    <div align="center">
-        Register required:
-       </div>
-    <br>
-    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/signup/4.PNG" alt="3" width = 300px >
    </td>
   </tr>
 </table>
