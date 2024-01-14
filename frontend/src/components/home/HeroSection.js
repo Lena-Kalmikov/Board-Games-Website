@@ -26,7 +26,7 @@ export default function HeroSection() {
           boxShadow: 1,
         }}
       >
-        <Box padding={2} marginLeft={4} width={"100%"}>
+        <Box padding={2} margin={2} width={"100%"}>
           <Typography
             fontSize={22}
             marginBottom={1}

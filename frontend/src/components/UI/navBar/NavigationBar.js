@@ -29,7 +29,9 @@ export default function NavigationBar({ darkMode, setDarkMode, theme }) {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xxl">
+      <Container
+        maxWidth="xxl"
+      >
         <Toolbar disableGutters>
           <MobileNavMenu
             anchorElementNav={anchorElementNav}

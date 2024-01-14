@@ -19,6 +19,7 @@ export default function SiteName() {
         textDecoration: "none",
         letterSpacing: "0.3rem",
         flexGrow: { xs: 1, sm: 0 },
+        marginLeft: { xs: 3, sm: 0 },
         "&:hover": {
           fontSize: 28,
         },
