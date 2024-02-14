@@ -8,15 +8,24 @@ Login credentials:
 * Password: 123456
 
 ## About
-I'm passionate about board games, so I decided to combine my hobby with programming and build a website that allows people to discover new board games and meet up to play.
+I'm very passionate about board games, so I decided to combine my hobby with programming and build a website that allows people to discover new board games and meet up to play.
 
-The goal of this project was to create a beautiful, fully responsive website and practice my problem-solving and programming skills.
+This project aimed to create a beautiful, aesthetically pleasing, fully responsive website and practice my problem-solving and programming skills.
 In this project, I put great emphasis on: 
 * Writing clean code, giving purposeful names to variables, functions, and components.
-* Creating reusable components and hooks to not write the same code more than once.
-* Creating an organized and intuitive folder structure.
+* Creating reusable components and hooks in order not to write the same code more than once.
+* Creating an organized and intuitive structure.
 
-I practiced form submission, authentication, uploading images, asynchronous code, handling errors, routing, loading data, react hooks, working with different libraries such as Material UI for creating UI components with custom CSS, and much more.
+There was a lot of attention to detail invested in this project:
+   * Emphasis on user experience (UX) and user interface (UI) from scratch, including building color themes, element placement, redirecting to different pages after logging, etc.
+   * Dark and light modes for users to choose from.
+   * Fully responsive and compatible with different screen sizes.
+   * Dialogs and alerts that display useful information.
+   * Animations on page change for a smoother experience.
+   * Loading skeleton animations while the data is being loaded.
+   * Beautifully designed forms for registering and creating a new event with an emphasis on user experience, including responsive fields, alerts if needed, and image previews. 
+
+I practiced form submission, authentication, uploading images, asynchronous code, handling errors, routing, loading data, react hooks, page animations, loading skeletons, working with different libraries such as Material UI for creating UI components with custom CSS, and much more.
 
 ## Tech Stack 
 ReactJS, CSS, Material UI, react-router-dom, react-hook-form
@@ -36,13 +45,7 @@ Firestore Database, Firebase for Authentication, Storage, and Hosting
 5. Login/Register pages.
 6. Create Event page - each logged-in user can create a new event.
 7. User events page - each logged-in user can see the events they created with an option to delete them. They also can see the events they're attending.
-8. Navigation bar that is rendered differently whether the user is logged-in or not.
-
-There was a lot of attention to detail invested on my part:
-   * Emphasis on user experience (UX) and user interface (UI) from scratch, including building color themes, element placement, redirecting to different pages after log-in, etc.
-   * Dark and light modes for users to choose from.
-   * Fully responsive and compatible with different screen sizes.
-   * Dialogs and alerts displaying useful information.
+8. Navigation bar that is rendered differently whether the user is logged in or not.
    
 
 ## Screenshots
