@@ -32,7 +32,12 @@ export default function MobileNavMenu({
         display: { xs: "flex", sm: "none" },
       }}
     >
-      <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
+      <IconButton
+        size="large"
+        onClick={handleOpenNavMenu}
+        color="inherit"
+        data-testid="menu-button"
+      >
         <MenuIcon
           sx={{
             width: 30,
@@ -60,6 +65,7 @@ export default function MobileNavMenu({
         <MenuItem component={Link} to="/events" onClick={handleCloseNavMenu}>
           <Typography>Events</Typography>
         </MenuItem>
+        
         {!currentUser && (
           <div>
             <MenuItem component={Link} to="/login" onClick={handleCloseNavMenu}>
@@ -74,7 +80,7 @@ export default function MobileNavMenu({
             </MenuItem>
           </div>
         )}
-        <MenuItem >
+        <MenuItem>
           <ModeSwitch
             darkMode={darkMode}
             setDarkMode={setDarkMode}

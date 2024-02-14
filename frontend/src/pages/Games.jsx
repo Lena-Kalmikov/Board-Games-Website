@@ -14,6 +14,20 @@ export default function Games({ games, isGamesLoading }) {
 
   const skeletonNumber = 4;
 
+  if (!games || games.length === 0) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          margin: 5,
+        }}
+      >
+        No games available.
+      </Box>
+    );
+  }
+
   return (
     <Box marginBottom={4}>
       <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>

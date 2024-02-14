@@ -67,7 +67,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
 
       <Typography sx={{ display: "flex", flexWrap: "wrap" }}>
         Games:&nbsp;
-        {eventGames?.map((game) => (
+        {eventGames.map((game) => (
           <Link
             color="secondary"
             style={{ cursor: "pointer" }}
@@ -79,6 +79,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
           </Link>
         ))}
       </Typography>
+
       <Box
         sx={{
           display: "flex",

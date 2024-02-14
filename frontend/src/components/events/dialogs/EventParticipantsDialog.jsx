@@ -49,7 +49,7 @@ export default function EventParticipantsDialog({
         ))}
       </DialogContent>
       <DialogActions sx={{ position: "absolute", top: 0, right: 0 }}>
-        <IconButton onClick={onClose}>
+        <IconButton onClick={onClose} data-testid="close-button">
           <CloseIcon />
         </IconButton>
       </DialogActions>

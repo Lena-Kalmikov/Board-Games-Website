@@ -18,7 +18,9 @@ export default function EventGameDialog({ isOpen, onClose, game }) {
           marginBottom: 2,
         }}
       >
-        <Box style={{ overflow: "auto", maxHeight: { xs: "500px", sm:"800px" } }}>
+        <Box
+          style={{ overflow: "auto", maxHeight: { xs: "500px", sm: "800px" } }}
+        >
           <GameItem
             key={game.id}
             id={game.id}
@@ -32,7 +34,7 @@ export default function EventGameDialog({ isOpen, onClose, game }) {
         </Box>
       </DialogContent>
       <DialogActions sx={{ position: "absolute", top: 0, right: 0 }}>
-        <IconButton onClick={onClose}>
+        <IconButton onClick={onClose} data-testid="close-button">
           <CloseIcon />
         </IconButton>
       </DialogActions>
