@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import Map from "../../UI/Map";
 import EventGameDialog from "../dialogs/EventGameDialog";
 import EventParticipantsDialog from "../dialogs/EventParticipantsDialog";
 
@@ -47,6 +48,8 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
   // comparing eventCreator id and getting their info from the users array
   const eventCreator = users?.find((user) => user.id === event.creator);
 
+  const eventLocation = `${event.city}, ${event.address}`;
+
   const avatarWidth = 45;
   const avatarHeight = 45;
 
@@ -85,7 +88,7 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
           display: "flex",
           alignItems: { xs: "start", sm: "center" },
           flexDirection: { xs: "column", sm: "row" },
-          marginBottom: 2,
+          marginBottom: 3,
           marginTop: 1,
         }}
       >
@@ -110,6 +113,9 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
             ))}
           </AvatarGroup>
         </Tooltip>
+      </Box>
+      <Box>
+        <Map eventLocation={eventLocation} />
       </Box>
       {eventParticipants && (
         <EventParticipantsDialog

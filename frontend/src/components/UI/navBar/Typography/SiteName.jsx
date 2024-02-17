@@ -21,7 +21,7 @@ export default function SiteName() {
         flexGrow: { xs: 1, sm: 0 },
         marginLeft: { xs: 3, sm: 0 },
         "&:hover": {
-          fontSize: 28,
+          fontSize: 27,
         },
       }}
     >

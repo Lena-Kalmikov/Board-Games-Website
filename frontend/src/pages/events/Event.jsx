@@ -10,6 +10,7 @@ import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventAboutTab from "../../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
 import EventLoadingSkeleton from "../../components/UI/skeletons/EventLoadingSkeleton";
+import Map from "../../components/UI/Map";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";

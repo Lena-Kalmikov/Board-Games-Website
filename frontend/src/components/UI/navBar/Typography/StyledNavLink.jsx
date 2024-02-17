@@ -15,7 +15,7 @@ export default function StyledNavLink({ children, to, onClick }) {
         color: "inherit",
         textDecoration: "none",
         "&:hover": {
-          fontSize: 18,
+          fontSize: 17.5,
         },
       }}
     >
