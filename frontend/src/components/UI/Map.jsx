@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { setDefaults, fromAddress } from "react-geocode";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 setDefaults({
   key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -10,6 +9,7 @@ setDefaults({
 });
 
 const libraries = ["places"];
+
 const mapContainerStyle = {
   width: "100%",
   height: 230,

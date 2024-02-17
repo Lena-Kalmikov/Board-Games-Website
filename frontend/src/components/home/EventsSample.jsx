@@ -14,6 +14,12 @@ export default function EventsSample({ events, isEventsLoading }) {
   const skeletonNumber = 4;
   const noData = events.length === 0;
 
+  const futureEvents = events.filter((event) => {
+    const eventDate = new Date(event.date);
+    const currentDate = new Date();
+    return eventDate > currentDate;
+  });
+
   if (!isEventsLoading && noData) {
     return (
       <Box
@@ -59,7 +65,7 @@ export default function EventsSample({ events, isEventsLoading }) {
         ) : (
           <Box>
             <EventPreviewList
-              events={events?.slice(0, 4)}
+              events={futureEvents?.slice(0, 4)}
               justifyContent={"center"}
             />
             <MuiLink

@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import { grey } from "@mui/material/colors";
 
 export default function EventPreviewItem(props) {
   const currentUser = useAuth();
@@ -32,6 +33,9 @@ export default function EventPreviewItem(props) {
       alert("Error deleting event:", error.message);
     }
   };
+
+  const eventPassed = moment(props.date).isBefore(moment());
+  let color = eventPassed ? grey[500] : "none";
 
   return (
     <Card
@@ -70,7 +74,11 @@ export default function EventPreviewItem(props) {
           <Button
             fullWidth
             variant="outlined"
-            sx={{ textTransform: "none" }}
+            sx={{
+              textTransform: "none",
+              color: color,
+              borderColor: color,
+            }}
             component={Link}
             to={`/events/${props.id}`}
           >

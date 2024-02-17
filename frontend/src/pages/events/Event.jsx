@@ -10,7 +10,6 @@ import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventAboutTab from "../../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
 import EventLoadingSkeleton from "../../components/UI/skeletons/EventLoadingSkeleton";
-import Map from "../../components/UI/Map";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -204,7 +203,10 @@ export default function Event({
               <Button
                 color="primary"
                 onClick={handleGoingToEvent}
-                disabled={currentUser?.uid === event.creator}
+                disabled={
+                  new Date(event.date) < new Date() ||
+                  currentUser?.uid === event.creator
+                }
                 sx={{
                   margin: 1,
                   borderRadius: 5,
