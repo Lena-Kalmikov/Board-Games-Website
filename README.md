@@ -13,7 +13,7 @@ I'm very passionate about board games, so I decided to combine my hobby with pro
 This project aimed to create a beautiful, aesthetically pleasing, fully responsive website and practice my problem-solving and programming skills.
 In this project, I put great emphasis on: 
 * Writing clean code, giving purposeful names to variables, functions, and components.
-* Creating reusable components and hooks in order not to write the same code more than once.
+* Creating reusable components and hooks to not write the same code more than once.
 * Creating an organized and intuitive structure.
 
 There was a lot of attention to detail invested in this project:
@@ -23,14 +23,16 @@ There was a lot of attention to detail invested in this project:
    * Dialogs and alerts that display useful information.
    * Animations on page change for a smoother experience.
    * Loading skeleton animations while the data is being loaded.
-   * Beautifully designed forms for registering and creating a new event with an emphasis on user experience, including responsive fields, alerts if needed, and image previews. 
+   * Beautifully designed forms for registering and creating a new event emphasizing user experience, including responsive fields, alerts if needed, and image previews.
 
-I practiced form submission, authentication, uploading images, asynchronous code, handling errors, routing, loading data, react hooks, page animations, loading skeletons, working with different libraries such as Material UI for creating UI components with custom CSS, and much more.
+I practiced form submission, authentication, uploading images, asynchronous code, handling errors, routing, loading data, react hooks, page animations, loading skeletons, connecting to external APIs - using Google Maps to show the event's address, working with different libraries such as Material UI for creating UI components with custom CSS, and much more.
 
 ## Tech Stack 
-ReactJS, CSS, Material UI, react-router-dom, react-hook-form
+React, JavaScript, CSS, Material UI, Jest
 <br/>
 Firestore Database, Firebase for Authentication, Storage, and Hosting
+<br/>
+Some noteworthy react libraries: react-router-dom, react-hook-form, react-google-maps/api, react-geocode
 
 ## Application Description
 1. Home page that consists of 3 sections:
@@ -39,8 +41,8 @@ Firestore Database, Firebase for Authentication, Storage, and Hosting
    * Call to action - a call to create a new event.
 2. Games page that consists of 2 parts: search bar and list of games. You can browse and search for games.
 3. Events page that consists of a preview of all upcoming events.
-4. Single Event page - a click on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
-   * About tab that displays all event information
+4. Single Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
+   * About tab that displays all event information, including a map showing the event's location, an option to join the event, and browse the event's participants and games.
    * Discussion tab that allows the user to read, add, edit, and delete messages in the discussion.
 5. Login/Register pages.
 6. Create Event page - each logged-in user can create a new event.
