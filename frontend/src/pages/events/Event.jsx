@@ -5,7 +5,7 @@ import moment from "moment";
 import db from "../../utils/firebase";
 import { useAuth } from "../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
-
+import noImage from "../../assets/Image_not_available.png";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventAboutTab from "../../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
@@ -131,8 +131,10 @@ export default function Event({
           }}
         >
           <CardMedia
-            sx={{ height: { xs: 150, sm: 210 } }}
-            image={event.image}
+            sx={{
+              height: { xs: 150, sm: 210 },
+            }}
+            image={event.image || noImage}
           />
           <CardContent sx={{ maxWidth: 600 }}>
             <Box

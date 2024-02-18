@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import { Link } from "react-router-dom";
 
 export default function EventParticipantsDialog({
   isOpen,
@@ -23,11 +24,15 @@ export default function EventParticipantsDialog({
       <DialogContent>
         {participants.map((participant) => (
           <Box
+            component={Link}
+            to={`/${participant.id}`}
             key={participant.id}
             sx={{
               display: "flex",
               alignItems: "center",
               marginBottom: 1.5,
+              textDecoration: "none",
+              color: "text.primary",
               "&:hover": {
                 backgroundColor: "background.default",
               },

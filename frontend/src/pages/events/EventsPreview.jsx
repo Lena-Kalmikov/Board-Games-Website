@@ -23,7 +23,6 @@ export default function EventsPreview({ events, isEventsLoading }) {
     return eventDate < currentDate;
   });
 
-  
   const skeletonNumber = 4;
 
   return (

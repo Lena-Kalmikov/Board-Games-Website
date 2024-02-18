@@ -33,7 +33,6 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      
       <Router>
         <CssBaseline />
         <NavigationBar
@@ -71,9 +70,13 @@ export default function App() {
             }
           />
           <Route
-            path="/:userId/myEvents"
+            path="/:userId"
             element={
-              <UserEvents events={events} isEventsLoading={eventsLoading} />
+              <UserEvents
+                events={events}
+                users={users}
+                isEventsLoading={eventsLoading}
+              />
             }
           />
           <Route

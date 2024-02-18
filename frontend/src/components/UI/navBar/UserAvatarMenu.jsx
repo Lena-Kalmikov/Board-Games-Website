@@ -65,7 +65,7 @@ export default function UserAvatarMenu({ currentUser }) {
         >
           <MenuItem
             component={Link}
-            to={`/${currentUser.uid}/myEvents`}
+            to={`/${currentUser.uid}`}
             onClick={handleClose}
           >
             <Typography textAlign="center">My Events</Typography>

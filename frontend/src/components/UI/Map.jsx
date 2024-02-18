@@ -56,7 +56,7 @@ export default function Map({ eventLocation }) {
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={12}
+        zoom={15}
         center={actualCenter}
       >
         <Marker position={actualCenter} />

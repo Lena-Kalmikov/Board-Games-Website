@@ -6,6 +6,7 @@ import db from "../../../utils/firebase";
 import { useAuth } from "../../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import DeleteDialog from "../../UI/DeleteDialog";
+import noImage from "../../../assets/Image_not_available.png";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -39,8 +40,6 @@ export default function EventPreviewItem(props) {
 
   return (
     <Card
-      component={Link}
-      to={`/events/${props.id}`}
       sx={{
         maxWidth: 320,
         margin: 1,
@@ -52,7 +51,12 @@ export default function EventPreviewItem(props) {
         textDecoration: "none",
       }}
     >
-      <CardMedia sx={{ height: 150, width: 320 }} image={props.image} />
+      <CardMedia
+        sx={{ height: 150, width: 320 }}
+        image={props.image || noImage}
+        component={Link}
+        to={`/events/${props.id}`}
+      />
       <CardContent
         sx={{
           display: "flex",
