@@ -24,9 +24,9 @@ export default function App() {
   const { data: discussionBoards } =
     useFetchDataFromFirestore("discussion_boards");
   const { data: games, isFetchingData: gamesLoading } =
-    useFetchSortedDataFromFirestore("games", null, null, null, "title");
+    useFetchSortedDataFromFirestore("games", "title");
   const { data: events, isFetchingData: eventsLoading } =
-    useFetchSortedDataFromFirestore("events", "isDeleted", "==", false, "date");
+    useFetchSortedDataFromFirestore("events", "date");
 
   const [darkMode, setDarkMode] = useState(true);
   const theme = darkMode ? darkTheme : lightTheme;

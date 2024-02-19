@@ -1,40 +1,25 @@
 import { useEffect, useState } from "react";
-
 import db from "../utils/firebase";
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
-function useFetchSortedDataFromFirestore(
-  collectionName,
-  whereField,
-  whereCondition,
-  whereValue,
-  orderByField
-) {
+function useFetchSortedDataFromFirestore(collectionName, orderByField) {
   const [data, setData] = useState([]);
   const [isFetchingData, setIsFetchingData] = useState(false);
 
   useEffect(() => {
     setIsFetchingData(true);
-    let q = collection(db, collectionName);
-
-    if (whereField && whereCondition && whereValue) {
-      q = query(q, where(whereField, whereCondition, whereValue));
-    }
-
-    if (orderByField) {
-      q = query(q, orderBy(orderByField));
-    }
+    const q = query(collection(db, collectionName), orderBy(orderByField));
 
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {
-        setData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        console.log("Snapshot docs:", snapshot.docs);
+        const newData = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        const filteredData = newData.filter((event) => !event.isDeleted);
+        setData(filteredData);
         setIsFetchingData(false);
       },
       (error) => {
@@ -46,7 +31,7 @@ function useFetchSortedDataFromFirestore(
     return () => {
       unsubscribe();
     };
-  }, [collectionName, whereField, whereCondition, whereValue, orderByField]);
+  }, [collectionName, orderByField]);
 
   return { data, isFetchingData };
 }
