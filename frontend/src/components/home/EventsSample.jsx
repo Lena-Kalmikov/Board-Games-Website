@@ -1,90 +1,27 @@
 import { Link } from "react-router-dom";
 
 import useFadeInEffect from "../../hooks/useFadeInEffect";
-import EventPreviewList from "../events/preview/EventPreviewList";
+import EventPreviewList from "../events/preview/EventList";
 import EventPreviewLoadingSkeleton from "../UI/skeletons/EventPreviewLoadingSkeleton";
 
-import Box from "@mui/material/Box";
-import Fade from "@mui/material/Fade";
-import MuiLink from "@mui/material/Link";
+import Events from "../events/preview/Events";
 
 export default function EventsSample({ events, isEventsLoading }) {
-  const isComponentLoaded = useFadeInEffect();
-
-  const skeletonNumber = 4;
-  const noData = events.length === 0;
-
   const futureEvents = events.filter((event) => {
     const eventDate = new Date(event.date);
     const currentDate = new Date();
     return eventDate > currentDate;
   });
 
-  if (!isEventsLoading && noData) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", xl: "row" },
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 10,
-        }}
-      >
-        No events found.
-      </Box>
-    );
-  }
+  const pastEvents = events.filter((event) => {
+    const eventDate = new Date(event.date);
+    const currentDate = new Date();
+    return eventDate < currentDate;
+  });
 
-  return (
-    <Fade in={isComponentLoaded} timeout={{ enter: 1000 }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", xl: "row" },
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 10,
-        }}
-      >
-        {isEventsLoading ? (
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: { xs: "wrap" },
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            {Array(skeletonNumber)
-              .fill()
-              .map((item, index) => (
-                <EventPreviewLoadingSkeleton key={index} {...item} />
-              ))}
-          </Box>
-        ) : (
-          <Box>
-            <EventPreviewList
-              events={futureEvents?.slice(0, 4)}
-              justifyContent={"center"}
-            />
-            <MuiLink
-              component={Link}
-              to="/events"
-              sx={{
-                marginTop: 3,
-                fontSize: 16,
-                borderRadius: 2,
-                display: "flex",
-                textTransform: "none",
-                justifyContent: "center",
-              }}
-            >
-              Go to events page for more events
-            </MuiLink>
-          </Box>
-        )}
-      </Box>
-    </Fade>
-  );
+  const numWantedEvents = 4;
+  const upcomingEvents = events?.slice(0, numWantedEvents);
+  console.log("EventsSample are " + upcomingEvents);
+
+  return <Events events={upcomingEvents} isEventsLoading={isEventsLoading} />;
 }

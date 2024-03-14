@@ -34,10 +34,25 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
   };
 
   // comparing eventParticipants ids to the ids in users array and getting their info from it
-  const eventParticipants = event?.participants?.map((participantId) => {
-    const participant = users?.find((user) => user.id === participantId);
-    return participant;
-  });
+  // const eventParticipants = event?.participants?.map((participantId) => {
+  //   const participant = users?.find((user) => user.id === participantId);
+  //   return participant;
+  // });
+  let eventParticipants = [];
+  try {
+    if (users.length === 0) {
+      throw new Error("Users array is empty");
+    }
+    eventParticipants = event?.participants?.map((participantId) => {
+      const participant = users.find((user) => user.id === participantId);
+      return participant;
+    });
+  } catch (error) {
+    console.error(
+      "An error occurred while fetching event participants:",
+      error.message
+    );
+  }
 
   // comparing eventGames ids to the ids in games array and getting their info from it
   const eventGames = event?.games?.map((gameId) => {
@@ -64,25 +79,26 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
       <Box display={"flex"}>
         <Typography>Event by:&nbsp;</Typography>
         <Typography color="text.secondary">
-          {eventCreator.firstName} {eventCreator.lastName}
+          {!eventCreator && "No creator found"}
+          {eventCreator && `${eventCreator.firstName} ${eventCreator.lastName}`}
         </Typography>
       </Box>
-
       <Typography sx={{ display: "flex", flexWrap: "wrap" }}>
         Games:&nbsp;
-        {eventGames.map((game) => (
-          <Link
-            color="secondary"
-            style={{ cursor: "pointer" }}
-            key={game.id}
-            onClick={() => handleGameDialogOpen(game)}
-            marginRight={1}
-          >
-            {game.title},
-          </Link>
-        ))}
+        {games.length === 0 && <Box color="text.secondary">No games found</Box>}
+        {games.length > 0 &&
+          eventGames.map((game) => (
+            <Link
+              color="secondary"
+              style={{ cursor: "pointer" }}
+              key={game.id}
+              onClick={() => handleGameDialogOpen(game)}
+              marginRight={1}
+            >
+              {game.title},
+            </Link>
+          ))}
       </Typography>
-
       <Box
         sx={{
           display: "flex",
@@ -93,6 +109,9 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
         }}
       >
         <Typography marginRight={1}>Participants:</Typography>
+        {eventParticipants.length === 0 && (
+          <Box color="text.secondary">No users found.</Box>
+        )}
         <Tooltip title="See participants">
           <AvatarGroup
             max={5}
@@ -104,20 +123,21 @@ const EventAboutTab = React.memo(({ event, users, games }) => {
               },
             }}
           >
-            {eventParticipants?.map((participant) => (
-              <Avatar
-                key={participant.id}
-                src={participant.profilePicture}
-                alt={participant.firstName}
-              />
-            ))}
+            {eventParticipants > 0 &&
+              eventParticipants.map((participant) => (
+                <Avatar
+                  key={participant.id}
+                  src={participant.profilePicture}
+                  alt={participant.firstName}
+                />
+              ))}
           </AvatarGroup>
         </Tooltip>
       </Box>
       <Box>
         <Map eventLocation={eventLocation} />
       </Box>
-      {eventParticipants && (
+      {eventParticipants > 0 && (
         <EventParticipantsDialog
           avatarWidth={avatarWidth}
           avatarHeight={avatarHeight}

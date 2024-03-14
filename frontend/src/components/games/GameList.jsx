@@ -2,7 +2,7 @@ import GameItem from "./GameItem";
 
 export default function GameList({ games }) {
   if (!games || games.length === 0) {
-    return <div>No games available</div>;
+    return <div>Games currently unavailable.</div>;
   }
 
   return (

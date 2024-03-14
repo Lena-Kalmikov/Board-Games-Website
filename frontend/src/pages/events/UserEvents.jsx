@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import Login from "../Login";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
-import EventPreviewList from "../../components/events/preview/EventPreviewList";
+import EventPreviewList from "../../components/events/preview/EventList";
 import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsLoadingSkeleton";
 
 import Box from "@mui/material/Box";
@@ -35,17 +35,6 @@ export default function UserEvents({ events, users, isEventsLoading }) {
   if (!currentUser) {
     return <Login />;
   }
-
-  // if (currentUser?.uid !== userId) {
-  //   return (
-  //     <Typography margin={5} textAlign={"center"}>
-  //       Wrong page, go to{" "}
-  //       <MuiLink component={Link} to={`/${currentUser.uid}`}>
-  //         your events
-  //       </MuiLink>
-  //     </Typography>
-  //   );
-  // }
 
   const eventsCreatedByUser = events.filter(
     (event) => event.creator === userId

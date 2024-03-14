@@ -7,26 +7,12 @@ import GameLoadingSkeleton from "../components/UI/skeletons/GameLoadingSkeleton"
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Stack from "@mui/material/Stack";
+import { skeletonNumber } from "../utils/globalVariables";
 
 export default function Games({ games, isGamesLoading }) {
   const isComponentLoaded = useFadeInEffect();
   const { filteredData, filterData } = useInputSearch(games, "title");
 
-  const skeletonNumber = 4;
-
-  if (!games || games.length === 0) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          margin: 5,
-        }}
-      >
-        No games available.
-      </Box>
-    );
-  }
 
   return (
     <Box marginBottom={4}>
@@ -66,10 +52,7 @@ export default function Games({ games, isGamesLoading }) {
                 ))}
             </Box>
           ) : (
-            <>
-              <GameList games={filteredData} />
-              {filteredData.length === 0 && <Box>No games found.</Box>}
-            </>
+            <GameList games={filteredData} />
           )}
         </Stack>
       </Fade>

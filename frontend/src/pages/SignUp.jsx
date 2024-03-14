@@ -73,6 +73,8 @@ export default function SignUp() {
         setAlertMessage("email is already in use, try to log-in instead");
         setIsAlertOpen(true);
       }
+      setAlertMessage(error.code);
+      setIsAlertOpen(true);
     }
   };
 

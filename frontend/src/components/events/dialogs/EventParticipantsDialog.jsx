@@ -16,6 +16,10 @@ export default function EventParticipantsDialog({
   avatarWidth,
   avatarHeight,
 }) {
+  if (!participants || participants.length === 0) {
+    return <div>No participants found</div>;
+  }
+  
   return (
     <Dialog open={isOpen} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>

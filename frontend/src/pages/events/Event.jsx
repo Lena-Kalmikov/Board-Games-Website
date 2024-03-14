@@ -5,7 +5,7 @@ import moment from "moment";
 import db from "../../utils/firebase";
 import { useAuth } from "../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
-import noImage from "../../assets/Image_not_available.png";
+import noImage from "../../assets/imageNotAvailable.png";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 import EventAboutTab from "../../components/events/tabs/EventAboutTab";
 import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
@@ -47,6 +47,7 @@ export default function Event({
       setIsEventDataLoading(true);
     } else {
       const currentEvent = events?.find((event) => event.id === eventId);
+      console.log("currentEvent", currentEvent);
       if (currentEvent) {
         setEvent(currentEvent);
         if (currentUser) {
@@ -101,7 +102,7 @@ export default function Event({
     );
   }
 
-  if (!event) {
+  if (!event || !isEventDataLoading) {
     return (
       <Box
         sx={{
@@ -110,7 +111,7 @@ export default function Event({
           justifyContent: "center",
         }}
       >
-        <Typography variant="h6">Event not found</Typography>
+        <Typography sx={{ marginTop: 5 }}>Event not found</Typography>
       </Box>
     );
   }

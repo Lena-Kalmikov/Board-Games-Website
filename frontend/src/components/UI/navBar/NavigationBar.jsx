@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../utils/firebase";
 
-import SiteName from "./Typography/SiteName";
+import SiteName from "./typography/SiteName";
 import UserAvatarMenu from "./UserAvatarMenu";
 import MobileNavMenu from "./mobile/MobileNavMenu";
 import DesktopAuthLinks from "./desktop/DesktopAuthLinks";

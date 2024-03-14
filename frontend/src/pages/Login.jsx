@@ -56,6 +56,8 @@ export default function Login() {
         setAlertMessage("email or password is incorrect, try again");
         setIsAlertOpen(true);
       }
+      setAlertMessage(error.code);
+      setIsAlertOpen(true);
     }
     setIsLoading(false);
   };
@@ -69,11 +71,11 @@ export default function Login() {
       <Container maxWidth="xs">
         <CssBaseline />
         <Box
-        marginTop={4}
-        marginBottom={4}
-        display={"flex"}
-        flexDirection={"column"}
-        alignItems={"center"}
+          marginTop={4}
+          marginBottom={4}
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
         >
           <Avatar
             sx={{

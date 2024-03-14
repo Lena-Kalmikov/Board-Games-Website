@@ -6,7 +6,7 @@ import db from "../../../utils/firebase";
 import { useAuth } from "../../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import DeleteDialog from "../../UI/DeleteDialog";
-import noImage from "../../../assets/Image_not_available.png";
+import noImage from "../../../assets/imageNotAvailable.png";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -31,7 +31,7 @@ export default function EventPreviewItem(props) {
         isDeleted: true,
       });
     } catch (error) {
-      alert("Error deleting event:", error.message);
+      alert("Error deleting event: ", error.message);
     }
   };
 
@@ -73,7 +73,6 @@ export default function EventPreviewItem(props) {
           {props.title}
         </Typography>
         <Typography color="text.secondary">City: {props.city}</Typography>
-
         <Box display={"flex"} flexDirection={"row"} marginTop={2}>
           <Button
             fullWidth

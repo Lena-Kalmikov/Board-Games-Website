@@ -1,4 +1,4 @@
-import StyledNavLink  from "../Typography/StyledNavLink";
+import StyledNavLink  from "../typography/StyledNavLink";
 
 import Box from "@mui/material/Box";
 

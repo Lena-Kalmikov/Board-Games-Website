@@ -1,4 +1,4 @@
-import EventPreviewItem from "./EventPreviewItem";
+import EventPreviewItem from "./EventItem";
 
 import Stack from "@mui/material/Stack";
 
