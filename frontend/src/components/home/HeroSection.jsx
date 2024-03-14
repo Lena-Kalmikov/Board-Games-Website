@@ -1,16 +1,11 @@
 import heroImage from "../../assets/heroSection.png";
 
-import useFadeInEffect from "../../hooks/useFadeInEffect";
-
 import Box from "@mui/material/Box";
-import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 
 export default function HeroSection() {
-  const isComponentLoaded = useFadeInEffect();
 
   return (
-    <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Box
         sx={{
           display: "flex",
@@ -61,6 +56,5 @@ export default function HeroSection() {
           />
         </Box>
       </Box>
-    </Fade>
   );
 }

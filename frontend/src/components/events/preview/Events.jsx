@@ -43,7 +43,7 @@ export default function Events({ events, isEventsLoading }) {
 
   return (
     <Box marginBottom={4}>
-      <EventPreviewList events={futureEvents} justifyContent={"center"} />
+      <EventPreviewList events={events} justifyContent={"center"} />
     </Box>
   );
 }

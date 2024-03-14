@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/firebase";
 
-import useFadeInEffect from "../../hooks/useFadeInEffect";
-
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
@@ -11,7 +9,6 @@ import Typography from "@mui/material/Typography";
 export default function CallToAction() {
   const currentUser = useAuth();
   const navigate = useNavigate();
-  const isComponentLoaded = useFadeInEffect();
 
   const handleRedirectToCreateNewEvent = () => {
     if (!currentUser) {
@@ -24,7 +21,6 @@ export default function CallToAction() {
   };
 
   return (
-    <Fade in={isComponentLoaded} timeout={{ enter: 1500 }}>
       <Box
         sx={{
           display: "flex",
@@ -64,6 +60,5 @@ export default function CallToAction() {
           </Button>
         </Box>
       </Box>
-    </Fade>
   );
 }

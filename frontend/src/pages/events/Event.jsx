@@ -102,7 +102,7 @@ export default function Event({
     );
   }
 
-  if (!event || !isEventDataLoading) {
+  if (!event && !isEventDataLoading) {
     return (
       <Box
         sx={{
@@ -111,7 +111,7 @@ export default function Event({
           justifyContent: "center",
         }}
       >
-        <Typography sx={{ marginTop: 5 }}>Event not found</Typography>
+        <Typography sx={{ marginTop: 5 }}>Event not found.</Typography>
       </Box>
     );
   }

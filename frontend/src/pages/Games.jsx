@@ -1,18 +1,17 @@
 import SearchBar from "../components/UI/SearchBar";
 import GameList from "../components/games/GameList";
+import GameLoadingSkeleton from "../components/UI/skeletons/GameLoadingSkeleton";
 import useInputSearch from "../hooks/useInputSearch";
 import useFadeInEffect from "../hooks/useFadeInEffect";
-import GameLoadingSkeleton from "../components/UI/skeletons/GameLoadingSkeleton";
+import { skeletonNumber } from "../utils/globalVariables";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Stack from "@mui/material/Stack";
-import { skeletonNumber } from "../utils/globalVariables";
 
 export default function Games({ games, isGamesLoading }) {
   const isComponentLoaded = useFadeInEffect();
   const { filteredData, filterData } = useInputSearch(games, "title");
-
 
   return (
     <Box marginBottom={4}>

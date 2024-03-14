@@ -24,7 +24,7 @@ export default function App() {
   const { data: discussionBoards } =
     useFetchDataFromFirestore("discussion_boards");
   const { data: games, isFetchingData: gamesLoading } =
-    useFetchSortedDataFromFirestore("gamexs", "title");
+    useFetchSortedDataFromFirestore("games", "title");
   const { data: events, isFetchingData: eventsLoading } =
     useFetchSortedDataFromFirestore("events", "date");
 
