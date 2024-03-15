@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import moment from "moment";
 import { Link } from "react-router-dom";
 import db from "../../../utils/firebase";
@@ -11,13 +10,13 @@ import noImage from "../../../assets/imageNotAvailable.png";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
+import { grey } from "@mui/material/colors";
 import Tooltip from "@mui/material/Tooltip";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
+import CardContent from "@mui/material/CardContent";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import { grey } from "@mui/material/colors";
 
 export default function EventPreviewItem(props) {
   const currentUser = useAuth();
@@ -42,8 +41,7 @@ export default function EventPreviewItem(props) {
     <Card
       sx={{
         maxWidth: 320,
-        margin: 1,
-        marginTop: 2,
+        margin: 1.5,
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",

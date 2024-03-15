@@ -1,11 +1,10 @@
-import EventPreviewList from "./EventList";
+import EventPreviewList from "./EventPreviewList";
 import EventPreviewLoadingSkeleton from "../../UI/skeletons/EventPreviewLoadingSkeleton";
-
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { skeletonNumber } from "../../../utils/globalVariables";
 
-export default function Events({ events, isEventsLoading }) {
+export default function PreviewEvents({ events, isEventsLoading }) {
   if (isEventsLoading) {
     return (
       <Box
@@ -41,9 +40,5 @@ export default function Events({ events, isEventsLoading }) {
     );
   }
 
-  return (
-    <Box marginBottom={4}>
-      <EventPreviewList events={events} justifyContent={"center"} />
-    </Box>
-  );
+  return <EventPreviewList events={events} justifyContent={"center"} />;
 }

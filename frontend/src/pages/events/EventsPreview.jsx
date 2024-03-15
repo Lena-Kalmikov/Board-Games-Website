@@ -1,17 +1,18 @@
-import EventPreviewList from "../../components/events/preview/EventList";
+import EventPreviewList from "../../components/events/preview/EventPreviewList";
 import EventPreviewLoadingSkeleton from "../../components/UI/skeletons/EventPreviewLoadingSkeleton";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
 import { skeletonNumber } from "../../utils/globalVariables";
-import { filterFutureEvents, filterPastEvents } from "../../utils/eventUtils";
+import { filterFutureEvents, filterPastEvents } from "../../utils/eventsUtils";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 
 export default function EventsPreview({ events, isEventsLoading }) {
   const isComponentLoaded = useFadeInEffect();
-  const futureEvents = filterFutureEvents(events);
   const pastEvents = filterPastEvents(events);
+  const futureEvents = filterFutureEvents(events);
 
   if (isEventsLoading) {
     return (
@@ -50,16 +51,21 @@ export default function EventsPreview({ events, isEventsLoading }) {
   return (
     <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
       <Box
-        marginBottom={4}
         sx={{
-          margin: { xs: 0, sm: 10 },
+          marginTop: 4,
+          marginBottom: 5,
+          marginLeft: { lg: 10 },
+          marginRight: { lg: 10 },
         }}
       >
-        <EventPreviewList events={futureEvents} justifyContent={"center"} />
-        <Typography m={1} mt={5} sx={{ textAlign: "center" }}>
-          Past Events:
-        </Typography>
-        <EventPreviewList events={pastEvents} justifyContent={"center"} />
+        <Divider textAlign="left" sx={{ width: "100%" }}>
+          Upcoming Events
+        </Divider>
+        <EventPreviewList events={futureEvents} />
+        <Divider textAlign="left" sx={{ width: "100%", marginTop: 4 }}>
+          Past Events
+        </Divider>
+        <EventPreviewList events={pastEvents} />
       </Box>
     </Fade>
   );

@@ -20,7 +20,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { lightTheme, darkTheme } from "./utils/muiTheme";
 
 export default function App() {
-  const { data: users } = useFetchDataFromFirestore("usersss");
+  const { data: users } = useFetchDataFromFirestore("users");
   const { data: discussionBoards } =
     useFetchDataFromFirestore("discussion_boards");
   const { data: games, isFetchingData: gamesLoading } =

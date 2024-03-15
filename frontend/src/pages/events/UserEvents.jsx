@@ -1,10 +1,14 @@
-import { useAuth } from "../../utils/firebase";
-import { Link, useParams } from "react-router-dom";
-
 import Login from "../Login";
+import { Link, useParams } from "react-router-dom";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
-import EventPreviewList from "../../components/events/preview/EventList";
+import { useAuth } from "../../utils/firebase";
+import EventPreviewList from "../../components/events/preview/EventPreviewList";
 import UserEventsLoadingSkeleton from "../../components/UI/skeletons/UserEventsLoadingSkeleton";
+import {
+  filterFutureEvents,
+  filterPastEvents,
+  getUserName,
+} from "../../utils/eventsUtils";
 
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -17,24 +21,7 @@ export default function UserEvents({ events, users, isEventsLoading }) {
   const { userId } = useParams();
   const isComponentLoaded = useFadeInEffect();
 
-  const getUserInfo = (userId, users) => {
-    for (let user of users) {
-      if (user.id === userId) {
-        return `${user.firstName} ${user.lastName}`;
-      }
-    }
-    return "User not found";
-  };
-
-  const userName = getUserInfo(userId, users);
-
-  if (isEventsLoading) {
-    return <UserEventsLoadingSkeleton />;
-  }
-
-  if (!currentUser) {
-    return <Login />;
-  }
+  const userName = getUserName(userId, users);
 
   const eventsCreatedByUser = events.filter(
     (event) => event.creator === userId
@@ -44,69 +31,63 @@ export default function UserEvents({ events, users, isEventsLoading }) {
     event?.participants?.includes(userId)
   );
 
-  const futureEvents = eventsUserIsGoingTo.filter((event) => {
-    const eventDate = new Date(event.date);
-    const currentDate = new Date();
-    return eventDate > currentDate;
-  });
+  const pastEvents = filterPastEvents(eventsUserIsGoingTo);
+  const futureEvents = filterFutureEvents(eventsUserIsGoingTo);
 
-  const pastEvents = eventsUserIsGoingTo.filter((event) => {
-    const eventDate = new Date(event.date);
-    const currentDate = new Date();
-    return eventDate < currentDate;
-  });
+  if (isEventsLoading) {
+    return <UserEventsLoadingSkeleton />;
+  }
+
+  if (!currentUser) {
+    return <Login />;
+  }
 
   return (
     <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
-      <Box margin={5}>
+      <Box
+        sx={{
+          marginTop: 4,
+          marginBottom: 5,
+          marginLeft: { lg: 10 },
+          marginRight: { lg: 10 },
+        }}
+      >
         <Divider textAlign="left" sx={{ width: "100%" }}>
           Events created by {currentUser.uid === userId ? "me" : userName}
-        </Divider>
-        {eventsCreatedByUser.length > 0 ? (
-          <EventPreviewList
-            events={eventsCreatedByUser}
-            justifyContent={"flex-start"}
-          />
-        ) : (
-          userId === currentUser.uid && (
-            <Typography marginTop={3}>
-              No events found.{" "}
-              <MuiLink component={Link} to={`/${currentUser.uid}/createEvent`}>
-                Create new event
-              </MuiLink>
-              {"."}
-            </Typography>
-          )
+        </Divider>{" "}
+        {eventsCreatedByUser.length === 0 && userId === currentUser.uid && (
+          <Typography marginTop={3}>
+            No events found,{" "}
+            <MuiLink component={Link} to={`/${currentUser.uid}/createEvent`}>
+              Create new event
+            </MuiLink>
+            {"."}
+          </Typography>
+        )}
+        {eventsCreatedByUser.length > 0 && (
+          <EventPreviewList events={eventsCreatedByUser} />
         )}
         <Divider textAlign="left" sx={{ width: "100%", marginTop: 4 }}>
           Events {currentUser.uid === userId ? "I'm" : `${userName} is`}{" "}
           attending
         </Divider>
-        {futureEvents.length > 0 ? (
-          <EventPreviewList
-            events={futureEvents}
-            justifyContent={"flex-start"}
-          />
-        ) : (
-          userId === currentUser.uid && (
-            <Typography marginTop={3}>
-              No events found. Check upcoming{" "}
-              <MuiLink component={Link} to="/events">
-                events
-              </MuiLink>{" "}
-              to find one that you like.
-            </Typography>
-          )
+        {futureEvents.length === 0 && userId === currentUser.uid && (
+          <Typography marginTop={3}>
+            No events found, check{" "}
+            <MuiLink component={Link} to="/events">
+              upcoming events
+            </MuiLink>{" "}
+            to find one that you like.
+          </Typography>
         )}
+        {futureEvents.length > 0 && <EventPreviewList events={futureEvents} />}
         {pastEvents.length > 0 && (
           <>
             <Divider textAlign="left" sx={{ width: "100%", marginTop: 4 }}>
-              {currentUser.uid === userId ? "My" : `${userName}'s`} past events
+              Events {currentUser.uid === userId ? "I've" : `${userName} has`}{" "}
+              attended in the past{" "}
             </Divider>
-            <EventPreviewList
-              events={pastEvents}
-              justifyContent={"flex-start"}
-            />
+            <EventPreviewList events={pastEvents} />
           </>
         )}
       </Box>

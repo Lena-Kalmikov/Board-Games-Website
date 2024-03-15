@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Dialog from "@mui/material/Dialog";
@@ -7,7 +8,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { Link } from "react-router-dom";
 
 export default function EventParticipantsDialog({
   isOpen,
@@ -16,10 +16,6 @@ export default function EventParticipantsDialog({
   avatarWidth,
   avatarHeight,
 }) {
-  if (!participants || participants.length === 0) {
-    return <div>No participants found</div>;
-  }
-  
   return (
     <Dialog open={isOpen} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle sx={{ fontSize: "1.5rem", textAlign: "center" }}>

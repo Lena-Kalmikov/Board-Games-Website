@@ -7,8 +7,8 @@ import { useAuth } from "../../utils/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import noImage from "../../assets/imageNotAvailable.png";
 import useFadeInEffect from "../../hooks/useFadeInEffect";
-import EventAboutTab from "../../components/events/tabs/EventAboutTab";
-import EventDiscussionTab from "../../components/events/tabs/EventDiscussionTab";
+import EventAboutTab from "../../components/events/tabs/about/EventAboutTab";
+import EventDiscussionTab from "../../components/events/tabs/discussion/EventDiscussionTab";
 import EventLoadingSkeleton from "../../components/UI/skeletons/EventLoadingSkeleton";
 
 import Box from "@mui/material/Box";
@@ -47,7 +47,6 @@ export default function Event({
       setIsEventDataLoading(true);
     } else {
       const currentEvent = events?.find((event) => event.id === eventId);
-      console.log("currentEvent", currentEvent);
       if (currentEvent) {
         setEvent(currentEvent);
         if (currentUser) {
@@ -70,15 +69,11 @@ export default function Event({
       return;
     }
 
-    const currentParticipants = Array.isArray(event.participants)
-      ? event.participants
-      : [];
-
     const updatedParticipants = isLoggedUserParticipantInEvent
-      ? currentParticipants.filter(
+      ? event.participants.filter(
           (participantId) => participantId !== currentUser?.uid
         )
-      : [...currentParticipants, currentUser?.uid];
+      : [...event.participants, currentUser?.uid];
 
     setIsLoggedUserParticipantInEvent(!isLoggedUserParticipantInEvent);
 
