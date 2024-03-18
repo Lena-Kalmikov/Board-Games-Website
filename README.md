@@ -47,6 +47,11 @@ Some noteworthy react libraries: react-router-dom, react-hook-form, react-google
               <li>Call to action - a call to create a new event.</li>
             </ul>
           </li>
+          <li>Navigation bar that is rendered differently whether the user is logged in or not.</li>
+             <ul>
+              <li>If the user is not logged in - navbar will contain 4 links: Games, Events, Loign in, and Join Us</li>
+              <li>If the user is logged in, the navbar will show a user menu with 3 links: My Events, Create New Event, and Logout.</li>
+            </ul>
           <li>Games page that consists of 2 parts: search bar and list of games. You can browse and search for games.</li>
           <li>Events page that consists of a preview of all upcoming events.</li>
           <li>Single Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
@@ -58,13 +63,12 @@ Some noteworthy react libraries: react-router-dom, react-hook-form, react-google
           <li>Login/Register pages.</li>
           <li>Create Event page - each logged-in user can create a new event.</li>
           <li>User events page - each logged-in user can see the events they created with an option to delete them. They also can see the events they're attending.</li>
-          <li>Navigation bar that is rendered differently whether the user is logged in or not.</li>
         </ol>
       </div>
       <br>
     </td>
     <td style="width: 30%;">
-      <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website-overview.png" ">
+      <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website_overview.png">
     </td>
   </tr>
 </table>
