@@ -13,7 +13,7 @@ I'm very passionate about board games, so I decided to combine my hobby with pro
 This project aimed to create a beautiful, aesthetically pleasing, fully responsive website and practice my problem-solving and programming skills.
 In this project, I put great emphasis on: 
 * Writing clean code, giving purposeful names to variables, functions, and components.
-* Creating reusable components and hooks to not write the same code more than once.
+* Creating reusable components and hooks in order to not write the same code more than once.
 * Creating an organized and intuitive structure.
 
 There was a lot of attention to detail invested in this project:
@@ -34,11 +34,8 @@ Firestore Database, Firebase for Authentication, Storage, and Hosting
 <br/>
 Some noteworthy react libraries: react-router-dom, react-hook-form, react-google-maps/api, react-geocode
 
-## Application Description
-<table style="padding:10px; width: 100%;">
-  <tr>
-    <td style="width: 50%; vertical-align: top;">
-      <div>
+## Application Overview
+  <div>
         <ol>
           <li>Home page - consists of 3 sections:
             <ul>
@@ -60,23 +57,25 @@ Some noteworthy react libraries: react-router-dom, react-hook-form, react-google
             </ul>
           <li>Games page - consists of 2 parts: search bar and list of games. You can browse and search for games.</li>
           <li>Events preview page - consists of a preview of all upcoming and past events.</li>
-          <li>Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
+          <li>Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs and 1 button:
             <ul>
-              <li>About tab - displays all event information, including a map showing the event's location, an option to join the event, and browse the event's games and participants with an option to click on a participant's name and go to their events page .</li>
+              <li>About tab - displays all event information: 
+               <ul>
+                <li>Games - by clicking on a game, a dialog will open with all game information</li>
+                <li>Participants - clicking on the participants, a dialog will open with their names. A click on a participant will take you to their events page</li>
+                <li>Google map showing the event's location</li>
+               </ul>
               <li>Discussion tab - allows the user to read, add, edit, and delete messages in the discussion.</li>
+              <li>Join/Going button - a user can click on the button to join the event and click again to cancel.</li>
             </ul>
           </li>
           <li>Login/Register pages.</li>
         </ol>
       </div>
       <br>
-    </td>
-    <td style="width: 50%;">
-      <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website_overview.png" width=1300px>
-    </td>
-  </tr>
-</table>
-
+   See below chart of application overview:
+   <br>
+    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website_overview.png" width="600px">
 
 ## Screenshots
 <table style="padding:10px">
