@@ -35,35 +35,51 @@ Firestore Database, Firebase for Authentication, Storage, and Hosting
 Some noteworthy react libraries: react-router-dom, react-hook-form, react-google-maps/api, react-geocode
 
 ## Application Description
-1. Home page that consists of 3 sections:
-   * Hero section with a short explanation about the website.
-   * Sneak peek at the 4 upcoming events.
-   * Call to action - a call to create a new event.
-2. Games page that consists of 2 parts: search bar and list of games. You can browse and search for games.
-3. Events page that consists of a preview of all upcoming events.
-4. Single Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
-   * About tab that displays all event information, including a map showing the event's location, an option to join the event, and browse the event's participants and games.
-   * Discussion tab that allows the user to read, add, edit, and delete messages in the discussion.
-5. Login/Register pages.
-6. Create Event page - each logged-in user can create a new event.
-7. User events page - each logged-in user can see the events they created with an option to delete them. They also can see the events they're attending.
-8. Navigation bar that is rendered differently whether the user is logged in or not.
+<table style="padding:10px; width: 100%;">
+  <tr>
+    <td style="width: 70%; vertical-align: top;">
+      <div>
+        <ol>
+          <li>Home page that consists of 3 sections:
+            <ul>
+              <li>Hero section with a short explanation about the website.</li>
+              <li>Sneak peek at the 4 upcoming events.</li>
+              <li>Call to action - a call to create a new event.</li>
+            </ul>
+          </li>
+          <li>Games page that consists of 2 parts: search bar and list of games. You can browse and search for games.</li>
+          <li>Events page that consists of a preview of all upcoming events.</li>
+          <li>Single Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
+            <ul>
+              <li>About tab that displays all event information, including a map showing the event's location, an option to join the event, and browse the event's participants and games.</li>
+              <li>Discussion tab that allows the user to read, add, edit, and delete messages in the discussion.</li>
+            </ul>
+          </li>
+          <li>Login/Register pages.</li>
+          <li>Create Event page - each logged-in user can create a new event.</li>
+          <li>User events page - each logged-in user can see the events they created with an option to delete them. They also can see the events they're attending.</li>
+          <li>Navigation bar that is rendered differently whether the user is logged in or not.</li>
+        </ol>
+      </div>
+      <br>
+    </td>
+    <td style="width: 30%;">
+      <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website-overview.png" ">
+    </td>
+  </tr>
+</table>
 
-Website overview:
-<br/>
-<img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website-overview.png" width = 600px >
-   
 
 ## Screenshots
 <table style="padding:10px">
   <tr>
        <td>
            <div align="center">
-        Home page:
-       </div>
-    <br>
-    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/home.PNG" width = 953px >
-   </td>
+            Home page:
+           </div>
+           <br>
+           <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/screenshots/home.PNG" width = 953px >
+      </td>
   </tr>
 </table>
 
