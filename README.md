@@ -37,38 +37,42 @@ Some noteworthy react libraries: react-router-dom, react-hook-form, react-google
 ## Application Description
 <table style="padding:10px; width: 100%;">
   <tr>
-    <td style="width: 70%; vertical-align: top;">
+    <td style="width: 50%; vertical-align: top;">
       <div>
         <ol>
-          <li>Home page that consists of 3 sections:
+          <li>Home page - consists of 3 sections:
             <ul>
               <li>Hero section with a short explanation about the website.</li>
               <li>Sneak peek at the 4 upcoming events.</li>
               <li>Call to action - a call to create a new event.</li>
             </ul>
           </li>
-          <li>Navigation bar that is rendered differently whether the user is logged in or not.</li>
+          <li>Navigation bar - rendered differently:</li>
              <ul>
-              <li>If the user is not logged in - navbar will contain 4 links: Games, Events, Loign in, and Join Us</li>
-              <li>If the user is logged in, the navbar will show a user menu with 3 links: My Events, Create New Event, and Logout.</li>
+              <li>If the user is not logged in - navbar will contain 4 links: Games, Events, Login in, and Join Us</li>
+              <li>If the user is logged in - navbar will show a user menu with 3 links:
+              <ul>
+                   <li>My events page - each logged-in user can see the events they created with an option to delete them. They also can see the events they're attending.</li>
+                   <li>Create Event page - each logged-in user can create a new event.</li>
+                   <li>Logout - enables the user to logout and redirects to the homepage.</li>
+              </ul>
+              </li>
             </ul>
-          <li>Games page that consists of 2 parts: search bar and list of games. You can browse and search for games.</li>
-          <li>Events page that consists of a preview of all upcoming events.</li>
-          <li>Single Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
+          <li>Games page - consists of 2 parts: search bar and list of games. You can browse and search for games.</li>
+          <li>Events preview page - consists of a preview of all upcoming and past events.</li>
+          <li>Event page - clicking on the preview event will take you to a detailed page with all event information. The event page has 2 tabs:
             <ul>
-              <li>About tab that displays all event information, including a map showing the event's location, an option to join the event, and browse the event's participants and games.</li>
-              <li>Discussion tab that allows the user to read, add, edit, and delete messages in the discussion.</li>
+              <li>About tab - displays all event information, including a map showing the event's location, an option to join the event, and browse the event's games and participants with an option to click on a participant's name and go to their events page .</li>
+              <li>Discussion tab - allows the user to read, add, edit, and delete messages in the discussion.</li>
             </ul>
           </li>
           <li>Login/Register pages.</li>
-          <li>Create Event page - each logged-in user can create a new event.</li>
-          <li>User events page - each logged-in user can see the events they created with an option to delete them. They also can see the events they're attending.</li>
         </ol>
       </div>
       <br>
     </td>
-    <td style="width: 30%;">
-      <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website_overview.png">
+    <td style="width: 50%;">
+      <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website_overview.png" width=1300px>
     </td>
   </tr>
 </table>
