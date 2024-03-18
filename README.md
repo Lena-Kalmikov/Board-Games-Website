@@ -50,7 +50,7 @@ Some noteworthy react libraries: react-router-dom, react-hook-form, react-google
 8. Navigation bar that is rendered differently whether the user is logged in or not.
 
 Website map:
-    <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website-overview.png" width = 900px >
+<img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website-overview.png" width = 500px >
    
 
 ## Screenshots
