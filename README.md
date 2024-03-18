@@ -73,8 +73,9 @@ Some noteworthy react libraries: react-router-dom, react-hook-form, react-google
         </ol>
       </div>
       <br>
-   See below chart of application overview:
+   See below a chart of application overview:
    <br>
+   <br/>
     <img src="https://github.com/Lena-Kalmikov/Board-Games-Website/blob/main/website_overview.png" width="600px">
 
 ## Screenshots
