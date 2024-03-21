@@ -44,19 +44,25 @@ export default function Login() {
       await login(data.email, data.password);
       navigate(from);
     } catch (error) {
-      if (error.code === "auth/wrong-password") {
-        setAlertMessage("password is incorrect, try again");
-        setIsAlertOpen(true);
+      switch (error.code) {
+        case "auth/wrong-password":
+          setAlertMessage("password is incorrect, try again");
+          break;
+        case "auth/user-not-found":
+          setAlertMessage("email is incorrect, try again");
+          break;
+        case "auth/invalid-credential":
+          setAlertMessage("email or password is incorrect, try again");
+          break;
+        case "auth/too-many-requests":
+          setAlertMessage("too many requests, try again later");
+          break;
+        case "auth/network-request-failed":
+          setAlertMessage("network error, try again later");
+          break;
+        default:
+          setAlertMessage(error.code);
       }
-      if (error.code === "auth/user-not-found") {
-        setAlertMessage("email is incorrect, try again");
-        setIsAlertOpen(true);
-      }
-      if (error.code === "auth/invalid-credential") {
-        setAlertMessage("email or password is incorrect, try again");
-        setIsAlertOpen(true);
-      }
-      setAlertMessage(error.code);
       setIsAlertOpen(true);
     }
     setIsLoading(false);
@@ -106,6 +112,7 @@ export default function Login() {
                   autocomplete: "off",
                 },
               }}
+              defaultValue="test@gmail.com"
               {...register("email", {
                 required: "email is required",
                 validate: {
@@ -125,6 +132,7 @@ export default function Login() {
               type="password"
               autoComplete="password"
               size="small"
+              defaultValue="123456"
               {...register("password", {
                 required: "password is required",
                 validate: {

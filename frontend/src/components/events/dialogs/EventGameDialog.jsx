@@ -29,6 +29,7 @@ export default function EventGameDialog({ isOpen, onClose, game }) {
             maxParticipantsLimit={game.maxParticipantsLimit}
             description={game.description}
             image={game.image}
+            rating={game.rating}
           />
         </Box>
       </DialogContent>

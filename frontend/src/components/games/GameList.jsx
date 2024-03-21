@@ -16,6 +16,7 @@ export default function GameList({ games }) {
           minAgeLimit={game.minAgeLimit}
           minParticipantsLimit={game.minParticipantsLimit}
           maxParticipantsLimit={game.maxParticipantsLimit}
+          rating={game.rating}
         />
       ))}
     </>

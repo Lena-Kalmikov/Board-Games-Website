@@ -12,7 +12,7 @@ export default function Home({ events, isEventsLoading }) {
 
   return (
     <Fade in={isComponentLoaded} timeout={{ enter: 500 }}>
-      <Box margin={2} marginBottom={10}>
+      <Box marginBottom={7}>
         <HeroSection />
         <EventsSample events={events} isEventsLoading={isEventsLoading} />
         <CallToAction />

@@ -85,27 +85,6 @@ const EventDiscussionTab = React.memo(
     const handleSendMessageOnEnterKey = handleEnterKeyDown(handleSendMessage);
     const handleEditMessageEnter = handleEnterKeyDown(handleEditMessage);
 
-    if (!currentUser) {
-      return (
-        <Box
-          sx={{
-            marginTop: 3,
-            marginLeft: 6,
-          }}
-        >
-          <Button
-            variant="outlined"
-            onClick={handleRedirectToLogin}
-            sx={{
-              textTransform: "none",
-            }}
-          >
-            Login to comment
-          </Button>
-        </Box>
-      );
-    }
-
     return (
       <Box>
         {contentData?.map((data) => (
@@ -138,6 +117,24 @@ const EventDiscussionTab = React.memo(
             handleInputChange={handleInputChange}
             isButtonDisabled={isButtonDisabled}
           />
+        )}
+        {!currentUser && (
+          <Box
+            sx={{
+              marginTop: 2,
+              marginLeft: 6,
+            }}
+          >
+            <Button
+              variant="outlined"
+              onClick={handleRedirectToLogin}
+              sx={{
+                textTransform: "none",
+              }}
+            >
+              Login to comment
+            </Button>
+          </Box>
         )}
 
         <DeleteDialog

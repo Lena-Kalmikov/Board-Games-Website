@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/firebase";
+import "./CallToAction.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -25,34 +26,51 @@ export default function CallToAction() {
         flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         backgroundColor: "background.paper",
-        margin: { xs: 1, md: "auto" },
-        padding: 2,
-        maxWidth: 800,
-        boxShadow: 1,
-        borderRadius: 5,
+        margin: { xs: 2, md: "auto" },
+        padding: 3,
+        maxWidth: 900,
+        boxShadow: 4,
       }}
     >
-      <Box marginLeft={1} marginTop={1}>
+      <Box marginLeft={2} >
         <Typography
-          fontSize={22}
           marginBottom={1}
           fontWeight={"bold"}
           color={"secondary.main"}
+          sx={{
+            fontSize: { xs: "1.3rem", sm: "1.6rem", md: "1.7rem" },
+          }}
         >
           Start crafting your event now.
         </Typography>
-        <Typography>
+        <Typography
+          sx={{ marginRight: 3, fontSize: { xs: "1rem", sm: "1.2rem" } }}
+        >
           From classic board games to the latest releases, our platform is your
           canvas for creating memorable gatherings. Let the games begin and the
-          laughter echo – forge new friendships and make every playdate an event
+          laughter echo, forge new friendships and make every playdate an event
           to remember!
         </Typography>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          alignSelf: { xs: "flex-start", md: "center" },
+        }}
+      >
         <Button
           onClick={handleRedirectToCreateNewEvent}
           variant="outlined"
-          sx={{ padding: 2, margin: 2, width: 200, borderRadius: 50 }}
+          className="button"
+          sx={{
+            padding: 2,
+            marginLeft: 2,
+            marginRight: 1,
+            marginTop: 3,
+            marginBottom: 1,
+            height: "3.2rem",
+            width: "14rem",
+            color: "secondary.main",
+          }}
         >
           Create new event
         </Button>

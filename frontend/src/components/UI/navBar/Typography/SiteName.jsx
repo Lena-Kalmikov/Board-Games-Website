@@ -8,7 +8,8 @@ export default function SiteName() {
       component={Link}
       to="/"
       noWrap
-      fontSize={26}
+      fontSize={27}
+      fontStyle={"italic"}
       fontWeight={700}
       fontFamily={"monospace"}
       marginRight={2}
@@ -21,7 +22,8 @@ export default function SiteName() {
         flexGrow: { xs: 1, sm: 0 },
         marginLeft: { xs: 3, sm: 0 },
         "&:hover": {
-          fontSize: 27,
+          textShadow: "0px 0px 6px rgba(145, 230, 231, 0.8)",
+          transition: "all 0.2s ease 0s",
         },
       }}
     >

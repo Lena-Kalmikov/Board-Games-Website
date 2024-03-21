@@ -10,7 +10,6 @@ import noImage from "../../../assets/imageNotAvailable.png";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
-import { grey } from "@mui/material/colors";
 import Tooltip from "@mui/material/Tooltip";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -35,7 +34,7 @@ export default function EventPreviewItem(props) {
   };
 
   const eventPassed = moment(props.date).isBefore(moment());
-  let color = eventPassed ? grey[500] : "none";
+  const opacity = eventPassed ? 0.4 : 1;
 
   return (
     <Card
@@ -47,6 +46,7 @@ export default function EventPreviewItem(props) {
         flexDirection: "column",
         backgroundColor: "paper",
         textDecoration: "none",
+        opacity: opacity,
       }}
     >
       <CardMedia
@@ -77,8 +77,12 @@ export default function EventPreviewItem(props) {
             variant="outlined"
             sx={{
               textTransform: "none",
-              color: color,
-              borderColor: color,
+              color: "#e14bfa",
+              borderColor: "#e14bfa",
+              "&:hover": {
+                boxShadow: "0px 0px 6px rgb(221, 51, 250)",
+                transition: "all 0.35s ease 0s",
+              },
             }}
             component={Link}
             to={`/events/${props.id}`}
